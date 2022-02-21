@@ -1,6 +1,7 @@
 <template>
   
  <Signupform /> 
+ 
 </template>
 
 <script>

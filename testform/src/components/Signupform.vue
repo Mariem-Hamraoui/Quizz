@@ -62,12 +62,16 @@
       <button>Login</button>
     </form>
   </div>
+ 
 
   <p>Email : {{ email }}</p>
   <p>password : {{ password }}</p>
   <p>Role : {{ role }}</p>
-  <p>terms accpected : {{ terms }}</p>
-  <p>Department : {{ department }}</p>
+  <p> terms accpected : {{ terms }} </p>
+  <p> Department : {{ departements }} </p>
+
+
+
 </template>
 
 <script>
@@ -156,12 +160,11 @@ button:hover {
   height: 460px;
   background: #eee;
   border-radius: 60% / 10%;
-  transform: translateY(-180px);
-  transition: 0.8s ease-in-out;
+ 
 }
 .login label {
   color: #573b8a;
-  transform: scale(0.6);
+  
 }
 
 #chk:checked ~ .login {
@@ -170,7 +173,5 @@ button:hover {
 #chk:checked ~ .login label {
   transform: scale(1);
 }
-#chk:checked ~ .signup label {
-  transform: scale(0.6);
-}
+
 </style>
