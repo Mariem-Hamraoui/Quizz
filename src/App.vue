@@ -1,15 +1,17 @@
 <template>
-  
- <Signupform /> 
+
+ <homepage />
 </template>
 
 <script>
 
 import Signupform from "./components/Signupform"
+import Homepage from "./components/Homepage.vue"
 export default {
   name: 'App',
   components: {
-   Signupform
+   Signupform,
+   Homepage
   }
 }
 </script>
@@ -27,7 +29,7 @@ export default {
 body{
   margin: 0;
 	background-color: #eee ;
-	
+
 }
 
 </style>
