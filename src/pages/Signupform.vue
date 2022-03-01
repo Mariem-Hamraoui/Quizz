@@ -78,7 +78,11 @@ body{
     bottom: -270px;
 }
 form{
+<<<<<<< HEAD:src/components/Signupform.vue
     height: 400px;
+=======
+    height: 800px;
+>>>>>>> 7977f31839b6bbb81e15e3c1ea467dbe7dfefcb1:src/pages/Signupform.vue
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
