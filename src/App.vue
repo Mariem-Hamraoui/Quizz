@@ -1,54 +1,50 @@
 <template>
+  <header>
+    <div id="brand"><a href="/">MyCompany</a></div>
+    <nav>
+      <ul>
+        <li><a href="/homepage">Homepage</a></li>
+        <li><a href="/Dashboard">Dashboard</a></li>
 
-      <header>
-        <div id="brand"><a href="/">MyCompany</a></div>
-        <nav>
-          <ul>
+        <li id="login"><a href="/login">Login</a></li>
+        <li id="signup"><a href="/signup">Signup</a></li>
+      </ul>
+    </nav>
+    <div
+      id="hamburger-icon"
+      @click="toggleMobileMenu"
+      v-bind:class="{ open: isActive }"
+    >
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <ul class="mobile-menu" v-scroll= "handleScroll" >
+        <li id="hm"><a href="/home">Home</a></li>
+        <li id="prd"><a href="/products">Products</a></li>
+        <li id="abt"><a href="/about">About</a></li>
+        <li id="login"><a href="/login">Login</a></li>
+        <li id="signup"><a href="/signup">Signup</a></li>
+      </ul>
+    </div>
+  </header>
 
-            <li><a href="/homepage">Homepage</a></li>
-            <li><a href="/Dashboard">Dashboard</a></li>
+  <!-- <router-view></router-view> -->
+  <LectureBuild />
 
-            <li id="login"><a href="/login">Login</a></li>
-            <li id="signup"><a href="/signup">Signup</a></li>
-          </ul>
-        </nav>
-        <div
-          id="hamburger-icon"
-          @click="toggleMobileMenu"
-          v-bind:class="{ open: isActive }"
-        >
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-          <ul class="mobile-menu">
-            <li id="hm"><a href="/home">Home</a></li>
-            <li id="prd"><a href="/products">Products</a></li>
-            <li id="abt"><a href="/about">About</a></li>
-            <li id="login"><a href="/login">Login</a></li>
-            <li id="signup"><a href="/signup">Signup</a></li>
-          </ul>
-        </div>
-      </header>
-<<<<<<< HEAD
-<body>
-	<Login />
-</body>
-=======
->>>>>>> 7977f31839b6bbb81e15e3c1ea467dbe7dfefcb1
-
- <router-view></router-view>
 </template>
 
 <script>
-
+import LectureBuild from './pages/LectureBuild.vue'
 export default {
   name: "App",
   components: {
-
+   LectureBuild
   },
   data() {
     return {
       isActive: false,
+      questions: [],
+
     };
   },
   methods: {
@@ -67,8 +63,6 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
-
 
 header a {
   text-decoration: none;
@@ -187,7 +181,7 @@ ul li:hover {
 .open .mobile-menu {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: right flex ;
   justify-content: flex-start;
 }
 
@@ -197,7 +191,7 @@ ul li:hover {
   top: 50px;
   left: 0;
   height: calc(100vh - 50px);
-  width: 100%;
+  width: 50%;
 }
 
 .mobile-menu li {

@@ -1,8 +1,8 @@
 <template>
-  <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+  <base-dialog :show= "!!error" title="An error occurred" @close= "handleError">
     <p>{{ error }}</p>
   </base-dialog>
-  <base-dialog :show="isLoading" title="Authenticating..." fixed>
+  <base-dialog :show= "isLoading" title="Authenticating..." fixed>
     <base-spinner></base-spinner>
   </base-dialog>
 
@@ -10,31 +10,31 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent= "submitForm">
     <base-card>
       <h3>Login Here</h3>
       <div>
-        <label for="email">Email</label>
+        <label for="email"> Email</label>
         <input
           type="email"
           placeholder="Email"
           id="email"
-          v-model.trim="email"
+          v-model.trim= "email"
         />
 
-        <label for="password">Password</label>
+        <label for="password"> Password</label>
         <input
           type="password"
           placeholder="Password"
           id="password"
-          v-model="password"
+          v-model= "password"
         />
       </div>
-      <p v-if="!formIsValid">Please check email and password</p>
-      <button id="login" @click="submitForm">
+      <p v-if= "!formIsValid">Please check email and password</p>
+      <button id="login" @click= "submitForm">
         {{ submittedButtonCaption }}
       </button>
-      <button id="Sign" type="button" mode="flat" @click="switchSignUp">
+      <button id="Sign" type="button" mode="flat" @click= "switchSignUp">
         {{ switchModeButtonCaption }}
       </button>
     </base-card>

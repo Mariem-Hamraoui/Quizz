@@ -7,6 +7,7 @@ import store from './store/index.js'
 import Login from './pages/Login.vue'
 
 
+
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
