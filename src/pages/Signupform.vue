@@ -1,13 +1,9 @@
 <template>
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
-  <form>
+
     <h3>Subscribe Here</h3>
     <label for="Name">Name</label>
     <input type="text" placeholder="Name" id="name" />
-    <label for="LastName">Name</label>
+    <label for="LastName">Last Name</label>
     <input type="text" placeholder="LastName" id="lastname" />
     <label for="username">Username</label>
     <input type="text" placeholder="Email or Phone" id="username" />
@@ -17,8 +13,8 @@
     <label for="password">Confirm Password</label>
     <input type="password" placeholder="Confirm Password" id="password" />
 
-    <button>Create Account</button>
-  </form>
+
+
 </template>
 
 <script>

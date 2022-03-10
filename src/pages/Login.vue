@@ -10,10 +10,11 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <form @submit.prevent="submitForm">
-    <base-card>
-      <h3>Login Here</h3>
-      <div>
+  <base-card>
+    <form @submit.prevent="submitForm">
+      <div v-if="mode === 'login'">
+        <h3>Login Here</h3>
+
         <label for="email">Email</label>
         <input
           type="email"
@@ -30,6 +31,31 @@
           v-model="password"
         />
       </div>
+      <div v-if="mode === 'signup'">
+        <h3>Subscribe Here</h3>
+        <label for="Name">Name</label>
+        <input type="text" placeholder="Name" id="name" />
+        <label for="LastName">Last Name</label>
+        <input type="text" placeholder="LastName" id="lastname" />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          v-model.trim="email"
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          v-model="password"
+        />
+        <label for="password">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="Cpassword" v-model="Cpassword" />
+      </div>
+	  <p v-if='!Cpasswordvalid'>Passwords don't match</p>
       <p v-if="!formIsValid">Please check email and password</p>
       <button id="login" @click="submitForm">
         {{ submittedButtonCaption }}
@@ -37,8 +63,8 @@
       <button id="Sign" type="button" mode="flat" @click="switchSignUp">
         {{ switchModeButtonCaption }}
       </button>
-    </base-card>
-  </form>
+    </form>
+  </base-card>
 </template>
 
 <script>
@@ -49,9 +75,12 @@ export default {
       password: "",
       formIsValid: true,
       mode: "login",
+      isLoading: false,
+      error: null,
+	  Cpassword:'',
+	  Cpasswordvalid: true
     };
   },
-
   computed: {
     submittedButtonCaption() {
       if (this.mode === "login") {
@@ -79,13 +108,12 @@ export default {
         this.formIsValid = false;
         return;
       }
+	  
       this.isLoading = true;
-
       const actionPayload = {
         email: this.email,
         password: this.password,
       };
-
       try {
         if (this.mode === "login") {
           await this.$store.dispatch("login", actionPayload);
@@ -97,7 +125,6 @@ export default {
       } catch (err) {
         this.error = err.message || "Failed to authenticate, try later.";
       }
-
       this.isLoading = false;
     },
     switchSignUp() {
@@ -141,21 +168,22 @@ body {
 }
 .shape:first-child {
   background: linear-gradient(#1845ad, #23a2f6);
-  left: -80px;
-  top: -80px;
+  left: -20%;
+  top: 10%;
 }
 .shape:last-child {
   background: linear-gradient(to right, #ff512f, #f09819);
-  right: -30px;
-  bottom: -80px;
+
+  right: -20%;
+  top: 130%;
 }
 form {
-  height: 520px;
+  height: 700px;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 50%;
+  top: 80%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
@@ -176,7 +204,6 @@ form h3 {
   line-height: 42px;
   text-align: center;
 }
-
 label {
   display: block;
   margin-top: 30px;
@@ -208,14 +235,12 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
 #login {
   border-radius: 5px;
   padding: 5px 8px;
   border: 1px solid #498afb;
   color: #498afb;
 }
-
 #Sign {
   background-color: transparent;
   color: white;

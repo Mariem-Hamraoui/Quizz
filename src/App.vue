@@ -30,15 +30,15 @@
         </div>
       </header>
 
- <router-view></router-view>
+ <router-view> </router-view>
 </template>
 
 <script>
-
+import Login from './pages/Login.vue'
 export default {
   name: "App",
   components: {
-
+Login
   },
   data() {
     return {
