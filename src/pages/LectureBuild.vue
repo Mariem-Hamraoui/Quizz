@@ -1,64 +1,104 @@
-<template >
-<div id="allpage">
-
-
-  <div >
-    <h2>Please add the name of the lecture</h2>
-    <input type="text" />
-  </div>
-  <br />
-  <div>
-    <p>Please fill your quiz form</p>
-    <button>Create question</button>
+<template>
+  <fieldset>
     <div>
+      <p>Please Start creating your quiz form</p>
+
       <label> Add your Question </label>
-      <input type=" text" v-model="tempquestion" />
-      <label> Add the correct answer </label>
-      <input type=" text" v-model="correctAnswer" />
+
+      <input type=" text" v-model= "tempquestion"  />
+
+      <input type=" text"  v-model= "correctAnswer"  />
+
+
       <label> Add a wrong answer </label>
       <ul id="winput">
         <div>
-          <li v-for="index in nbrWanswers" :key="index">
-            <p>Question {{index}}</p><input />
+          <li v-for= "index in nbrWanswers" :key= "index">
+            <p> Question {{index}}</p><input />
           </li>
         </div>
       </ul>
-      <button @click="nbrWanswers++">Add extra wrong answer</button>
-    </div>
-  </div>
-  <div v-for="question in questions" :key="question">
-    <p>question : {{ question }}</p>
-  </div>
+      <button @click= "nbrWanswers++"> Add extra wrong answer </button>
 
-  </div>
+
+    </div>
+
+     <div>
+     <button type="button" @click= "submit"  > Save my quiz! </button>
+    </div>
+
+
+
+  </fieldset>
+
+
 </template>
+
 
 <script>
 export default {
   data() {
     return {
+
+      quiz: [],
+
       tempquestion: "",
-      questions: [],
       correctAnswer: "",
       tempWrongAnswer: "",
-      allwronganswers: [],
-      nbrWanswers: 1,
-      questionDetails: {},
+      tempallwronganswers:[],
+
+      nbrWanswers : 1 ,
+
+      QuestionDetails: {
+          question: "" ,
+          correctAnswer: "",
+          allwronganswers:[],
+      },
+
+      submitted: false,
     };
   },
   methods: {
-    addquestion(e) {
-      if (e.key === "Enter" && this.tempquestion) {
-        this.questionDetails["question"] === this.tempquestion;
 
-        this.tempquestion = "";
-      }
+    addwronganswers() {
+
+
+
+
+            this.tempallwronganswers.push(this.tempWrongAnswer) ;
+
+             this.tempWrongAnswer ='';
+
+
+    },
+
+    submit() {
+
+        this.submitted = true;
+
+       this.questions.push(this.tempquestion);
+       this.tempallwronganswers.push(this.tempWrongAnswer)
+
+      this.QuestionDetails[question] = this.tempquestion ;
+      this.QuestionDetails.correctAnswer = this.correctAnswer;
+      this.QuestionDetails.allwronganswers = this.tempallwronganswers ;
+      this.quiz.push(this.QuestionDetails)
+
+    },
+    restart() {
+      this.tempquestion =  ""  ;
+      this.correctAnswer = "",
+      this.tempWrongAnswer = "",
+      this.tempallwronganswers =[];
+      this.QuestionDetails = {};
     },
   },
 };
+
 </script>
 
 <style>
+
 h1 label {
   color: white;
   display: inline-block;
@@ -78,34 +118,7 @@ input {
   color: white;
 }
 
-#winput {
-  display: block;
- text-align: center;
-  width: 50%;
-
-  border-bottom: 1px solid white;
-  color: white;
-}
-
 div {
   color: white;
-}
-button {
-  margin-top: 50px;
-  width: 100%;
-  background-color: #ffffff;
-  color: #080710;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#allpage {
-	margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
 }
 </style>
