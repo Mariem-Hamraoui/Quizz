@@ -17,29 +17,28 @@
 
       <input class="form-control input-lg " type=" text" v-model= "correctAnswer" />
 
-      <label> Wrong Answer : </label>
+      <label> Wrong Answer(s) : </label>
        <p class="help-block"> you may add more than one wrong answer</p>
       <ul>
         <div>
           <input  class="form-control input-lg " type=" text" v-model= "tempWrongAnswer" />
         </div>
       </ul>
-      <button class="btn btn btn-info  active"  @click= "addwronganswers"  >Add extra wrong answer</button>
+      <button class="btn btn btn-info  active"  @click= "addwronganswers" > Extra wrong answer </button>
      <br/>  
     </div>
     <div>
       <br/>  
-      <button type="button" class="btn btn-primary btn btn-info btn-block active" @click= "submit" >Save my quiz</button>
+      <button type="button" class="btn btn-primary btn btn-info btn-block active" @click= "submit" > Save this question's details  </button>
     </div>
   </fieldset>
 <div v-if = "submitted" >
   <fieldset >
    <legend> Question's details  Summary </legend>
-      <p> The question : {{ QuestionDetails.question }}</p>
-      <p> The correctAnswer : {{ QuestionDetails.correctAnswer }}</p>
-
+      <p> <strong> The question : </strong>  {{ QuestionDetails.question }} </p>
+      <p>  <strong> The correct Answer :  </strong>  {{ QuestionDetails.correctAnswer }}</p>
       <div v-for= " WrongAnswer in QuestionDetails.allwronganswers " :key= "WrongAnswer" >
-         <p> wrong answer(s) : {{ WrongAnswer }}</p>
+         <p>  <strong> Wrong Answer(s) : </strong>  {{ WrongAnswer }}</p>
       </div>    
 </fieldset>
 </div> 
@@ -55,14 +54,15 @@ export default {
       tempquestion: "",
       correctAnswer: "",
       tempWrongAnswer: "",
-      errorMessages: [],
-      error: false,
+      
       nbrWanswers: 1,
       QuestionDetails: {
         question: "",
         correctAnswer: "",
         allwronganswers: [],
       },
+      errorMessages: [],
+      error: false,
       submitted: false,
     };
   },
@@ -75,6 +75,8 @@ export default {
         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
         this.nbrWanswers++;
         this.tempWrongAnswer = "";
+        console.log(this.QuestionDetails.allwronganswers)
+         alert(this.QuestionDetails.allwronganswers)
       } else {
         this.error = true;
         this.errorMessage = `Oops .. Already exsisting  wrong answer!`;
@@ -89,23 +91,27 @@ export default {
         this.tempquestion &&
         this.correctAnswer &&
         this.tempWrongAnswer &&
-        this.QuestionDetails.allwronganswers
+        !this.QuestionDetails.allwronganswers.includes(this.tempWrongAnswer)
       ) 
       {
+         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
+
         this.QuestionDetails["question"] = this.tempquestion;
         this.QuestionDetails.correctAnswer = this.correctAnswer;
+        
+       
         this.quiz.push(this.QuestionDetails);
+         this.tempWrongAnswer = "";
         this.submitted = true;
         console.log(this.QuestionDetails.allwronganswers);
         alert(" Great!! This question's details is submitted");
       } else {
         this.error = true;
         this.errorMessage = ` Please check the empty fields .. cannot be saved! `;
-        this.errorMessages.push(this.errorMessage);
-      
-        console.log(this.errorMessage);
-        //alert(" Cannot be saved!! Please check the empty fields")
+        this.errorMessages.push(this.errorMessage);     
+        console.log(this.errorMessage);       
       }
+      alert(this.QuestionDetails.allwronganswers)
     },
   },
 };
