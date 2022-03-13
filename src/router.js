@@ -15,7 +15,7 @@ const router = createRouter({
 		{ path: '/', redirect: '/homepage' },
 		{path: '/homepage', component: Homepage},
 		{path: '/build', component: LectureBuild},
-		{path: '/dashboard', component: Dashboard, meta: { requiresAuth: true}},
+		{path: '/dashboard', component: LectureBuild, meta: { requiresAuth: true}},
 
 		{ path: '/auth', component: Login, meta: { requiresUnauth: true } }
 
@@ -26,7 +26,7 @@ const router = createRouter({
 		if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
 		  next('/auth');
 		} else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
-		  next('/dashboard');
+		  next('/build');
 		} else {
 		  next();
 		}

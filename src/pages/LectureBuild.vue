@@ -1,3 +1,4 @@
+
 <template>
   <fieldset>
     <div>
@@ -64,7 +65,15 @@ export default {
       this.quiz.push(this.QuestionDetails);
       this.submitted = true;  
       console.log (this.QuestionDetails.allwronganswers)
-      
+      fetch('https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures.json', {
+		  method:'POST',
+		  headers:{
+			  'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify({
+			  QuestionDetails: this.QuestionDetails
+		  })
+	  })
 
     },
     
@@ -107,3 +116,4 @@ div {
   color: white;
 }
 </style>
+
