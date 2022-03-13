@@ -1,44 +1,41 @@
 <template>
+  <header>
+    <div id="brand"><a href="/">MyCompany</a></div>
+    <nav>
+      <ul>
+        <li><a href="/homepage">Homepage</a></li>
+        <li><a href="/Dashboard">Dashboard</a></li>
+        <li id="login"><a href="/auth">Login/Signup</a></li>
 
-      <header>
-        <div id="brand"><a href="/">MyCompany</a></div>
-        <nav>
-          <ul>
+      </ul>
+    </nav>
+    <div
+      id="hamburger-icon"
+      @click="toggleMobileMenu"
+      v-bind:class="{ open: isActive }"
+    >
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <ul class="mobile-menu">
+        <li id="hm"><a href="/home">Home</a></li>
+        <li id="prd"><a href="/products">Products</a></li>
+        <li id="abt"><a href="/about">About</a></li>
+        <li id="login"><a href="/login">Login/signup</a></li>
 
-            <li><a href="/homepage">Homepage</a></li>
-            <li><a href="/Dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </header>
 
-            <li id="login"><a href="/login">Login</a></li>
-            <li id="signup"><a href="/signup">Signup</a></li>
-          </ul>
-        </nav>
-        <div
-          id="hamburger-icon"
-          @click="toggleMobileMenu"
-          v-bind:class="{ open: isActive }"
-        >
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-          <ul class="mobile-menu">
-            <li id="hm"><a href="/home">Home</a></li>
-            <li id="prd"><a href="/products">Products</a></li>
-            <li id="abt"><a href="/about">About</a></li>
-            <li id="login"><a href="/login">Login</a></li>
-            <li id="signup"><a href="/signup">Signup</a></li>
-          </ul>
-        </div>
-      </header>
-
- <router-view> </router-view>
+  <router-view> </router-view>
 </template>
 
 <script>
-import Login from './pages/Login.vue'
+import Login from "./pages/Login.vue";
 export default {
   name: "App",
   components: {
-Login
+    Login,
   },
   data() {
     return {
@@ -49,6 +46,7 @@ Login
     toggleMobileMenu() {
       this.isActive = !this.isActive;
     },
+
   },
 };
 </script>
@@ -61,8 +59,6 @@ Login
   margin: 0;
   box-sizing: border-box;
 }
-
-
 
 header a {
   text-decoration: none;
