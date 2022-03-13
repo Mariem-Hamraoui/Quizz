@@ -10,11 +10,12 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <form @submit.prevent= "submitForm">
-    <base-card>
-      <h3>Login Here</h3>
-      <div>
-        <label for="email"> Email</label>
+  <base-card>
+    <form @submit.prevent="submitForm">
+      <div v-if="mode === 'login'">
+        <h3>Login Here</h3>
+
+        <label for="email">Email</label>
         <input
           type="email"
           placeholder="Email"
@@ -30,15 +31,50 @@
           v-model= "password"
         />
       </div>
-      <p v-if= "!formIsValid">Please check email and password</p>
-      <button id="login" @click= "submitForm">
+      <div v-if="mode === 'signup'">
+        <h3>Subscribe Here</h3>
+        <label for="Name">Name</label>
+        <input type="text" placeholder="Name" id="name" />
+        <label for="LastName">Last Name</label>
+        <input type="text" placeholder="LastName" id="lastname" />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          v-model.trim="email"
+        />
+
+        <label for="password">Password</label>
+        <input
+          name="password"
+          label="Password"
+          id="password"
+          v-model="password"
+          type="password"
+          required
+        />
+        <label for="password">Confirm Password</label>
+        <input
+          name="confirmPassword"
+          label="Confirm Password"
+          id="confirmPassword"
+          v-model="confirmPassword"
+          type="password"
+
+        />
+      </div>
+
+      <p >{{errorMessage}}</p>
+
+      <button id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
       <button id="Sign" type="button" mode="flat" @click= "switchSignUp">
         {{ switchModeButtonCaption }}
       </button>
-    </base-card>
-  </form>
+    </form>
+  </base-card>
 </template>
 
 <script>
@@ -48,23 +84,29 @@ export default {
       email: "",
       password: "",
       formIsValid: true,
+	  wPassword: true,
       mode: "login",
+      isLoading: false,
+      error: null,
+      confirmPassword: "",
+	  errorMessage:"",
+	  quizz: []
     };
   },
-
   computed: {
+
     submittedButtonCaption() {
       if (this.mode === "login") {
-        return "login";
+        return "Login";
       } else {
-        return "signup";
+        return "Signup";
       }
     },
     switchModeButtonCaption() {
       if (this.mode === "login") {
-        return "signup instead";
+        return "Signup instead";
       } else {
-        return "login instead";
+        return "Login instead";
       }
     },
   },
@@ -75,29 +117,36 @@ export default {
         this.email === "" ||
         !this.email.includes("@") ||
         this.password.length < 6
+
       ) {
+		  this.errorMessage = "Please check email and password"
         this.formIsValid = false;
         return;
       }
-      this.isLoading = true;
 
+	  if (this.password !== this.confirmPassword){
+		  this.errorMessage = "Passwords don't match ";
+		  this.formIsValid = false;
+		  return;
+	  }
+
+      this.isLoading = true;
       const actionPayload = {
         email: this.email,
         password: this.password,
+		quizz: this.quizz
       };
-
       try {
         if (this.mode === "login") {
           await this.$store.dispatch("login", actionPayload);
         } else {
           await this.$store.dispatch("signup", actionPayload);
         }
-        const redirectUrl = "/" + (this.$route.query.redirect || "coaches");
+        const redirectUrl = "/" + (this.$route.query.redirect || "dashboard");
         this.$router.replace(redirectUrl);
       } catch (err) {
         this.error = err.message || "Failed to authenticate, try later.";
       }
-
       this.isLoading = false;
     },
     switchSignUp() {
@@ -141,21 +190,22 @@ body {
 }
 .shape:first-child {
   background: linear-gradient(#1845ad, #23a2f6);
-  left: -80px;
-  top: -80px;
+  left: -20%;
+  top: 10%;
 }
 .shape:last-child {
   background: linear-gradient(to right, #ff512f, #f09819);
-  right: -30px;
-  bottom: -80px;
+
+  right: -20%;
+  top: 130%;
 }
 form {
-  height: 520px;
+  height: 700px;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 50%;
+  top: 80%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
@@ -176,7 +226,6 @@ form h3 {
   line-height: 42px;
   text-align: center;
 }
-
 label {
   display: block;
   margin-top: 30px;
@@ -197,17 +246,6 @@ input {
 ::placeholder {
   color: #e5e5e5;
 }
-button {
-  margin-top: 50px;
-  width: 100%;
-  background-color: #ffffff;
-  color: #080710;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 #login {
   border-radius: 5px;
@@ -215,9 +253,9 @@ button {
   border: 1px solid #498afb;
   color: #498afb;
 }
-
 #Sign {
   background-color: transparent;
   color: white;
+  text-decoration: underline;
 }
 </style>
