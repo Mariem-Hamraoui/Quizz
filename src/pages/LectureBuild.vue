@@ -1,13 +1,8 @@
 <template>
-  <fieldset class="form-horizontal" @submit.prevent= "submit">
+  <fieldset class="form-horizontal text-capitalize " @submit.prevent= "submit">
     <div>
       <legend> <strong> Start creating your quiz form </strong> </legend>
 
-      <div class="text-warning" v-if= "!errors">
-        <div v-for= "error in errorMessages" :key= "error">
-          <p style="color: red">Error Message : {{ errorMessage }}</p>
-        </div>
-      </div>
 
       <label> Question : </label>
 
@@ -18,19 +13,36 @@
       <input class="form-control input-lg " type=" text" v-model= "correctAnswer" />
 
       <label> Wrong Answer(s) : </label>
-       <p class="help-block"> you may add more than one wrong answer</p>
+       <p class="help-block">  __ you may add more than one wrong answer</p>
       <ul>
         <div>
           <input  class="form-control input-lg " type=" text" v-model= "tempWrongAnswer" />
         </div>
       </ul>
-      <button class="btn btn btn-info  active"  @click= "addwronganswers" > Extra wrong answer </button>
+      <button class="btn btn btn-info  active"  @click= "addwronganswers" >Extra wrong answer </button>
+      <p class="help-block"> __ Save to add extra wrong answer </p>
      <br/>  
+      <button class="btn btn btn-info  active"  @click= "clear" > Clear </button>
+
     </div>
+    
+      <div class="text-warning" v-if= "!errors">
+        <div v-for= "error in errorMessages" :key= "error">
+          <p style="color: red"> Error Message : {{ errorMessage }}</p>
+        </div>
+      </div>
+
     <div>
       <br/>  
       <button type="button" class="btn btn-primary btn btn-info btn-block active" @click= "submit" > Save this question's details  </button>
+          
     </div>
+     <div class="text-warning"  v-if = "submitted" >
+        
+          <p style="color: green"> <strong> Great!! This question's details has been submitted  </strong> </p>
+        
+      </div>
+
   </fieldset>
 <div v-if = "submitted" >
   <fieldset >
@@ -68,46 +80,57 @@ export default {
   },
   methods: {
     addwronganswers() {
+      this.error= false;
+      this.errorMessages= []
       if (
         this.tempWrongAnswer &&
         !this.QuestionDetails.allwronganswers.includes(this.tempWrongAnswer)
       ) {
+       this.error= false;
         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
         this.nbrWanswers++;
+        
         this.tempWrongAnswer = "";
-        console.log(this.QuestionDetails.allwronganswers)
+      
          alert(this.QuestionDetails.allwronganswers)
+         
       } else {
         this.error = true;
         this.errorMessage = `Oops .. Already exsisting  wrong answer!`;
         this.errorMessages.push(this.errorMessage);
-        //alert( this.errorMessage)
-        console.log(this.errorMessage);
+       
       }      
     },
-
-    submit() {
-      if (
+    clear(){
+        this.tempWrongAnswer = "";
+        this.error= false ;
+        this.errorMessages = []
+    },
+    submit() {  
+      if ( 
+        //ok
         this.tempquestion &&
         this.correctAnswer &&
+        this.QuestionDetails.allwronganswers !== [] &&
         this.tempWrongAnswer &&
-        !this.QuestionDetails.allwronganswers.includes(this.tempWrongAnswer)
+       !this.QuestionDetails.allwronganswers.includes(this.tempWrongAnswer)
       ) 
-      {
-         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
-
+      {      
+        this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
+        this.error= false;
         this.QuestionDetails["question"] = this.tempquestion;
-        this.QuestionDetails.correctAnswer = this.correctAnswer;
-        
-       
+        this.QuestionDetails.correctAnswer = this.correctAnswer;      
         this.quiz.push(this.QuestionDetails);
-         this.tempWrongAnswer = "";
-        this.submitted = true;
+        this.tempWrongAnswer = "";
+        this.tempquestion = "";
+        this.correctAnswer = "";
+        this.submitted = true;      
         console.log(this.QuestionDetails.allwronganswers);
         alert(" Great!! This question's details is submitted");
-      } else {
+      }       
+      else {
         this.error = true;
-        this.errorMessage = ` Please check the empty fields .. cannot be saved! `;
+        this.errorMessage = `Oops .. Please fill the empty fields! `;
         this.errorMessages.push(this.errorMessage);     
         console.log(this.errorMessage);       
       }
