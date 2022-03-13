@@ -8,6 +8,7 @@ import Login from './pages/Login.vue'
 import LectureBuild from './pages/LectureBuild.vue'
 
 
+
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
