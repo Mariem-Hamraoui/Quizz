@@ -47,16 +47,26 @@
 
         <label for="password">Password</label>
         <input
-          type="password"
-          placeholder="Password"
+          name="password"
+          label="Password"
           id="password"
           v-model="password"
+          type="password"
+          required
         />
         <label for="password">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="Cpassword" v-model="Cpassword" />
+        <input
+          name="confirmPassword"
+          label="Confirm Password"
+          id="confirmPassword"
+          v-model="confirmPassword"
+          type="password"
+
+        />
       </div>
-	  <p v-if='!Cpasswordvalid'>Passwords don't match</p>
-      <p v-if="!formIsValid">Please check email and password</p>
+
+      <p >{{errorMessage}}</p>
+
       <button id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
@@ -74,26 +84,29 @@ export default {
       email: "",
       password: "",
       formIsValid: true,
+	  wPassword: true,
       mode: "login",
       isLoading: false,
       error: null,
-	  Cpassword:'',
-	  Cpasswordvalid: true
+      confirmPassword: "",
+	  errorMessage:"",
+	  quizz: []
     };
   },
   computed: {
+
     submittedButtonCaption() {
       if (this.mode === "login") {
-        return "login";
+        return "Login";
       } else {
-        return "signup";
+        return "Signup";
       }
     },
     switchModeButtonCaption() {
       if (this.mode === "login") {
-        return "signup instead";
+        return "Signup instead";
       } else {
-        return "login instead";
+        return "Login instead";
       }
     },
   },
@@ -104,15 +117,24 @@ export default {
         this.email === "" ||
         !this.email.includes("@") ||
         this.password.length < 6
+
       ) {
+		  this.errorMessage = "Please check email and password"
         this.formIsValid = false;
         return;
       }
-	  
+
+	  if (this.password !== this.confirmPassword){
+		  this.errorMessage = "Passwords don't match ";
+		  this.formIsValid = false;
+		  return;
+	  }
+
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
         password: this.password,
+		quizz: this.quizz
       };
       try {
         if (this.mode === "login") {
@@ -120,7 +142,7 @@ export default {
         } else {
           await this.$store.dispatch("signup", actionPayload);
         }
-        const redirectUrl = "/" + (this.$route.query.redirect || "coaches");
+        const redirectUrl = "/" + (this.$route.query.redirect || "dashboard");
         this.$router.replace(redirectUrl);
       } catch (err) {
         this.error = err.message || "Failed to authenticate, try later.";
@@ -224,17 +246,7 @@ input {
 ::placeholder {
   color: #e5e5e5;
 }
-button {
-  margin-top: 50px;
-  width: 100%;
-  background-color: #ffffff;
-  color: #080710;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 #login {
   border-radius: 5px;
   padding: 5px 8px;
@@ -244,5 +256,6 @@ button {
 #Sign {
   background-color: transparent;
   color: white;
+  text-decoration: underline;
 }
 </style>
