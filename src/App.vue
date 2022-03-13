@@ -1,10 +1,21 @@
 <template>
   <header>
-    <div id="brand"><a href="/"> MyCompany </a></div>
+    <div id="brand"><a href="/">MyCompany</a></div>
     <nav>
       <ul>
         <li><a href="/homepage">Homepage</a></li>
         <li><a href="/Dashboard">Dashboard</a></li>
+        <li id="login"><a href="/auth">Login/Signup</a></li>
+
+      </ul>
+    </nav>
+    <div
+      id="hamburger-icon"
+      @click="toggleMobileMenu"
+      v-bind:class="{ open: isActive }"
+    >
+      <div class="bar1"></div>
+      <div class="bar2"></div>
       <div class="bar3"></div>
       <ul class="mobile-menu">
         <li id="hm"><a href="/home">Home</a></li>
@@ -20,17 +31,15 @@
 </template>
 
 <script>
-
+import Login from "./pages/Login.vue";
 export default {
   name: "App",
   components: {
-    
+    Login,
   },
   data() {
     return {
       isActive: false,
-      questions: [],
-
     };
   },
   methods: {
@@ -168,7 +177,7 @@ ul li:hover {
 .open .mobile-menu {
   display: flex;
   flex-direction: column;
-  align-items: right flex ;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -178,7 +187,7 @@ ul li:hover {
   top: 50px;
   left: 0;
   height: calc(100vh - 50px);
-  width: 50%;
+  width: 100%;
 }
 
 .mobile-menu li {

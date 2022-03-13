@@ -1,37 +1,28 @@
 <template>
   <fieldset>
     <div>
-      <p>Please Start creating your quiz form</p>
+      <legend> Start creating your quiz form </legend>
 
-      <label> Add your Question </label>
+      <label>   Question :  </label>
 
       <input type=" text" v-model= "tempquestion"  />
 
+ <label> Correct Answer : </label>
+
       <input type=" text"  v-model= "correctAnswer"  />
-
-
-      <label> Add a wrong answer </label>
-      <ul id="winput">
+      
+      <label>  Wrong Answer : </label>
+      <ul>
         <div>
-          <li v-for= "index in nbrWanswers" :key= "index">
-            <p> Question {{index}}</p><input />
-          </li>
+          <input type=" text"  v-model= "tempWrongAnswer"/>
         </div>
       </ul>
-      <button @click= "nbrWanswers++"> Add extra wrong answer </button>
-
-
+      <button @click= "addwronganswers"> Add extra wrong answer </button>
     </div>
-
      <div>
-     <button type="button" @click= "submit"  > Save my quiz! </button>
+     <button type="button" @click= "submit"  > Save my quiz </button>
     </div>
-
-
-
   </fieldset>
-
-
 </template>
 
 
@@ -45,10 +36,8 @@ export default {
       tempquestion: "",
       correctAnswer: "",
       tempWrongAnswer: "",
-      tempallwronganswers:[],
-
+ 
       nbrWanswers : 1 ,
-
       QuestionDetails: {
           question: "" ,
           correctAnswer: "",
@@ -59,45 +48,41 @@ export default {
     };
   },
   methods: {
-
-    addwronganswers() {
-
-
-
-
-            this.tempallwronganswers.push(this.tempWrongAnswer) ;
-
-             this.tempWrongAnswer ='';
-
-
+    addwronganswers() {        
+            this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer) ;           
+            this.nbrWanswers++;
+            console.log(this.QuestionDetails.allwronganswers)           
+            this.tempWrongAnswer ='';
     },
 
     submit() {
-
-        this.submitted = true;
-
-       this.questions.push(this.tempquestion);
-       this.tempallwronganswers.push(this.tempWrongAnswer)
-
-      this.QuestionDetails[question] = this.tempquestion ;
+        
+      this.tempallwronganswers.push(this.tempWrongAnswer);
+      this.QuestionDetails['question'] = this.tempquestion ;
       this.QuestionDetails.correctAnswer = this.correctAnswer;
-      this.QuestionDetails.allwronganswers = this.tempallwronganswers ;
-      this.quiz.push(this.QuestionDetails)
+      
+      this.quiz.push(this.QuestionDetails);
+      this.submitted = true;  
+      console.log (this.QuestionDetails.allwronganswers)
+      
 
     },
-    restart() {
-      this.tempquestion =  ""  ;
-      this.correctAnswer = "",
-      this.tempWrongAnswer = "",
-      this.tempallwronganswers =[];
-      this.QuestionDetails = {};
-    },
+    
   },
 };
 
 </script>
 
 <style>
+
+fieldset{
+  width:80% ;
+  max-width: 700px;
+	padding: 10px 20px;
+	margin: 10px auto;
+	padding: 20px;
+	border-radius: 8px;
+}
 
 h1 label {
   color: white;
@@ -111,7 +96,7 @@ h1 label {
 input {
   display: block;
   padding: 10px 6px;
-  width: 100%;
+  width: 80%;
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid white;
