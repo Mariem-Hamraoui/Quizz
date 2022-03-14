@@ -124,17 +124,13 @@ export default {
         return;
       }
 
-	  if (this.password !== this.confirmPassword){
-		  this.errorMessage = "Passwords don't match ";
-		  this.formIsValid = false;
-		  return;
-	  }
+	  
 
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
         password: this.password,
-		quizz: this.quizz
+
       };
       try {
         if (this.mode === "login") {
