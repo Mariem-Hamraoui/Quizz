@@ -1,3 +1,4 @@
+
 <template>
 
   <fieldset class="form-horizontal text-capitalize " @submit.prevent= "submit" v-if = "show" >
@@ -113,9 +114,30 @@ export default {
       ) 
       {  
 
+
        this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
 
         const finalversion = JSON.parse(JSON.stringify(this.QuestionDetails));
+
+    submit() {
+        
+      this.tempallwronganswers.push(this.tempWrongAnswer);
+      this.QuestionDetails['question'] = this.tempquestion ;
+      this.QuestionDetails.correctAnswer = this.correctAnswer;
+      
+      this.quiz.push(this.QuestionDetails);
+      this.submitted = true;  
+      console.log (this.QuestionDetails.allwronganswers)
+      fetch('https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures.json', {
+		  method:'POST',
+		  headers:{
+			  'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify({
+			  QuestionDetails: this.QuestionDetails
+		  })
+	  })
+
 
         this.quiz.push(finalversion);
 
@@ -186,4 +208,8 @@ div {
 
 
 
+
 </style>
+
+
+
