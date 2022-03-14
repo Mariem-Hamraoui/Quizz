@@ -130,7 +130,6 @@ export default {
 
         const finalversion = JSON.parse(JSON.stringify(this.QuestionDetails));
 
-    submit() {
         
       this.tempallwronganswers.push(this.tempWrongAnswer);
       this.QuestionDetails['question'] = this.tempquestion ;
@@ -172,7 +171,7 @@ export default {
    
     AddQuestion(){ 
       this.show = true ;
-      //this.QuestionDetails.allwronganswers = [] ;
+      
       this.tempWrongAnswer = "";
       this.QuestionDetails.question = "";
       this.QuestionDetails.correctAnswer = "";
@@ -218,9 +217,7 @@ div {
 }
 
 
-ul {
- 
-}
+
 
 
 
