@@ -6,6 +6,8 @@
       <legend> <strong> Start creating your quiz form </strong> </legend>
 
 
+
+
       <label> Question : </label>
 
       <input class="form-control input-lg " type=" text" v-model= "QuestionDetails.question" />
@@ -14,45 +16,38 @@
 
       <input class="form-control input-lg " type=" text" v-model= "QuestionDetails.correctAnswer" />
 
-      <label> Wrong Answer(s) : </label>
+      <label> Wrong Answer(s) : </label>  
 
-       
+     
+
       <ul>
         <div>
           <input  class="form-control input-lg" type=" text" v-model= "tempWrongAnswer" />
         </div>
       </ul>
-      <button class="btn btn btn-info  active"  @click= "addwronganswers" > Extra wrong answer </button>
-              <p class="help-block">  __ you may add more than one wrong answer</p> 
+      <button class= "btn btn btn-info  active"  @click= "addwronganswers" > Extra wrong answer </button>
+              <p class="help-block">  __ you may add more than one wrong answer</p>           
      <br/>  
-      
-    </div>
-    
-      <div class= "text-warning" v-if= "!errors" >
-        <div v-for= "error in errorMessages" :key= "error">
-          <p sv-if= "emptyfield"> please fill all fields</p>
-        </div>
+     
+
+    </div>  
+
+     <div v-if = "error"  >      
+          <p style= "color : red " > <bold> {{ errorMessage }}</bold>  </p>      
       </div>
+
+      
     <div>
       <br/>  
-      <button type="button" class="btn btn-primary btn btn-success btn-block active" @click= "submit" > Save this question's details  </button>
-        
+      <button type="button" class="btn btn-primary btn btn-success btn-block active" @click= "submit" > Save this question's details  </button>       
     </div>
-    
-
   </fieldset>
   
   <fieldset >
 
   <div v-if = "submitted && !show" >
 
-  <div class="one"> 
-     
-  <button  type="button" class="btn btn btn-info active" @click = "AddQuestion" style="width:70% ; margin-top: 10px " > Next Question   </button>
-   <p class="help-block">  __ you may add next question's details  </p>
-     <br/>  
-
-   </div>
+ 
 
      <br/> 
    <legend> Question's details  Summary </legend>
@@ -67,13 +62,21 @@
          <br/> 
       <li v-for= " WrongAnswer of qt.allwronganswers " :key= "allWrongAnswer" >
           
-         <p>  <strong> Wrong Answer(s) : </strong>  {{ WrongAnswer }}</p>
+         <p>  <strong> Wrong Answer(s) : </strong>  {{ WrongAnswer }} </p>
          </li>
 
       </li>      
        </ul>
       </div>
      
+      <div class="one"> 
+     
+  <button  type="button" class="btn btn btn-info active" @click = "AddQuestion" style="width:70% ; margin-top: 10px " > Next Question   </button>
+   <p class="help-block">  __ you may add the next question's details  </p>
+     <br/>  
+
+   </div>
+
       </div>
 
 </fieldset> 
@@ -90,22 +93,30 @@ export default {
         question: "",
         correctAnswer: "",
         allwronganswers: [],
-      },
-      errorMessages: [],
+      },   
       error: false,
+     
       submitted: false,
       show : true,
-
     };
   },
   methods: {
     addwronganswers() {
      
       if ( this.tempWrongAnswer) {       
-        this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
+        this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);        
+        this.tempWrongAnswer = "";   
+           
+      }  
+       else {
+        
+        this.error = true; 
+       
+        this.errorMessage = `Oops .. Please fill the empty fields! `;
+                
+        console.log(this.errorMessage); 
           
-        this.tempWrongAnswer = "";         
-      }         
+      }      
 
     },
     
@@ -119,7 +130,6 @@ export default {
 
         const finalversion = JSON.parse(JSON.stringify(this.QuestionDetails));
 
-    submit() {
         
       this.tempallwronganswers.push(this.tempWrongAnswer);
       this.QuestionDetails['question'] = this.tempquestion ;
@@ -151,14 +161,17 @@ export default {
       }       
       else {
         this.error = true; 
+       
         this.errorMessage = `Oops .. Please fill the empty fields! `;
-        this.errorMessages.push(this.errorMessage);          
-        console.log(this.errorMessage);       
+                
+        console.log(this.errorMessage); 
+          
       } 
     },
+   
     AddQuestion(){ 
       this.show = true ;
-      //this.QuestionDetails.allwronganswers = [] ;
+      
       this.tempWrongAnswer = "";
       this.QuestionDetails.question = "";
       this.QuestionDetails.correctAnswer = "";
