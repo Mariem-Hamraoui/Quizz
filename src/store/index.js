@@ -1,10 +1,12 @@
-import { createStore } from 'vuex';
-import authModule from './modules/auth/index.js';
+import { createStore } from "vuex";
+import allLecturesModule from "./modules/allLectures/index.js"
+import authModule from "./modules/auth/index.js";
 
 const store = createStore({
-	modules: {
-	 auth: authModule
-	}
-  });
+  modules: {
+    allLectures: allLecturesModule,
+    auth: authModule,
+  },
+});
 
-  export default store;
+export default store;
