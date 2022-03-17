@@ -1,8 +1,8 @@
 <template>
-  <base-dialog :show= "!!error" title="An error occurred" @close= "handleError">
+  <base-dialog :show="!!error" title="An error occurred" @close="handleError">
     <p>{{ error }}</p>
   </base-dialog>
-  <base-dialog :show= "isLoading" title="Authenticating..." fixed>
+  <base-dialog :show="isLoading" title="Authenticating..." fixed>
     <base-spinner></base-spinner>
   </base-dialog>
 
@@ -20,7 +20,7 @@
           type="email"
           placeholder="Email"
           id="email"
-          v-model.trim= "email"
+          v-model.trim="email"
         />
 
         <label for="password"> Password</label>
@@ -28,16 +28,12 @@
           type="password"
           placeholder="Password"
           id="password"
-          v-model= "password"
+          v-model="password"
         />
       </div>
       <div v-if="mode === 'signup'">
         <h3>Subscribe Here</h3>
-        <label for="Name">Name</label>
-        <input type="text" placeholder="Name" id="name" />
-        <label for="LastName">Last Name</label>
-        <input type="text" placeholder="LastName" id="lastname" />
-        <label for="email">Email</label>
+
         <input
           type="email"
           placeholder="Email"
@@ -54,23 +50,14 @@
           type="password"
           required
         />
-        <label for="password">Confirm Password</label>
-        <input
-          name="confirmPassword"
-          label="Confirm Password"
-          id="confirmPassword"
-          v-model="confirmPassword"
-          type="password"
-
-        />
       </div>
 
-      <p >{{errorMessage}}</p>
+      <p>{{ errorMessage }}</p>
 
       <button id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
-      <button id="Sign" type="button" mode="flat" @click= "switchSignUp">
+      <button id="Sign" type="button" mode="flat" @click="switchSignUp">
         {{ switchModeButtonCaption }}
       </button>
     </form>
@@ -84,17 +71,15 @@ export default {
       email: "",
       password: "",
       formIsValid: true,
-	  wPassword: true,
+
       mode: "login",
       isLoading: false,
       error: null,
-      confirmPassword: "",
-	  errorMessage:"",
-	  quizz: []
+      errorMessage: "",
+      quizz: [],
     };
   },
   computed: {
-
     submittedButtonCaption() {
       if (this.mode === "login") {
         return "Login";
@@ -117,20 +102,16 @@ export default {
         this.email === "" ||
         !this.email.includes("@") ||
         this.password.length < 6
-
       ) {
-		  this.errorMessage = "Please check email and password"
+        this.errorMessage = "Please check email and password";
         this.formIsValid = false;
         return;
       }
-
-	  
 
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
         password: this.password,
-
       };
       try {
         if (this.mode === "login") {
@@ -144,6 +125,8 @@ export default {
         this.error = err.message || "Failed to authenticate, try later.";
       }
       this.isLoading = false;
+
+      location.reload();
     },
     switchSignUp() {
       if (this.mode === "login") {
