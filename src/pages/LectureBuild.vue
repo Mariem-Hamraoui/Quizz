@@ -218,7 +218,7 @@ export default {
     },
 
 	submitLecture(){
-	this.$store.dispatch('allLectures/createLecture',{
+	this.$store.dispatch('lectures/createLecture',{
 		quiz: this.quiz,
 		name: this.name,
 		fileUrl: this.fileUrl,
