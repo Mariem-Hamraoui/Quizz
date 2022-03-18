@@ -5,40 +5,31 @@
       <p>{{ error }}</p>
     </base-dialog>
 
-<section>
-      <base-card>
-        <header>
-          <h2>Your Lectures</h2>
-        </header>
-        <base-spinner v-if="isLoading"></base-spinner>
-        <ul v-else-if="hasLectures && !isLoading">
-          <request-item
-            v-for="lecture in receivedLectures"
-            :key="lecture.id"
-            :quiz="lecture.quiz"
-            :name="lecture.name"
-			:file="lecture.file"
-          ></request-item>
-        </ul>
-        <h3 v-else>You have no lectures!</h3>
-      </base-card>
-    </section>
-
-
-
+<h2>Liste of lectures</h2>
+<lectures-received></lectures-received>
 </div>
+
+ <a href="http://localhost:8080/build">Add a new Lecture</a>
+
+
 
 </template>
 
 <script>
-import RequestItem from '../components/RequestItem.vue'
+import lecturesReceived from './lecturesReceived.vue'
 export default {
 
 	components: {
-    RequestItem,
+    lecturesReceived,
   },
   data() {
     return {};
   },
+methods: {
+	switchToBuild(){
+
+	}
+}
+
 };
 </script>

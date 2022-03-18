@@ -1,49 +1,52 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+    <base-dialog
+      :show="!!error"
+      title="An error occurred!"
+      @close="handleError"
+    >
       <p>{{ error }}</p>
     </base-dialog>
     <section>
       <base-card>
-        <header>
-
-        </header>
+        <header></header>
         <base-spinner v-if="isLoading"></base-spinner>
-        <ul v-else-if="hasLectures && !isLoading">
-          <request-item
-            v-for="req in receivedLectures"
-            :key="req.id"
-            :userId="req.userId"
-            :name="req.name"
-			:fileUrl="req.fileUrl"
-			:quiz="req.quiz"
-          ></request-item>
-        </ul>
+        <div v-else-if="hasLectures && !isLoading">
+          <div
+            v-for="req in receivedLectures" :key="req.id" >
+		  <ul>
+            <button @click="displayLecture">{{ req.name }}</button>
+
+			</ul>
+          </div>
+
+        </div>
         <h3 v-else>You haven't received any lectures yet!</h3>
       </base-card>
     </section>
   </div>
+
 </template>
 
 <script>
-import RequestItem from '../components/RequestItem.vue';
+
 
 export default {
-  components: {
-    RequestItem,
-  },
+
+
   data() {
     return {
       isLoading: false,
       error: null,
+	  SingleLecture: false
     };
   },
   computed: {
     receivedLectures() {
-      return this.$store.getters['lectures/lectures'];
+      return this.$store.getters["lectures/lectures"];
     },
     hasLectures() {
-      return this.$store.getters['lectures/hasLectures'];
+      return this.$store.getters["lectures/hasLectures"];
     },
   },
   created() {
@@ -53,32 +56,20 @@ export default {
     async loadLectures() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('lectures/fetchLectures');
+        await this.$store.dispatch("lectures/fetchLectures");
       } catch (error) {
-        this.error = error.message || 'Something failed!';
+        this.error = error.message || "Something failed!";
       }
       this.isLoading = false;
     },
     handleError() {
       this.error = null;
     },
+
   },
 };
 </script>
 
-<style scoped>
-header {
-  text-align: center;
-}
+<style >
 
-ul {
-  list-style: none;
-  margin: 2rem auto;
-  padding: 0;
-  max-width: 30rem;
-}
-
-h3 {
-  text-align: center;
-}
 </style>

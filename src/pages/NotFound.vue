@@ -3,8 +3,8 @@
     <base-card>
       <h2>Page not found</h2>
       <p>
-        This page could not be found - maybe check out all our
-        <router-link to="/coaches">coaches</router-link>.
+        This page could not be found - maybe check out our
+        <router-link to="/homepage">Homepage</router-link>.
       </p>
     </base-card>
   </section>

@@ -1,6 +1,6 @@
 <template class="outer">
   <fieldset
-    class="form-horizontal text-capitalize w3-margin-top"
+   
     @submit.prevent="submit"
     v-if="show"
     style="align-items: center; justify-content: center"
@@ -16,8 +16,7 @@
       <label> Question : </label>
 
       <input
-        class="w3-input w3-animate-input"
-        style="width: 80%"
+
         type=" text"
         v-model="QuestionDetails.question"
       />
@@ -25,8 +24,7 @@
       <label> Correct Answer : </label>
 
       <input
-        class="w3-input w3-animate-input"
-        style="width: 80%"
+
         type=" text"
         v-model="QuestionDetails.correctAnswer"
       />
@@ -35,8 +33,7 @@
       <ul>
         <div>
           <input
-            class="w3-input w3-animate-input"
-            style="width: 80%"
+
             type=" text"
             v-model="tempWrongAnswer"
           />
@@ -47,7 +44,7 @@
 
       <button
         id=" button"
-        class="btn btn btn-info active w3-center w3-round-large w3-padding-large"
+
         @click="addwronganswers"
       >
         Extra wrong answer
@@ -68,7 +65,7 @@
       <br />
       <button
         type="button"
-        class="btn btn-primary btn btn-info btn-block active w3-round-large w3-padding-large"
+
         @click="submit"
       >
         Save this question's details
@@ -148,7 +145,7 @@
           <br />
         </div>
       </div>
-	  <button class="btn btn btn-info active w3-round-large w3-padding-large" @click="submitLecture">Save Lecture</button>
+	  <a href="http://localhost:8080/dashboard" @click="submitLecture" >Save Lecture</a>
     </fieldset>
 
   </div>
@@ -222,58 +219,15 @@ export default {
 		quiz: this.quiz,
 		name: this.name,
 		fileUrl: this.fileUrl,
-        userId: this.$route.params.id
+
 	});
 	this.$router.replace('dashboard')
+
 	}
   },
 };
 </script>
 
 <style>
-body {
-  background-attachment: scroll;
-  background-image: url("https://th.bing.com/th/id/R.f943983c0e044ade3c9a1783cab4be8c?rik=o3ziPzoZhSh91g&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2014%2f09%2fblue-wallpaper.jpeg&ehk=ebeFv%2fbBvkLHGj4RULUAwX%2bkp5gwg98H3q4rL6WDWzU%3d&risl=&pid=ImgRaw&r=0");
-}
 
-fieldset {
-  width: 80%;
-  max-width: 700px;
-  padding: 10px 20px;
-  margin: 10px auto;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #080710;
-  background-attachment: scroll;
-}
-
-h1 label {
-  color: white;
-  display: inline-block;
-  margin: 25px 0 15px;
-  font-size: 0.6em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-input {
-  margin-left: 20px;
-  display: block;
-  padding: 10px 6px;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid white;
-  color: white;
-}
-
-div {
-  color: white;
-
-  width: 100%;
-}
-
-button {
-  color: #ff5733;
-}
 </style>
