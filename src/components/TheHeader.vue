@@ -14,7 +14,7 @@
         </li>
 
         <li v-if="isLoggedIn">
-          <base-button @click="logout">Logout</base-button>
+          <a href="http://localhost:8080/homepage" @click="logout" >Logout</a>
         </li>
 
       </ul>
@@ -29,9 +29,9 @@
       <div class="bar3"></div>
       <ul class="mobile-menu">
         <li id="hm"><a href="/home">Home</a></li>
-        <li id="prd"><a href="/products">Products</a></li>
-        <li id="abt"><a href="/about">About</a></li>
-        <li id="login"><a href="/login">Login/signup</a></li>
+        <li id="dash"><a href="dashboard">Dashboard</a></li>
+        <li id="lgn"><a href="/about">Login</a></li>
+        <li id="lgo"><a href="/login">Signup</a></li>
       </ul>
     </div>
   </header>
@@ -48,8 +48,6 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
-      this.$router.replace("/homepage");
-	  location.reload();
     },
   },
 };
@@ -109,45 +107,29 @@ ul li:hover {
   transition: 0.3s;
 }
 
-#login,
-#signup,
+#lgo,
 #hm,
-#prd,
-#abt {
+#dash,
+#lgn {
   border-radius: 5px;
   padding: 5px 8px;
-}
 
-#login {
-  border: 1px solid #498afb;
-}
-
-#signup {
-  border: 1px solid #ff3860;
 }
 
 #hm {
   background-color: #414645;
 }
 
-#prd {
+#dash {
   background-color: #414645;
 }
 
-#abt {
+#lgn {
   background-color: #414645;
 }
 
-#signup a {
-  color: #ff3860;
-}
-
-#signup a {
-  color: #ff3860;
-}
-
-#login a {
-  color: #498afb;
+#lgo a {
+ background-color: #414645;
 }
 
 #hamburger-icon {
