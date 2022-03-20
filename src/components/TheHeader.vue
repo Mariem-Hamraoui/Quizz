@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div id="brand"><a href="/">MyCompany</a></div>
+    <div id="brand"><a href="/"> Syllab-E </a></div>
     <nav>
       <ul>
         <li><a href="/homepage">Homepage</a></li>
@@ -14,7 +14,7 @@
         </li>
 
         <li v-if="isLoggedIn">
-          <a href="http://localhost:8080/homepage" @click="logout" >Logout</a>
+          <a href="http://localhost:8080/homepage" @click= "logout" >Logout</a>
         </li>
 
       </ul>
@@ -64,12 +64,14 @@ export default {
 
 header a {
   text-decoration: none;
+  font-size: 2vw;
+   ;
 }
 
 header {
   padding: 0 20px;
-  background-color: #1d1f1d;
-  height: 50px;
+  background-color: #01796f ;
+  height: 80px;
   display: flex;
   justify-content: space-between;
 }
@@ -82,7 +84,8 @@ header {
 }
 
 #brand a {
-  color: #09c372;
+ color: white ;
+  font-size: 3vw;
 }
 
 ul {
@@ -94,7 +97,7 @@ ul {
 }
 
 ul a {
-  color: white;
+  color: white ;
 }
 
 ul li {
@@ -105,6 +108,7 @@ ul li {
 ul li:hover {
   transform: scale(1.1);
   transition: 0.3s;
+  color : #382731 ;
 }
 
 #lgo,
@@ -117,19 +121,19 @@ ul li:hover {
 }
 
 #hm {
-  background-color: #414645;
+  background-color:  #66023c ;
 }
 
 #dash {
-  background-color: #414645;
+  background-color:  #66023c ;
 }
 
 #lgn {
-  background-color: #414645;
+  background-color:  #66023c ;
 }
 
 #lgo a {
- background-color: #414645;
+ background-color:  #66023c ;
 }
 
 #hamburger-icon {

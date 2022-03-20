@@ -11,9 +11,9 @@
         <section>
           <slot></slot>
         </section>
-        <menu v-if="!fixed">
+        <menu v-if= "!fixed">
           <slot name="actions">
-            <base-button @click="tryClose">Close</base-button>
+            <base-button @click= "tryClose"> Close </base-button>
           </slot>
         </menu>
       </dialog>
@@ -51,6 +51,7 @@ export default {
 </script>
 
 <style scoped>
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -69,15 +70,15 @@ dialog {
   z-index: 100;
   border-radius: 12px;
   border: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+ 
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background-color: white;
+  background-color: white ;
 }
 
 header {
-  background-color: #3a0061;
+  background-color: #b38b6d ;
   color: white;
   width: 100%;
   padding: 1rem;
