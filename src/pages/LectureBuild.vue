@@ -1,17 +1,32 @@
 <template class="outer">
-  <fieldset
-   
-    @submit.prevent="submit"
-    v-if="show"
-    style="align-items: center; justify-content: center"
-  >
-    <div>
-		<label for="name">Please enter your lecture name</label>
-		<input type="text" name="name" id="name" v-model="name">
 
-		<label for="fileUrl">Please select your lecture file</label>
-		<input type="text" name="fileUrl" id="fileUrl" v-model="fileUrl">
-      <legend><strong> Start creating your quiz form </strong></legend>
+   <fieldset class="form-horizontal"
+   
+    @submit.prevent= "submit"
+    v-if= "show"
+    style= "align-items: center; justify-content: center">
+  
+  <div class="legend1" >
+
+ <label style=" color:#954535 "> <strong>  Start creating your Lecture  </strong> </label>
+  
+		<label for="name"> Please enter your lecture name </label>
+	
+  	<input type="text" name="name" id="name" v-model= "name">
+
+		<label for="fileUrl"> Please select your lecture file </label>
+
+		<input type="text" name="fileUrl" id="fileUrl" v-model= "fileUrl">
+     <br/>
+
+    </div>
+
+    <div class="legend1" >
+       <br/>
+     
+  <label style=" color: #954535 "> <strong>  Start creating your Quiz  </strong> </label>
+  
+  <br/>
 
       <label> Question : </label>
 
@@ -45,49 +60,49 @@
       <button
         id=" button"
 
-        @click="addwronganswers"
+        @click= "addwronganswers"
       >
         Extra wrong answer
       </button>
       <p class="help-block">__ you may add more than one wrong answer</p>
       <br />
     </div>
-    <div v-if="error">
-      <p style="color: red">
-        <strong> {{ errorMessage }} </strong>
+    <div v-if= "error">
+      <p style="color: #ff0000">
+
+        <strong> {{ errorMessage }} </strong> 
+         
       </p>
     </div>
-    <br />
-    <br />
-    <br />
+    
 
     <div>
       <br />
-      <button
-        type="button"
-
-        @click="submit"
-      >
+      <button  id="submit"
+        type="submit" @click= "submit">
         Save this question's details
       </button>
     </div>
   </fieldset>
 
+  
+
   <div
     class="w3-container w3-margin-top"
-    v-if="submitted && !show"
+    v-if= "submitted && !show"
     style="
       height: 100px;
       width: 100%;
       border-width: 20px 5px;
       align-items: center;
       justify-content: center;
+      color : black ; 
     "
   >
-    <fieldset style="align-items: center; justify-content: center; width: 100%">
+    <fieldset>
       <div>
         <br />
-        <legend>Question's details Summary</legend>
+        <legend > Question's details Summary </legend>
         <br />
         <br />
         <br />
@@ -96,8 +111,8 @@
           <div>
             <li
               class="w3-container w3-center"
-              v-for="(qt, index) in quiz"
-              :key="qt"
+              v-for= "(qt, index) in quiz"
+              :key= "qt"
             >
               <p>
                 <strong> Question N°{{ index + 1 }} </strong> {{ qt.question }}
@@ -134,9 +149,9 @@
         <div class="one">
           <button
             type="button"
-            class="btn btn btn-info active w3-round-large w3-padding-large"
-            @click="AddQuestion"
-            style="width:50% ; margin-top: 20px  margin-left: 40px "
+          
+            @click= "AddQuestion"
+           
           >
             Next Question
           </button>
@@ -145,7 +160,7 @@
           <br />
         </div>
       </div>
-	  <a href="http://localhost:8080/dashboard" @click="submitLecture" >Save Lecture</a>
+	  <button id="submit" href="http://localhost:8080/dashboard" @click= "submitLecture" > Save Lecture </button>
     </fieldset>
 
   </div>
@@ -229,5 +244,95 @@ export default {
 </script>
 
 <style>
+body{
+  background-image: url(" https://th.bing.com/th/id/R.6a11584328c87beea765fa1e3f0bcd4a?rik=3ouXfKQLLts6tg&riu=http%3a%2f%2fwww.leadernetworks.com%2fwp-content%2fuploads%2f2017%2f04%2fquiz-background-slider.png&ehk=qAk%2fImcIw2xDaqeGron1zPSacLdCgFGrgA1xphSgy8Y%3d&risl=&pid=ImgRaw&r=0")
+}
 
+fieldset {  
+  width: 100%;
+  max-width: 700px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  padding-top: 50px;
+ padding-right: 30px;
+ padding-bottom: 50px;
+ padding-left: 80px;
+ font-size:2em ;
+  background-color: white ;
+  background-attachment: scroll;
+  border:2px solid #796878 ;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;
+}
+
+
+
+ label {
+  color: black ;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+input {
+  margin-left: 20px ;
+  display: block;
+  padding: 10px 6px;
+  width: 80%;
+  box-sizing: border-box ; 
+  border: none;
+  border-bottom: 1px solid black;
+  color: black; 
+  background-color: #d1e8d9 ;
+}
+div {
+  color: black;  
+  width: 100%;
+  margin-bottom: 10px; 
+}
+
+
+.legend1
+{
+  margin-bottom:0px;
+  margin-left:16px;
+}
+
+
+#w3-container w3-margin-top {
+  width: 300px;
+  height: 100px;
+  padding: 50px;
+  border: 1px solid ;
+  color : black 
+
+}
+
+button {
+  border-radius: 12px;
+  width: 50%;
+  padding: 14px 40px;
+   position: relative ;
+  background-color: white;
+  color: black;
+  border: 2px solid #796878 ;
+  transition-duration: 0.4s; 
+   align-items: center;
+  
+  }
+
+button:hover {
+   background-color: #008080;
+    color: white; 
+}
+
+#submit { 
+  width: 90%;
+}
 </style>
