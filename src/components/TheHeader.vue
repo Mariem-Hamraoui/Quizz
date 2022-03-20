@@ -24,7 +24,7 @@
       @click="toggleMobileMenu"
       v-bind:class="{ open: isActive }"
     >
-      <div class="bar1"></div>
+      <div  class="bar1"></div>
       <div class="bar2"></div>
       <div class="bar3"></div>
       <ul class="mobile-menu">
@@ -60,6 +60,7 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 header a {

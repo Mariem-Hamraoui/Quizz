@@ -16,7 +16,10 @@
             v-for="req in receivedLectures" :key="req.id" >
 		  <ul>
             <button @click="displayLecture">{{ req.name }}</button>
-
+<div>
+	<h3>{{req.name}}</h3>
+	
+</div>
 			</ul>
           </div>
 
@@ -65,6 +68,9 @@ export default {
     handleError() {
       this.error = null;
     },
+	displayLecture(){
+		this.SingleLecture = !this.SingleLecture
+	}
 
   },
 };
