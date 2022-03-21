@@ -39,30 +39,6 @@ methods: {
 
 <style>
 
-.background {
-  box-shadow: 0 4px 8px 0 #5f9ea0 ;
-  max-width: 700px;
-  margin: auto;
-  text-align: center;
-  font-family: serif ;
-  
-    color: black  ;
-  
-}
-
-.aa { 
-  color: #3c1414  ; 
-  font-family: serif ;
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
- 
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-  }
 
 
 </style>

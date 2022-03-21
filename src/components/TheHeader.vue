@@ -1,39 +1,58 @@
 <template>
   <header>
-    <div id="brand"><a href="/"> Syllab-E </a></div>
-    <nav>
-      <ul>
-        <li><a href="/homepage">Homepage</a></li>
+    <nav class="w3-wide w3-top">
+      <div class="w3-bar w3-wide w3-padding">
+        <div class="w3-middle w3-padding-16">
+          <div class="w3-display-center w3-padding-large">
+            <a class="w3-left w3-xxlarge w3-padding-16" href="/">
+              <h1><strong> Syllab-E </strong></h1>
+            </a>
+          </div>
 
-        <li v-if="isLoggedIn">
-          <a href="/dashboard">dashboard</a>
-        </li>
+          <div class="w3-center w3-xlarge w3-hide-small">
+            <a href="/homepage" class="w3-right w3-bar-item w3-button">
+              <i class="fa fa-home"></i>
+            </a>
 
-        <li id="login" v-else>
-          <a href="/auth">Login</a>
-        </li>
+            <a
+              v-if="isLoggedIn"
+              href="http://localhost:8080/homepage"
+              @click="logout"
+              class="w3-right w3-bar-item w3-button"
+            >
+              <i class="fa fa-sign-out"></i>
+            </a>
 
-        <li v-if="isLoggedIn">
-          <a href="http://localhost:8080/homepage" @click= "logout" >Logout</a>
-        </li>
+            <a
+              v-if= "isLoggedIn"
+              href="/dashboard"
+              class="w3-right w3-bar-item w3-button"
+            >
+              <i class="fa fa-th"></i>
+            </a>
 
-      </ul>
+            <a
+              id="login"
+              v-else
+              href="/auth"
+              class="w3-right w w3-bar-item w3-button"
+            >
+              <i class="fa fa-sign-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
-    <div
-      id="hamburger-icon"
-      @click="toggleMobileMenu"
-      v-bind:class="{ open: isActive }"
-    >
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
-      <ul class="mobile-menu">
-        <li id="hm"><a href="/home">Home</a></li>
-        <li id="dash"><a href="dashboard">Dashboard</a></li>
-        <li id="lgn"><a href="/about">Login</a></li>
-        <li id="lgo"><a href="/login">Signup</a></li>
-      </ul>
-    </div>
+    <div class="w3-display-container w3-content" >
+
+<img class="w3-display-middle"
+ 
+ src="https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/R.6a11584328c87beea765fa1e3f0bcd4a.png?alt=media&token=75853878-8553-4c9a-a6a2-6f85e0d9ce33" 
+ 
+ alt="Lights"  width="1800" height="800">
+ 
+</div>
+
   </header>
 </template>
 
@@ -53,144 +72,7 @@ export default {
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-header a {
-  text-decoration: none;
-  font-size: 2vw;
-   ;
-}
-
-header {
-  padding: 0 20px;
-  background-color: #01796f ;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-}
-
-#brand {
-  font-weight: bold;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-}
-
-#brand a {
- color: white ;
-  font-size: 3vw;
-}
-
-ul {
-  list-style: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-ul a {
-  color: white ;
-}
-
-ul li {
-  padding: 5px;
-  margin-left: 10px;
-}
-
-ul li:hover {
-  transform: scale(1.1);
-  transition: 0.3s;
-  color : #382731 ;
-}
-
-#lgo,
-#hm,
-#dash,
-#lgn {
-  border-radius: 5px;
-  padding: 5px 8px;
-
-}
-
-#hm {
-  background-color:  #66023c ;
-}
-
-#dash {
-  background-color:  #66023c ;
-}
-
-#lgn {
-  background-color:  #66023c ;
-}
-
-#lgo a {
- background-color:  #66023c ;
-}
-
-#hamburger-icon {
-  margin: auto 0;
-  display: none;
-  cursor: pointer;
-}
-
-#hamburger-icon div {
-  width: 35px;
-  height: 3px;
-  background-color: white;
-  margin: 6px 0;
-  transition: 0.4s;
-}
-
-.open .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-6px, 6px);
-  transform: rotate(-45deg) translate(-6px, 6px);
-}
-
-.open .bar2 {
-  opacity: 0;
-}
-
-.open .bar3 {
-  -webkit-transform: rotate(45deg) translate(-6px, -8px);
-  transform: rotate(45deg) translate(-6px, -8px);
-}
-
-.open .mobile-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  height: calc(100vh - 50px);
-  width: 100%;
-}
-
-.mobile-menu li {
-  margin-bottom: 10px;
-}
-
-@media only screen and (max-width: 600px) {
-  header nav {
-    display: none;
-  }
-
-  #hamburger-icon {
-    display: block;
-  }
-}
+<style scoped>
 </style>
+
+

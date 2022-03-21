@@ -1,11 +1,11 @@
 <template>
   <teleport to="body">
-    <div v-if="show" @click="tryClose" class="backdrop"></div>
+    <div v-if= "show" @click= "tryClose" class="backdrop"></div>
     <transition name="dialog">
-      <dialog open v-if="show">
+      <dialog open v-if= "show">
         <header>
           <slot name="header">
-            <h2>{{ title }}</h2>
+            <h2> {{ title }} </h2>
           </slot>
         </header>
         <section>
@@ -78,7 +78,7 @@ dialog {
 }
 
 header {
-  background-color: #b38b6d ;
+  background-color: #20B2AA  ;
   color: white;
   width: 100%;
   padding: 1rem;

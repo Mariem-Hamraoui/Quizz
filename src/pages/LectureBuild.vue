@@ -244,9 +244,7 @@ export default {
 </script>
 
 <style>
-body{
-  background-image: url(" https://th.bing.com/th/id/R.6a11584328c87beea765fa1e3f0bcd4a?rik=3ouXfKQLLts6tg&riu=http%3a%2f%2fwww.leadernetworks.com%2fwp-content%2fuploads%2f2017%2f04%2fquiz-background-slider.png&ehk=qAk%2fImcIw2xDaqeGron1zPSacLdCgFGrgA1xphSgy8Y%3d&risl=&pid=ImgRaw&r=0")
-}
+
 
 fieldset {  
   width: 100%;
