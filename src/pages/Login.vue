@@ -1,24 +1,28 @@
 <template>
-  <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+  <base-dialog :show= "!!error" title=" An error occurred!!" @close= "handleError" style="color: #ff0000">
     <p>{{ error }}</p>
   </base-dialog>
-  <base-dialog :show="isLoading" title="Authenticating..." fixed>
+  <base-dialog :show= "isLoading" title= " Authenticating..." fixed>
     <base-spinner></base-spinner>
   </base-dialog>
 
- 
-  <base-card>
-    <form @submit.prevent="submitForm">
-      <div v-if="mode === 'login'">
-        <h3>Login Here</h3>
 
-        <label for="email">Email</label>
+  <base-card>
+    <form class="auth" @submit.prevent= "submitForm">
+      <div v-if="mode === 'login'">
+
+        <h3> Login Here </h3>
+
+        <label for="email"> Email </label>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="username .. "
           id="email"
-          v-model.trim="email"
+          v-model.trim= "email"
         />
+
+        <br>
+
 
         <label for="password"> Password</label>
         <input
@@ -29,18 +33,24 @@
         />
       </div>
       <div v-if="mode === 'signup'">
-        <h3>Subscribe Here</h3>
+
+        <h3> Subscribe Here </h3>
+<br>
+
+  <label for="email"> Email </label>
 
         <input
           type="email"
-          placeholder="Email"
+          placeholder= "username .. "
           id="email"
           v-model.trim="email"
         />
 
-        <label for="password">Password</label>
+<br>
+
+        <label for="password"> Password</label>
         <input
-          name="password"
+          name= "password"
           label="Password"
           id="password"
           v-model="password"
@@ -49,12 +59,19 @@
         />
       </div>
 
-      <p>{{ errorMessage }}</p>
+      <p style="color: #ff0000" > {{ errorMessage }}</p>
 
-      <button id="login" @click="submitForm">
+<br>
+<br>
+
+      <button  class="btn" id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
-      <button id="Sign" type="button" mode="flat" @click="switchSignUp">
+
+      <br>
+      <br>
+
+      <button class="btn" id="Sign" type="button" mode="flat" @click="switchSignUp">
         {{ switchModeButtonCaption }}
       </button>
     </form>
@@ -138,4 +155,65 @@ export default {
   },
 };
 </script>
+
+<style>
+
+
+.auth {
+  height: 80%;
+ background-color  : #bd9b7f;
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  padding-top: 50px;
+  align-items:flex-end ;
+  font-size: 1.5vw;
+
+}
+
+label {
+  color: black ;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+
+input {
+  margin-left: 20px ;
+  display: block;
+  padding: 10px 6px;
+  width: 80%;
+  box-sizing: border-box ;
+  border: none;
+  border-bottom: 1px solid black;
+  color: black;
+  background-color: #d1e8d9 ;
+}
+
+.btn {
+  border-radius: 12px;
+  width: 50%;
+  padding: 14px 40px;
+   position: relative ;
+  background-color: white;
+  color: black;
+  border: 2px solid #987456  ;
+  transition-duration: 0.4s;
+   align-items: center;
+
+  }
+
+.btn:hover {
+   background-color: #a06e45;
+    color: white;
+}
+
+</style>
 

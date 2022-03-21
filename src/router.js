@@ -7,7 +7,7 @@ import store from './store/index.js'
 import Login from './pages/Login.vue'
 import LectureBuild from './pages/LectureBuild.vue'
 import NotFound from './pages/NotFound.vue'
-
+import fileInput from './components/fileInput.vue'
 
 
 const router = createRouter({
@@ -17,6 +17,7 @@ const router = createRouter({
 		{path: '/homepage', component: Homepage},
 		{path: '/build', component: LectureBuild},
 		{path: '/dashboard', component: Dashboard, meta: { requiresAuth: true}},
+		{path: '/file', component: fileInput},
 
 		{ path: '/auth', component: Login, meta: { requiresUnauth: true } },
 		{path: '/:notFound(.*)',component: NotFound}

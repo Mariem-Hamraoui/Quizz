@@ -1,7 +1,11 @@
 <template>
 <div>
-<h1> Hello world </h1>
+<h1 class="text" > Welcome .. </h1>
 </div>
+<div class="footer">
+  <p> Syllab-E @copyright 2022 </p>
+</div>
+
 </template>
 
 <script>
@@ -15,4 +19,12 @@ export default {
 
 };
 </script>
-<style></style>
+<style>
+
+
+
+
+
+
+
+</style>

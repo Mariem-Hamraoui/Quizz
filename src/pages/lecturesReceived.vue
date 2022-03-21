@@ -1,11 +1,12 @@
 <template>
   <div>
     <base-dialog
-      :show="!!error"
+
+      :show= "!!error"
       title="An error occurred!"
-      @close="handleError"
+      @close= "handleError"
     >
-      <p>{{ error }}</p>
+      <p style="color: #ff0000" >{{ error }}</p>
     </base-dialog>
     <section>
       <base-card>
@@ -18,13 +19,13 @@
             <button @click="displayLecture">{{ req.name }}</button>
 <div>
 	<h3>{{req.name}}</h3>
-	
+
 </div>
 			</ul>
           </div>
 
         </div>
-        <h3 v-else>You haven't received any lectures yet!</h3>
+        <h3 v-else> You haven't received any lectures yet! </h3>
       </base-card>
     </section>
   </div>
