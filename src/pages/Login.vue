@@ -1,80 +1,98 @@
 <template>
-  <base-dialog :show= "!!error" title="An error occurred" @close= "handleError">
+
+  <base-dialog
+    class="error"
+    :show= "!!error"
+    title=" An error occurred!!"
+    @close= "handleError"
+  >
     <p>{{ error }}</p>
   </base-dialog>
-  <base-dialog :show= "isLoading" title="Authenticating..." fixed>
+  <base-dialog :show= "isLoading" title=" Authenticating..." fixed>
     <base-spinner></base-spinner>
   </base-dialog>
 
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
   <base-card>
-    <form @submit.prevent="submitForm">
-      <div v-if="mode === 'login'">
-        <h3>Login Here</h3>
+<section>  
+ <div class= "w3-display-middle">
+    <form class="auth " @submit.prevent= "submitForm">
+      <div  v-if= "mode === 'login'">
+        <h3> <i class="fa fa-user w3-margin-right"></i>  Login </h3>
+        <br />
+        <p>Please enter your credentials to login</p>
 
-        <label for="email">Email</label>
+        <label for="email"> Email </label>
         <input
           type="email"
-          placeholder="Email"
-          id="email"
-          v-model.trim= "email"
-        />
-
-        <label for="password"> Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          id="password"
-          v-model= "password"
-        />
-      </div>
-      <div v-if="mode === 'signup'">
-        <h3>Subscribe Here</h3>
-        <label for="Name">Name</label>
-        <input type="text" placeholder="Name" id="name" />
-        <label for="LastName">Last Name</label>
-        <input type="text" placeholder="LastName" id="lastname" />
-        <label for="email">Email</label>
-        <input
-          type="email"
-          placeholder="Email"
+          placeholder="username .. "
           id="email"
           v-model.trim="email"
         />
 
-        <label for="password">Password</label>
+        <br />
+
+        <label  for="password"> Password </label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          v-model="password"
+        />
+      </div>
+      <div v-if="mode === 'signup'">
+        <h3> <i class="fa fa-user w3-margin-right"></i> Subscribe Here</h3>
+        <br />
+        
+        <p> Please enter your credentials to create your account </p>
+
+        <label for="email">  Email </label>
+
+        <input
+          type="email"
+          placeholder="username .. "
+          id="email"
+          v-model.trim="email"
+        />
+
+        
+
+        <label for="password"> Password </label>
         <input
           name="password"
           label="Password"
           id="password"
-          v-model="password"
+          v-model= "password"
           type="password"
           required
         />
-        <label for="password">Confirm Password</label>
-        <input
-          name="confirmPassword"
-          label="Confirm Password"
-          id="confirmPassword"
-          v-model="confirmPassword"
-          type="password"
-
-        />
       </div>
 
-      <p >{{errorMessage}}</p>
+      <p class="error">{{ errorMessage }}</p>
 
-      <button id="login" @click="submitForm">
+      <br />
+      <br />
+
+      <button class="btn" id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
-      <button id="Sign" type="button" mode="flat" @click= "switchSignUp">
+
+      <br />
+      <br />
+
+      <button
+        class="btn"
+        id="Sign"
+        type="button"
+        mode="flat"
+        @click= "switchSignUp"
+      >
         {{ switchModeButtonCaption }}
       </button>
     </form>
+    </div> 
+    </section> 
   </base-card>
+ 
 </template>
 
 <script>
@@ -84,17 +102,15 @@ export default {
       email: "",
       password: "",
       formIsValid: true,
-	  wPassword: true,
+
       mode: "login",
       isLoading: false,
       error: null,
-      confirmPassword: "",
-	  errorMessage:"",
-	  quizz: []
+      errorMessage: "",
+      quizz: [],
     };
   },
   computed: {
-
     submittedButtonCaption() {
       if (this.mode === "login") {
         return "Login";
@@ -117,20 +133,16 @@ export default {
         this.email === "" ||
         !this.email.includes("@") ||
         this.password.length < 6
-
       ) {
-		  this.errorMessage = "Please check email and password"
+        this.errorMessage = "Please check email and password";
         this.formIsValid = false;
         return;
       }
-
-	  
 
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
         password: this.password,
-
       };
       try {
         if (this.mode === "login") {
@@ -144,6 +156,8 @@ export default {
         this.error = err.message || "Failed to authenticate, try later.";
       }
       this.isLoading = false;
+
+      location.reload();
     },
     switchSignUp() {
       if (this.mode === "login") {
@@ -159,99 +173,42 @@ export default {
 };
 </script>
 
-<style media="screen">
-*,
-*:before,
-*:after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-body {
-  background-color: #080710;
-}
-.background {
-  width: 430px;
-  height: 520px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-}
-.background .shape {
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  border-radius: 50%;
-}
-.shape:first-child {
-  background: linear-gradient(#1845ad, #23a2f6);
-  left: -20%;
-  top: 10%;
-}
-.shape:last-child {
-  background: linear-gradient(to right, #ff512f, #f09819);
+<style>
 
-  right: -20%;
-  top: 130%;
+
+section {
+  height: 90vh;  
+  background-image: url('https://lh6.googleusercontent.com/proxy/qqFjqZlPk8IFDq3iB4Q23yfL3BZGhrQL1paqjdxLYjfFei1BzfLHR_Jjk1j7h_paXBiJRNo97mjmQiyLyQRJlgA6efvGH8lR_Cl2jRpT7ePF_tsskJ02Ed2PQD9gOKYe=w1200-h630-p-k-no-nu'); 	
+	background-size: cover;
+  background-position: top;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+
+
 }
-form {
-  height: 700px;
-  width: 400px;
-  background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 80%;
-  left: 50%;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 50px 35px;
-}
-form * {
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  outline: none;
-  border: none;
-}
-form h3 {
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 42px;
+.auth {
+  height: 30%;
+  width: 40%;
+  position: relative;
+  margin: 0 auto ;
+  padding: 45px;
   text-align: center;
-}
-label {
-  display: block;
-  margin-top: 30px;
-  font-size: 16px;
-  font-weight: 500;
-}
-input {
-  display: block;
-  height: 50px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 300;
-}
-::placeholder {
-  color: #e5e5e5;
+  box-shadow: 0 0 20px 0 rgba(235, 218, 218, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color:	#faf8f2;
+  display: center ;   
 }
 
-#login {
-  border-radius: 5px;
-  padding: 5px 8px;
-  border: 1px solid #498afb;
-  color: #498afb;
+ label {
+   color : black ;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 2.1em;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: bold;
 }
-#Sign {
-  background-color: transparent;
-  color: white;
-  text-decoration: underline;
-}
+
+
+
 </style>
+

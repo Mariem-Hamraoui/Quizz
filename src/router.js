@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard.vue'
 import store from './store/index.js'
 import Login from './pages/Login.vue'
 import LectureBuild from './pages/LectureBuild.vue'
+import NotFound from './pages/NotFound.vue'
 
 
 
@@ -15,9 +16,10 @@ const router = createRouter({
 		{ path: '/', redirect: '/homepage' },
 		{path: '/homepage', component: Homepage},
 		{path: '/build', component: LectureBuild},
-		{path: '/dashboard', component: LectureBuild, meta: { requiresAuth: true}},
+		{path: '/dashboard', component: Dashboard, meta: { requiresAuth: true}},
 
-		{ path: '/auth', component: Login, meta: { requiresUnauth: true } }
+		{ path: '/auth', component: Login, meta: { requiresUnauth: true } },
+		{path: '/:notFound(.*)',component: NotFound}
 
 
 	]});
@@ -26,7 +28,7 @@ const router = createRouter({
 		if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
 		  next('/auth');
 		} else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
-		  next('/build');
+		  next('/dashboard');
 		} else {
 		  next();
 		}
