@@ -14,7 +14,7 @@
 
  <a class="aa" href="http://localhost:8080/build"> Add a new Lecture </a>
 
-</div> 
+</div>
 
 </template>
 
@@ -45,19 +45,17 @@ methods: {
   margin: auto;
   text-align: center;
   font-family: serif ;
-  
+
     color: black  ;
-  
+
 }
 
-.aa { 
-  color: #3c1414  ; 
+.aa {
+  color: #3c1414  ;
   font-family: serif ;
   border: none;
   outline: 0;
   padding: 12px;
-  color: white;
- 
   text-align: center;
   cursor: pointer;
   width: 100%;

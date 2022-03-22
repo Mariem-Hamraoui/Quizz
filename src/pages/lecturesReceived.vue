@@ -1,7 +1,7 @@
 <template>
   <div>
     <base-dialog
-    
+
       :show= "!!error"
       title="An error occurred!"
       @close= "handleError"
@@ -10,14 +10,24 @@
     </base-dialog>
     <section>
       <base-card>
-        <header></header>
+
         <base-spinner v-if="isLoading"></base-spinner>
         <div v-else-if="hasLectures && !isLoading">
           <div
             v-for="req in receivedLectures" :key="req.id" >
 		  <ul>
-            <button class="btn" @click= "displayLecture">{{ req.name }}</button>
 
+<div>
+	<button @click="displayLecture">{{req.name}}</button>
+	<div v-if="SingleLecture">
+<div>{{req.fileUrl}}</div>
+<div></div>
+<div></div>
+<div></div>
+ <iframe src="Downloads/rfazvaervearv(1).pdf" title="description"></iframe>
+	</div>
+
+</div>
 			</ul>
           </div>
 
@@ -66,6 +76,9 @@ export default {
     handleError() {
       this.error = null;
     },
+	displayLecture(){
+		this.SingleLecture = !this.SingleLecture
+	}
 
   },
 };

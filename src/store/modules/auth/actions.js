@@ -65,7 +65,7 @@ export default {
     const tokenExpiration = localStorage.getItem("tokenExpiration");
 
     const expiresIn = +tokenExpiration - new Date().getTime();
-    console.log(userId);
+   
     if (expiresIn < 0) {
       return;
     }

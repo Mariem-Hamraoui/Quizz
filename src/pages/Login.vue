@@ -6,7 +6,7 @@
     <base-spinner></base-spinner>
   </base-dialog>
 
- 
+
   <base-card>
     <form class="auth" @submit.prevent= "submitForm">
       <div v-if="mode === 'login'">
@@ -33,10 +33,10 @@
         />
       </div>
       <div v-if="mode === 'signup'">
-       
+
         <h3> Subscribe Here </h3>
 <br>
- 
+
   <label for="email"> Email </label>
 
         <input
@@ -157,10 +157,9 @@ export default {
 </script>
 
 <style>
-body { 
-  background-image: url("https://th.bing.com/th/id/OIP.CKB3mR8p3UaQqBm5eh9LfgHaH6?pid=ImgDet&w=217&h=232&c=7");}
 
-.auth { 
+
+.auth {
   height: 80%;
  background-color  : #bd9b7f;
   width: 70%;
@@ -172,7 +171,7 @@ body {
   padding-top: 50px;
   align-items:flex-end ;
   font-size: 1.5vw;
-  
+
 }
 
 label {
@@ -191,10 +190,10 @@ input {
   display: block;
   padding: 10px 6px;
   width: 80%;
-  box-sizing: border-box ; 
+  box-sizing: border-box ;
   border: none;
   border-bottom: 1px solid black;
-  color: black; 
+  color: black;
   background-color: #d1e8d9 ;
 }
 
@@ -206,14 +205,14 @@ input {
   background-color: white;
   color: black;
   border: 2px solid #987456  ;
-  transition-duration: 0.4s; 
+  transition-duration: 0.4s;
    align-items: center;
-    
-  } 
+
+  }
 
 .btn:hover {
    background-color: #a06e45;
-    color: white; 
+    color: white;
 }
 
 </style>

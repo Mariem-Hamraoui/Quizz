@@ -1,179 +1,136 @@
 <template class="outer">
 
-   <fieldset class="form-horizontal"
-   
-    @submit.prevent= "submit"
-    v-if= "show"
-    style= "align-items: center; justify-content: center">
-  
-  <div class="legend1" >
+  <div v-if="!isHidden">
+    <div class="legend1">
+      <label>
+        <strong> Start creating your Lecture </strong>
+      </label>
 
- <label style=" color:#954535 "> <strong>  Start creating your Lecture  </strong> </label>
-  
-		<label for="name"> Please enter your lecture name </label>
-	
-  	<input type="text" name="name" id="name" v-model= "name">
+      <label for="name"> Please enter your lecture name </label>
 
-		<label for="fileUrl"> Please select your lecture file </label>
+      <input type="text" name="name" id="name" v-model="name" />
 
-		<input type="text" name="fileUrl" id="fileUrl" v-model= "fileUrl">
-     <br/>
+      <label for="fileUrl"> Please select your lecture file </label>
 
+      <input type="file" name="fileUrl" id="fileUrl" @change="onfileSelected" />
     </div>
 
-    <div class="legend1" >
-       <br/>
-     
-  <label style=" color: #954535 "> <strong>  Start creating your Quiz  </strong> </label>
-  
-  <br/>
-
-      <label> Question : </label>
-
-      <input
-
-        type=" text"
-        v-model="QuestionDetails.question"
-      />
-
-      <label> Correct Answer : </label>
-
-      <input
-
-        type=" text"
-        v-model="QuestionDetails.correctAnswer"
-      />
-
-      <label> Wrong Answer(s) : </label>
-      <ul>
-        <div>
-          <input
-
-            type=" text"
-            v-model="tempWrongAnswer"
-          />
-        </div>
-      </ul>
-
-      <br />
-
-      <button
-        id=" button"
-
-        @click= "addwronganswers"
-      >
-        Extra wrong answer
-      </button>
-      <p class="help-block">__ you may add more than one wrong answer</p>
-      <br />
-    </div>
-    <div v-if= "error">
-      <p style="color: #ff0000">
-
-        <strong> {{ errorMessage }} </strong> 
-         
-      </p>
-    </div>
-    
-
-    <div>
-      <br />
-      <button  id="submit"
-        type="submit" @click= "submit">
-        Save this question's details
-      </button>
-    </div>
-  </fieldset>
-
-  
-
-  <div
-    class="w3-container w3-margin-top"
-    v-if= "submitted && !show"
-    style="
-      height: 100px;
-      width: 100%;
-      border-width: 20px 5px;
-      align-items: center;
-      justify-content: center;
-      color : black ; 
-    "
-  >
-    <fieldset>
-      <div>
-        <br />
-        <legend > Question's details Summary </legend>
-        <br />
-        <br />
-        <br />
+    <fieldset class="form-horizontal" @submit.prevent="saveDetails" v-if="show">
+      <div class="legend1">
+        <label>
+          <strong> Start creating your Quiz </strong>
+        </label>
 
         <div>
-          <div>
-            <li
-              class="w3-container w3-center"
-              v-for= "(qt, index) in quiz"
-              :key= "qt"
-            >
-              <p>
-                <strong> Question N°{{ index + 1 }} </strong> {{ qt.question }}
-              </p>
+          <label> Question : </label>
 
-              <p>
-                <strong> The correct Answer : </strong> {{ qt.correctAnswer }}
-              </p>
+          <input type=" text" v-model="QuestionDetails.question" />
 
-              <div
-                v-for="(WrongAnswer, index) in qt.allwronganswers"
-                :key="WrongAnswer.id"
-              >
-                <p>
-                  <strong> Wrong Answer {{ index + 1 }}: </strong>
-                  {{ WrongAnswer }}
-                </p>
-              </div>
-              <p>--------------------------------------------------------</p>
-            </li>
+          <label> Correct Answer : </label>
 
-            <br />
-            <br />
-            <br />
-            <div style="width:100% line-height: 2.5em; margin: 0 5px  ">
-              <br />
+          <input type=" text" v-model="QuestionDetails.correctAnswer" />
+
+          <label> Wrong Answer(s) : </label>
+          <ul>
+            <div>
+              <input type=" text" v-model="tempWrongAnswer" />
             </div>
-          </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="one">
-          <button
-            type="button"
-          
-            @click= "AddQuestion"
-           
-          >
-            Next Question
+          </ul>
+          <button id=" button" @click="addwronganswers">
+            Add extra wrong answer
           </button>
-
-          <p class="help-block">__ you may add the next question's details</p>
-          <br />
         </div>
       </div>
-	  <button id="submit" href="http://localhost:8080/dashboard" @click= "submitLecture" > Save Lecture </button>
+      <div v-if="error">
+        <p>
+          <strong> {{ errorMessage }} </strong>
+        </p>
+      </div>
+      <div>
+        <button id="submit" type="submit" @click="saveDetails">
+          Save this question's details
+        </button>
+      </div>
     </fieldset>
 
+    <div v-if="submitted && !show">
+      <fieldset>
+        <div>
+          <legend>Question's details Summary</legend>
+          <div>
+            <div>
+              <h1>{{ name }}</h1>
+              <li v-for="(qt, index) in quiz" :key="qt">
+                <p>
+                  <strong> Question N°{{ index + 1 }} </strong>
+                  {{ qt.question }}
+                </p>
+
+                <p>
+                  <strong> The correct Answer : </strong> {{ qt.correctAnswer }}
+                </p>
+
+                <div
+                  v-for="(WrongAnswer, index) in qt.allwronganswers"
+                  :key="WrongAnswer.id"
+                >
+                  <p>
+                    <strong> Wrong Answer {{ index + 1 }}: </strong>
+                    {{ WrongAnswer }}
+                  </p>
+                </div>
+                <p>--------------------------------------------------------</p>
+              </li>
+
+              <div></div>
+            </div>
+          </div>
+
+          <div>
+            <button type="button" @click="AddQuestion">Next Question</button>
+          </div>
+        </div>
+        <button @click="submitLecture">Save Lecture</button>
+      </fieldset>
+    </div>
+  </div>
+  <div v-if="!fileUrl && isHidden">
+    <base-spinner></base-spinner>
   </div>
 </template>
+
 <script>
+import firebase from "firebase";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBi_DKlPK32LxHFHunBlrknvthTiTGyTrw",
+
+  authDomain: "syllab-e.firebaseapp.com",
+
+  databaseURL:
+    "https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app",
+
+  projectId: "syllab-e",
+
+  storageBucket: "syllab-e.appspot.com",
+
+  messagingSenderId: "950311166471",
+
+  appId: "1:950311166471:web:baf1cc4221ddc07f4200a2",
+};
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 export default {
   data() {
     return {
       quiz: [],
-	  name:'',
-	  fileUrl:"",
+      name: "",
       tempWrongAnswer: "",
       nbrWanswers: 1,
+      fileUrl: null,
+      file: null,
+      uploadValue: null,
 
       QuestionDetails: {
         question: "",
@@ -184,6 +141,7 @@ export default {
       empty: false,
       submitted: false,
       show: true,
+      isHidden: false,
     };
   },
   methods: {
@@ -194,8 +152,12 @@ export default {
         this.empty;
       }
     },
-
-    submit() {
+    onfileSelected(event) {
+      this.fileUrl = null;
+      this.file = event.target.files[0];
+      console.log(event);
+    },
+    saveDetails() {
       if (this.QuestionDetails.allwronganswers !== [] && this.tempWrongAnswer) {
         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
 
@@ -229,26 +191,43 @@ export default {
       this.errorMessage = null;
     },
 
-	submitLecture(){
-	this.$store.dispatch('lectures/createLecture',{
-		quiz: this.quiz,
-		name: this.name,
-		fileUrl: this.fileUrl,
+    async submitLecture() {
+      this.fileUrl = null;
+      const storageRef = firebase.storage().ref(`${this.name}`).put(this.file);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
 
-	});
-	this.$router.replace('dashboard')
-
-	}
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.fileUrl = url;
+            this.$store
+              .dispatch("lectures/createLecture", {
+                quiz: this.quiz,
+                name: this.name,
+                fileUrl: this.fileUrl,
+              })
+              .then((links) => {
+                window.location.href = "http://localhost:8080/dashboard";
+              });
+          });
+        }
+      );
+      this.isHidden = true;
+    },
   },
 };
 </script>
 
 <style>
-body{
-  background-image: url(" https://th.bing.com/th/id/R.6a11584328c87beea765fa1e3f0bcd4a?rik=3ouXfKQLLts6tg&riu=http%3a%2f%2fwww.leadernetworks.com%2fwp-content%2fuploads%2f2017%2f04%2fquiz-background-slider.png&ehk=qAk%2fImcIw2xDaqeGron1zPSacLdCgFGrgA1xphSgy8Y%3d&risl=&pid=ImgRaw&r=0")
-}
-
-fieldset {  
+fieldset {
   width: 100%;
   max-width: 700px;
   padding: 10px 20px;
@@ -256,22 +235,20 @@ fieldset {
   padding: 20px;
   border-radius: 8px;
   padding-top: 50px;
- padding-right: 30px;
- padding-bottom: 50px;
- padding-left: 80px;
- font-size:2em ;
-  background-color: white ;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  font-size: 2em;
+  background-color: white;
   background-attachment: scroll;
-  border:2px solid #796878 ;
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;	
-    border-radius:8px;
+  border: 2px solid #796878;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
 
-
-
- label {
-  color: black ;
+label {
+  color: black;
   display: inline-block;
   margin: 25px 0 15px;
   font-size: 0.6em;
@@ -281,58 +258,53 @@ fieldset {
 }
 
 input {
-  margin-left: 20px ;
+  margin-left: 20px;
   display: block;
   padding: 10px 6px;
   width: 80%;
-  box-sizing: border-box ; 
+  box-sizing: border-box;
   border: none;
   border-bottom: 1px solid black;
-  color: black; 
-  background-color: #d1e8d9 ;
+  color: black;
+  background-color: #d1e8d9;
 }
 div {
-  color: black;  
+  color: black;
   width: 100%;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
-
-.legend1
-{
-  margin-bottom:0px;
-  margin-left:16px;
+.legend1 {
+  margin-bottom: 0px;
+  margin-left: 16px;
 }
-
 
 #w3-container w3-margin-top {
   width: 300px;
   height: 100px;
   padding: 50px;
-  border: 1px solid ;
-  color : black 
-
+  border: 1px solid;
+  color: black;
 }
 
 button {
   border-radius: 12px;
   width: 50%;
   padding: 14px 40px;
-   position: relative ;
+  position: relative;
   background-color: white;
   color: black;
-  border: 2px solid #796878 ;
-  transition-duration: 0.4s; 
-   align-items: center;
-  
-  }
-
-button:hover {
-   background-color: #008080;
-    color: white; 
+  border: 2px solid #796878;
+  transition-duration: 0.4s;
+  align-items: center;
 }
 
-#submit { 
+button:hover {
+  background-color: #008080;
+  color: white;
+}
+
+#submit {
   width: 90%;
 }
 </style>
