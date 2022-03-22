@@ -1,4 +1,5 @@
 <template>
+
   <base-dialog
     class="error"
     :show= "!!error"
@@ -12,10 +13,11 @@
   </base-dialog>
 
   <base-card>
+<section>  
  <div class= "w3-display-middle">
     <form class="auth " @submit.prevent= "submitForm">
       <div  v-if= "mode === 'login'">
-        <h3>Login</h3>
+        <h3> <i class="fa fa-user w3-margin-right"></i>  Login </h3>
         <br />
         <p>Please enter your credentials to login</p>
 
@@ -29,7 +31,7 @@
 
         <br />
 
-        <label for="password"> Password </label>
+        <label  for="password"> Password </label>
         <input
           type="password"
           placeholder="Password"
@@ -38,12 +40,12 @@
         />
       </div>
       <div v-if="mode === 'signup'">
-        <h3>Subscribe Here</h3>
+        <h3> <i class="fa fa-user w3-margin-right"></i> Subscribe Here</h3>
         <br />
         
         <p> Please enter your credentials to create your account </p>
 
-        <label for="email"> Email </label>
+        <label for="email">  Email </label>
 
         <input
           type="email"
@@ -52,14 +54,14 @@
           v-model.trim="email"
         />
 
-        <br />
+        
 
         <label for="password"> Password </label>
         <input
           name="password"
           label="Password"
           id="password"
-          v-model="password"
+          v-model= "password"
           type="password"
           required
         />
@@ -82,13 +84,15 @@
         id="Sign"
         type="button"
         mode="flat"
-        @click="switchSignUp"
+        @click= "switchSignUp"
       >
         {{ switchModeButtonCaption }}
       </button>
     </form>
     </div> 
+    </section> 
   </base-card>
+ 
 </template>
 
 <script>
@@ -171,18 +175,39 @@ export default {
 
 <style>
 
+
+section {
+  height: 90vh;  
+  background-image: url('https://lh6.googleusercontent.com/proxy/qqFjqZlPk8IFDq3iB4Q23yfL3BZGhrQL1paqjdxLYjfFei1BzfLHR_Jjk1j7h_paXBiJRNo97mjmQiyLyQRJlgA6efvGH8lR_Cl2jRpT7ePF_tsskJ02Ed2PQD9gOKYe=w1200-h630-p-k-no-nu'); 	
+	background-size: cover;
+  background-position: top;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+
+
+}
 .auth {
-  height: 50%;
-  width: 25%;
+  height: 30%;
+  width: 40%;
   position: relative;
   margin: 0 auto ;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  background-color: white !important;
-  display: center ;
-  
+  box-shadow: 0 0 20px 0 rgba(235, 218, 218, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color:	#faf8f2;
+  display: center ;   
 }
+
+ label {
+   color : black ;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 2.1em;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: bold;
+}
+
 
 
 </style>

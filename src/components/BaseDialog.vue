@@ -70,7 +70,7 @@ dialog {
   z-index: 100;
   border-radius: 12px;
   border: none;
- 
+
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -78,8 +78,8 @@ dialog {
 }
 
 header {
-  background-color: #20B2AA  ;
-  color: white;
+  background-color: white ;
+  color: black;
   width: 100%;
   padding: 1rem;
 }

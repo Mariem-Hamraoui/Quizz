@@ -1,57 +1,40 @@
-<template>
+<template >
   <header>
-    <nav class="w3-wide w3-top">
-      <div class="w3-bar w3-wide w3-padding">
-        <div class="w3-middle w3-padding-16">
-          <div class="w3-display-center w3-padding-large">
-            <a class="w3-left w3-xxlarge w3-padding-16" href="/">
-              <h1><strong> Syllab-E </strong></h1>
-            </a>
-          </div>
-
-          <div class="w3-center w3-xlarge w3-hide-small">
-            <a href="/homepage" class="w3-right w3-bar-item w3-button">
-              <i class="fa fa-home"></i>
-            </a>
-
-            <a
-              v-if="isLoggedIn"
+  <nav class="navbar  navbar-expand-lg  navbar-light bg-light" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style='font-family: Josefin Sans ; font-size: 20px; color: 	#8B008B ; letter-spacing: 7.4px;'> <strong> SYLLAB-E  </strong>  </a>
+   <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class=" nav-item active" id="navb" >
+        <li class="nav-item  ">
+          <a class="nav-link" href="/homepage"> &nbsp; &nbsp; &nbsp;
+           <i class="fa fa-home"></i> &nbsp;  Homepage     &nbsp; </a>
+        </li>
+        
+         <li class="nav-item">
+          <a class="nav-link"  v-if= "isLoggedIn"
               href="http://localhost:8080/homepage"
-              @click="logout"
-              class="w3-right w3-bar-item w3-button"
-            >
-              <i class="fa fa-sign-out"></i>
-            </a>
+              @click= "logout"> <i class="fa fa-sign-out"></i>  &nbsp; logout  &nbsp; </a>  
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" v-if= "isLoggedIn"
+              href="/dashboard"> <i class="fa fa-th"> </i>  &nbsp; Dashboard   &nbsp;  </a> 
+        </li>
 
-            <a
-              v-if= "isLoggedIn"
-              href="/dashboard"
-              class="w3-right w3-bar-item w3-button"
-            >
-              <i class="fa fa-th"></i>
-            </a>
-
-            <a
-              id="login"
-              v-else
-              href="/auth"
-              class="w3-right w w3-bar-item w3-button"
-            >
-              <i class="fa fa-sign-in"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div class="w3-display-container w3-content" >
-
-<img class="w3-display-middle"
- 
- src="https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/R.6a11584328c87beea765fa1e3f0bcd4a.png?alt=media&token=75853878-8553-4c9a-a6a2-6f85e0d9ce33" 
- 
- alt="Lights"  width="1800" height="800">
- 
-</div>
+        <li  class="navbar-nav me-auto">
+          <a class="nav-link" id="login" v-if= "!isLoggedIn" href="/auth"> 
+          <i class="fa fa-sign-in"> </i> &nbsp;  Login  &nbsp;
+            
+          </a>
+        </li>
+        
+      </ul>
+      <form class="d-flex">
+       &nbsp;  <input class="form-control me-lg-2" type="text" placeholder="Search">
+        &nbsp; <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> 
 
   </header>
 </template>
@@ -73,6 +56,16 @@ export default {
 </script>
 
 <style scoped>
+
+ #navbarColor03 ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block ;
+}
+
 </style>
 
 

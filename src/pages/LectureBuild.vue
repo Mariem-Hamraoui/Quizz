@@ -265,9 +265,6 @@ fieldset {
     -webkit-border-radius:8px;	
     border-radius:8px;
 }
-
-
-
  label {
   color: black ;
   display: inline-block;
@@ -288,6 +285,9 @@ input {
   border-bottom: 1px solid black;
   color: black; 
   background-color: #d1e8d9 ;
+ 
+   letter-spacing: 1px;
+   
 }
 div {
   color: black;  
