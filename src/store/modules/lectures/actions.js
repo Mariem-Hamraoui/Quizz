@@ -6,6 +6,7 @@ export default {
       quiz: payload.quiz,
       name: payload.name,
       fileUrl: payload.fileUrl,
+	  description: payload.description
     };
     const response = await fetch(
       `https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures/${dbId}.json`,
@@ -55,6 +56,7 @@ export default {
         quiz: responseData[key].quiz,
         name: responseData[key].name,
         fileUrl: responseData[key].fileUrl,
+		description: responseData[key].description,
       };
       lectures.push(lecture);
     }

@@ -1,5 +1,6 @@
 <template >
   <header>
+
   <nav class="navbar  navbar-expand-lg  navbar-light bg-light" >
   <div class="container-fluid">
     <a class="navbar-brand" href="/" style='font-family: Josefin Sans ; font-size: 20px; color: 	#8B008B ; letter-spacing: 7.4px;'> <strong> SYLLAB-E  </strong>  </a>
@@ -8,6 +9,7 @@
         <li class="nav-item  ">
           <a class="nav-link" href="/homepage"> &nbsp; &nbsp; &nbsp;
            <i class="fa fa-home"></i> &nbsp;  Homepage     &nbsp; </a>
+
         </li>
         
          <li class="nav-item">
@@ -28,10 +30,12 @@
         </li>
         
       </ul>
+
       <form class="d-flex">
        &nbsp;  <input class="form-control me-lg-2" type="text" placeholder="Search">
         &nbsp; <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
+
     </div>
   </div>
 </nav> 
@@ -60,7 +64,9 @@ export default {
  #navbarColor03 ul{
   list-style-type: none;
   margin: 0;
+
   padding: 0;
+
 }
 li {
   display: inline-block ;
