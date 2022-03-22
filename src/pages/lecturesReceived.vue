@@ -10,15 +10,22 @@
     </base-dialog>
     <section>
       <base-card>
-        <header></header>
+
         <base-spinner v-if="isLoading"></base-spinner>
         <div v-else-if="hasLectures && !isLoading">
           <div
             v-for="req in receivedLectures" :key="req.id" >
 		  <ul>
-            <button @click="displayLecture">{{ req.name }}</button>
+
 <div>
-	<h3>{{req.name}}</h3>
+	<button @click="displayLecture">{{req.name}}</button>
+	<div v-if="SingleLecture">
+<div>{{req.fileUrl}}</div>
+<div></div>
+<div></div>
+<div></div>
+ <iframe src="Downloads/rfazvaervearv(1).pdf" title="description"></iframe>
+	</div>
 
 </div>
 			</ul>

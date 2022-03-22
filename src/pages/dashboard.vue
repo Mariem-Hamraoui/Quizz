@@ -56,8 +56,6 @@ methods: {
   border: none;
   outline: 0;
   padding: 12px;
-  color: white;
-
   text-align: center;
   cursor: pointer;
   width: 100%;
