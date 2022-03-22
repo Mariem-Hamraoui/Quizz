@@ -1,5 +1,4 @@
 <template class="outer">
-
   <div v-if="!isHidden">
     <div class="legend1">
       <label>
@@ -9,6 +8,18 @@
       <label for="name"> Please enter your lecture name </label>
 
       <input type="text" name="name" id="name" v-model="name" />
+
+      <label for="description"> Please describe your lecture</label>
+      <div>
+        <br />
+        <textarea
+          type="text"
+          name="description"
+          id="description"
+          v-model="description"
+        />
+        <br />
+      </div>
 
       <label for="fileUrl"> Please select your lecture file </label>
 
@@ -126,6 +137,7 @@ export default {
     return {
       quiz: [],
       name: "",
+      description: "",
       tempWrongAnswer: "",
       nbrWanswers: 1,
       fileUrl: null,
@@ -212,6 +224,7 @@ export default {
               .dispatch("lectures/createLecture", {
                 quiz: this.quiz,
                 name: this.name,
+                description: this.description,
                 fileUrl: this.fileUrl,
               })
               .then((links) => {
