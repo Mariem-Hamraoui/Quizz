@@ -1,30 +1,38 @@
+
 <template>
-  <base-dialog :show= "!!error" title=" An error occurred!!" @close= "handleError" style="color: #ff0000">
+
+  <base-dialog
+    class="error"
+    :show= "!!error"
+    title=" An error occurred!!"
+    @close= "handleError"
+  >
     <p>{{ error }}</p>
   </base-dialog>
-  <base-dialog :show= "isLoading" title= " Authenticating..." fixed>
+  <base-dialog :show= "isLoading" title=" Authenticating..." fixed>
     <base-spinner></base-spinner>
   </base-dialog>
 
-
   <base-card>
-    <form class="auth" @submit.prevent= "submitForm">
-      <div v-if="mode === 'login'">
-
-        <h3> Login Here </h3>
+<section>  
+ <div class= "w3-display-middle">
+    <form class="auth " @submit.prevent= "submitForm">
+      <div  v-if= "mode === 'login'">
+        <h3> <i class="fa fa-user w3-margin-right"></i>  Login </h3>
+        <br />
+        <p>Please enter your credentials to login</p>
 
         <label for="email"> Email </label>
         <input
           type="email"
           placeholder="username .. "
           id="email"
-          v-model.trim= "email"
+          v-model.trim="email"
         />
 
-        <br>
+        <br />
 
-
-        <label for="password"> Password</label>
+        <label  for="password"> Password </label>
         <input
           type="password"
           placeholder="Password"
@@ -33,49 +41,59 @@
         />
       </div>
       <div v-if="mode === 'signup'">
+        <h3> <i class="fa fa-user w3-margin-right"></i> Subscribe Here</h3>
+        <br />
+        
+        <p> Please enter your credentials to create your account </p>
 
-        <h3> Subscribe Here </h3>
-<br>
-
-  <label for="email"> Email </label>
+        <label for="email">  Email </label>
 
         <input
           type="email"
-          placeholder= "username .. "
+          placeholder="username .. "
           id="email"
           v-model.trim="email"
         />
 
-<br>
+        
 
-        <label for="password"> Password</label>
+        <label for="password"> Password </label>
         <input
-          name= "password"
+          name="password"
           label="Password"
           id="password"
-          v-model="password"
+          v-model= "password"
           type="password"
           required
         />
       </div>
 
-      <p style="color: #ff0000" > {{ errorMessage }}</p>
+      <p class="error">{{ errorMessage }}</p>
 
-<br>
-<br>
+      <br />
+      <br />
 
-      <button  class="btn" id="login" @click="submitForm">
+      <button class="btn" id="login" @click="submitForm">
         {{ submittedButtonCaption }}
       </button>
 
-      <br>
-      <br>
+      <br />
+      <br />
 
-      <button class="btn" id="Sign" type="button" mode="flat" @click="switchSignUp">
+      <button
+        class="btn"
+        id="Sign"
+        type="button"
+        mode="flat"
+        @click= "switchSignUp"
+      >
         {{ switchModeButtonCaption }}
       </button>
     </form>
+    </div> 
+    </section> 
   </base-card>
+ 
 </template>
 
 <script>
@@ -159,61 +177,40 @@ export default {
 <style>
 
 
-.auth {
-  height: 80%;
- background-color  : #bd9b7f;
-  width: 70%;
-  max-width: 500px;
-  padding: 10px 20px;
-  margin: 10px auto;
-  padding: 20px;
-  border-radius: 8px;
-  padding-top: 50px;
-  align-items:flex-end ;
-  font-size: 1.5vw;
+section {
+  height: 90vh;  
+  background-image: url('https://lh6.googleusercontent.com/proxy/qqFjqZlPk8IFDq3iB4Q23yfL3BZGhrQL1paqjdxLYjfFei1BzfLHR_Jjk1j7h_paXBiJRNo97mjmQiyLyQRJlgA6efvGH8lR_Cl2jRpT7ePF_tsskJ02Ed2PQD9gOKYe=w1200-h630-p-k-no-nu'); 	
+	background-size: cover;
+  background-position: top;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+
 
 }
+.auth {
+  height: 30%;
+  width: 40%;
+  position: relative;
+  margin: 0 auto ;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(235, 218, 218, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color:	#faf8f2;
+  display: center ;   
+}
 
-label {
-  color: black ;
+ label {
+   color : black ;
   display: inline-block;
   margin: 25px 0 15px;
-  font-size: 1em;
+  font-size: 2.1em;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.3px;
   font-weight: bold;
-  font-size: 1.5vw;
 }
 
-input {
-  margin-left: 20px ;
-  display: block;
-  padding: 10px 6px;
-  width: 80%;
-  box-sizing: border-box ;
-  border: none;
-  border-bottom: 1px solid black;
-  color: black;
-  background-color: #d1e8d9 ;
-}
 
-.btn {
-  border-radius: 12px;
-  width: 50%;
-  padding: 14px 40px;
-   position: relative ;
-  background-color: white;
-  color: black;
-  border: 2px solid #987456  ;
-  transition-duration: 0.4s;
-   align-items: center;
-
-  }
-
-.btn:hover {
-   background-color: #a06e45;
-    color: white;
-}
 
 </style>
+
 

@@ -240,7 +240,9 @@ export default {
 </script>
 
 <style>
+
 fieldset {
+
   width: 100%;
   max-width: 700px;
   padding: 10px 20px;
@@ -260,8 +262,10 @@ fieldset {
   border-radius: 8px;
 }
 
+
 label {
   color: black;
+
   display: inline-block;
   margin: 25px 0 15px;
   font-size: 0.6em;
@@ -278,8 +282,10 @@ input {
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid black;
+
   color: black;
   background-color: #d1e8d9;
+
 }
 div {
   color: black;

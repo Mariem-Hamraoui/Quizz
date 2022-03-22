@@ -39,6 +39,7 @@ methods: {
 
 <style>
 
+
 .background {
   box-shadow: 0 4px 8px 0 #5f9ea0 ;
   max-width: 700px;
@@ -61,6 +62,7 @@ methods: {
   width: 100%;
   font-size: 18px;
   }
+
 
 
 </style>

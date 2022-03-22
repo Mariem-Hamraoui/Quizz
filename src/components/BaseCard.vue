@@ -11,4 +11,5 @@
   margin: 2rem auto;
   max-width: 70rem;
 }
+
 </style>
