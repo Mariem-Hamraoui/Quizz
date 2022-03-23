@@ -64,7 +64,7 @@ export default {
 
 dialog {
   position: fixed;
-  top: 20vh;
+  
   left: 10%;
   width: 80%;
   z-index: 100;
@@ -72,13 +72,13 @@ dialog {
   border: none;
 
   padding: 0;
-  margin: 0;
+
   overflow: hidden;
-  background-color: white ;
+
 }
 
 header {
-  background-color: white ;
+
   color: black;
   width: 100%;
   padding: 1rem;

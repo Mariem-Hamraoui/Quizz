@@ -10,6 +10,7 @@
   padding: 1rem;
   margin: 2rem auto;
   max-width: 70rem;
+  background-color: transparent;
 }
 
 </style>
