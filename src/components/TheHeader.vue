@@ -1,46 +1,39 @@
-<template >
-  <header>
+<template>
+  <head> </head>
 
-  <nav class="navbar  navbar-expand-lg  navbar-light bg-light" >
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/" style='font-family: Josefin Sans ; font-size: 20px; color: 	#8B008B ; letter-spacing: 7.4px;'> <strong> SYLLAB-E  </strong>  </a>
-   <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class=" nav-item active" id="navb" >
-        <li class="nav-item  ">
-          <a class="nav-link" href="/homepage"> &nbsp; &nbsp; &nbsp;
-           <i class="fa fa-home"></i> &nbsp;  Homepage     &nbsp; </a>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div id="logo">
+        <a href="index.html"><h3></h3></a>
+      </div>
 
-        </li>
-        
-         <li class="nav-item">
-          <a class="nav-link"  v-if= "isLoggedIn"
-              href="http://localhost:8080/homepage"
-              @click= "logout"> <i class="fa fa-sign-out"></i>  &nbsp; logout  &nbsp; </a>  
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" v-if= "isLoggedIn"
-              href="/dashboard"> <i class="fa fa-th"> </i>  &nbsp; Dashboard   &nbsp;  </a> 
-        </li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
 
-        <li  class="navbar-nav me-auto">
-          <a class="nav-link" id="login" v-if= "!isLoggedIn" href="/auth"> 
-          <i class="fa fa-sign-in"> </i> &nbsp;  Login  &nbsp;
-            
-          </a>
-        </li>
-        
-      </ul>
+          <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
 
-      <form class="d-flex">
-       &nbsp;  <input class="form-control me-lg-2" type="text" placeholder="Search">
-        &nbsp; <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-
+          <li>
+            <a
+              class="nav-link scrollto"
+              v-if="isLoggedIn"
+              href="/auth"
+              @click="logout"
+              >Logout</a
+            >
+          </li>
+          <li>
+            <a class="nav-link scrollto" v-if="!isLoggedIn" href="/auth"
+              >Login/Subscribe</a
+            >
+          </li>
+          <li><a class="nav-link scrollto" href="#about">Get Support</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</nav> 
-
   </header>
+  <!-- End Header -->
 </template>
 
 <script>
@@ -59,19 +52,185 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+a {
+  color: #2dc997;
+  text-decoration: none;
+}
 
- #navbarColor03 ul{
-  list-style-type: none;
-  margin: 0;
+a:hover,
+a:active,
+a:focus {
+  color: #2dca98;
+  outline: none;
+  text-decoration: none;
+}
 
+p {
   padding: 0;
-
-}
-li {
-  display: inline-block ;
+  margin: 0 0 30px 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  height: 90px;
+  transition: all 0.5s;
+  z-index: 997;
+  background-color: transparent;
+}
+#header #logo h1 {
+  font-size: 32px;
+  margin: 0;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+#header #logo h1 a,
+#header #logo h1 a:hover {
+  color: #fff;
+}
+#header #logo img {
+  padding: 0;
+  margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation
+*/
+.navbar {
+  padding: 0;
+}
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+.navbar li {
+  position: relative;
+}
+.navbar > ul > li {
+  white-space: nowrap;
+  padding: 10px 0 10px 24px;
+}
+.navbar a,
+.navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 4px;
+  white-space: nowrap;
+  transition: 0.3s;
+  letter-spacing: 0.4px;
+  position: relative;
+  text-transform: uppercase;
+}
+.navbar a i,
+.navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+.navbar > ul > li > a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: #2dc997;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+.navbar a:hover:before,
+.navbar li:hover > a:before,
+.navbar .active:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover > a {
+  color: #fff;
+}
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 24px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: 0.3s;
+}
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: none;
+  color: #666666;
+}
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover > a {
+  color: #2dc997;
+}
+.navbar .dropdown:hover > ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+.navbar .dropdown .dropdown:hover > ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+  .navbar .dropdown .dropdown:hover > ul {
+    left: -100%;
+  }
+}
 </style>
-
-

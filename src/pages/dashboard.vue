@@ -1,67 +1,88 @@
 <template>
-<div>
-
-<base-dialog :show= "!!error" title="An error occurred!" @close= "handleError">
+<div id="main">
+<h2>List of lectures</h2>
+  <div>
+    <base-dialog
+      :show="!!error"
+      title="An error occurred!"
+      @close="handleError"
+    >
       <p style="color: #ff0000">{{ error }}</p>
     </base-dialog>
- <div class="background">
+    <div>
+      <base-card>
+        <base-spinner v-if="isLoading"></base-spinner>
+        <div v-else-if="hasLectures && !isLoading">
+          <div v-for="req in receivedLectures" :key="req.id">
+            <ul>
+              <singleLecture :req="req"> </singleLecture>
+            </ul>
+          </div>
+        </div>
+        <h3 v-else>You haven't received any lectures yet!</h3>
+      </base-card>
+    </div>
+  </div>
 
-<h2>  List of lectures </h2>
-
-<lectures-received></lectures-received>
-
-</div>
-
- <a class="aa" href="http://localhost:8080/build"> Add a new Lecture </a>
-
-</div>
-
+  <a class="aa" href="http://localhost:8080/build"> Add a new Lecture </a>
+  </div>
 </template>
 
 <script>
-import lecturesReceived from './lecturesReceived.vue'
+import singleLecture from "../components/singleLecture.vue";
 export default {
-
-	components: {
-    lecturesReceived,
+  components: {
+    singleLecture
   },
   data() {
-    return {};
+    return {
+      isLoading: false,
+      error: null,
+    };
   },
-methods: {
-	switchToBuild(){
+  computed: {
+    receivedLectures() {
+      return this.$store.getters["lectures/lectures"];
+    },
+    hasLectures() {
+      return this.$store.getters["lectures/hasLectures"];
+    },
+  },
+  created() {
+    this.loadLectures();
 
-	}
-}
+  },
+  methods: {
+    async loadLectures() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("lectures/fetchLectures");
+      } catch (error) {
+        this.error = error.message || "Something failed!";
+      }
+      this.isLoading = false;
 
+    },
+    handleError() {
+      this.error = null;
+    },
+  },
 };
 </script>
 
 <style>
 
 
-.background {
-  box-shadow: 0 4px 8px 0 #5f9ea0 ;
-  max-width: 700px;
-  margin: auto;
-  text-align: center;
-  font-family: serif ;
-
-    color: black  ;
+#main {
+  width: 100%;
+  line-height: 3;
+  height: 100vh;
+  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
+  background-size: cover;
+  position: relative;
 
 }
 
-.aa {
-  color: #3c1414  ;
-  font-family: serif ;
-  border: none;
-  outline: 0;
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-  }
 
 
 

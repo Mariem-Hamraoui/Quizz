@@ -48,6 +48,7 @@ export default {
     }
 
     const lectures = [];
+	
 
     for (const key in responseData) {
       const lecture = {
