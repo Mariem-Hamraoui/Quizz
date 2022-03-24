@@ -22,7 +22,7 @@
             <br />
             <p>Please enter your credentials to login</p>
 
-            <label for="email"> Email </label>
+
             <input
               type="email"
               placeholder="username .. "
@@ -30,9 +30,9 @@
               v-model.trim="email"
             />
 
-            <br />
 
-            <label for="password"> Password </label>
+
+
             <input
               type="password"
               placeholder="Password"
@@ -46,7 +46,7 @@
 
             <p>Please enter your credentials to create your account</p>
 
-            <label for="email"> Email </label>
+
 
             <input
               type="email"
@@ -55,10 +55,10 @@
               v-model.trim="email"
             />
 
-            <label for="password"> Password </label>
+
             <input
               name="password"
-              label="Password"
+              placeholder="Password"
               id="password"
               v-model="password"
               type="password"
@@ -68,14 +68,12 @@
 
           <p class="error">{{ errorMessage }}</p>
 
-          <br />
-          <br />
 
           <button class="btn" id="login" @click="submitForm">
             {{ submittedButtonCaption }}
           </button>
 
-          <br />
+
           <br />
 
           <button
@@ -101,7 +99,6 @@ export default {
       email: "",
       password: "",
       formIsValid: true,
-
       mode: "login",
       isLoading: false,
       error: null,
@@ -137,7 +134,6 @@ export default {
         this.formIsValid = false;
         return;
       }
-
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
@@ -155,10 +151,7 @@ export default {
         this.error = err.message || "Failed to authenticate, try later.";
       }
       this.isLoading = false;
-
-      setTimeout(() => {
-        location.reload();
-      }, 2000);
+     
     },
     switchSignUp() {
       if (this.mode === "login") {
@@ -175,17 +168,12 @@ export default {
 </script>
 
 <style>
-
-
-
-
-.loginMain {
- padding-top: 26%;
-
+#main {
+ padding-top: 350px;
   background-size: cover;
-
   position: relative;
   font-family: "Lato", sans-serif;
+
 }
 .auth {
   height: 30%;
@@ -199,7 +187,6 @@ export default {
   background-color: #faf8f2;
   display: center;
 }
-
 label {
   color: black;
   display: inline-block;

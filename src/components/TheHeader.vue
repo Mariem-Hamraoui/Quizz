@@ -1,5 +1,5 @@
 <template>
-  <head> </head>
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -10,11 +10,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li :class='{ "active":selected === 0}' @click="changeSelected(0)" ><a class="nav-link scrollto " href="/">Home</a></li>
 
-          <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
+          <li :class='{ "active":selected === 1}' @click="changeSelected(1)"><a class="nav-link scrollto " href="/dashboard">Dashboard</a></li>
 
-          <li>
+          <li :class='{ "active":selected === 2}' @click="changeSelected(2)">
             <a
               class="nav-link scrollto"
               v-if="isLoggedIn"
@@ -23,12 +23,12 @@
               >Logout</a
             >
           </li>
-          <li>
-            <a class="nav-link scrollto" v-if="!isLoggedIn" href="/auth"
+          <li :class='{ "active":selected === 3}' @click="changeSelected(3)">
+            <a class="nav-link scrollto " v-if="!isLoggedIn" href="/auth"
               >Login/Subscribe</a
             >
           </li>
-          <li><a class="nav-link scrollto" href="#about">Get Support</a></li>
+          <li :class='{ "active":selected === 4}' @click="changeSelected(4)"><a class="nav-link scrollto" href="#about">Get Support</a></li>
         </ul>
       </nav>
     </div>
@@ -37,27 +37,39 @@
 </template>
 
 <script>
+import {ref} from 'vue'
 export default {
+
   computed: {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     },
   },
-
   methods: {
     logout() {
       this.$store.dispatch("logout");
     },
+	setup(){
+		const selected = ref(0);
+const changeSelected = (a) => {
+	selected.value
+}
+		return {
+			changeSelected,
+			selected
+
+		}
+	}
   },
 };
 </script>
 
 <style>
+
 a {
   color: #2dc997;
   text-decoration: none;
 }
-
 a:hover,
 a:active,
 a:focus {
@@ -65,12 +77,10 @@ a:focus {
   outline: none;
   text-decoration: none;
 }
-
 p {
   padding: 0;
   margin: 0 0 30px 0;
 }
-
 h1,
 h2,
 h3,
@@ -83,9 +93,6 @@ h6 {
   padding: 0;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
 #header {
   height: 90px;
   transition: all 0.5s;
@@ -109,13 +116,6 @@ h6 {
   padding: 0;
   margin: 0;
 }
-
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/**
-* Desktop Navigation
-*/
 .navbar {
   padding: 0;
 }
@@ -133,8 +133,7 @@ h6 {
   white-space: nowrap;
   padding: 10px 0 10px 24px;
 }
-.navbar a,
-.navbar a:focus {
+.navbar a, .navbar a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -148,8 +147,7 @@ h6 {
   position: relative;
   text-transform: uppercase;
 }
-.navbar a i,
-.navbar a:focus i {
+.navbar a i, .navbar a:focus i {
   font-size: 12px;
   line-height: 0;
   margin-left: 5px;
@@ -166,71 +164,65 @@ h6 {
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
 }
-.navbar a:hover:before,
-.navbar li:hover > a:before,
-.navbar .active:before {
+.navbar a:hover:before, .navbar li:hover > a:before, .navbar .active:before {
   visibility: visible;
   transform: scaleX(1);
 }
-.navbar a:hover,
-.navbar .active,
-.navbar .active:focus,
-.navbar li:hover > a {
+.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
   color: #fff;
+}.navbar {
+  padding: 0;
 }
-.navbar .dropdown ul {
-  display: block;
-  position: absolute;
-  left: 24px;
-  top: calc(100% + 30px);
+.navbar ul {
   margin: 0;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 0;
-  visibility: hidden;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  transition: 0.3s;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
 }
-.navbar .dropdown ul li {
-  min-width: 200px;
+.navbar li {
+  position: relative;
 }
-.navbar .dropdown ul a {
-  padding: 10px 20px;
+.navbar > ul > li {
+  white-space: nowrap;
+  padding: 10px 0 10px 24px;
+}
+.navbar a, .navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
   font-size: 14px;
-  text-transform: none;
-  color: #666666;
+  padding: 0 4px;
+  white-space: nowrap;
+  transition: 0.3s;
+  letter-spacing: 0.4px;
+  position: relative;
+  text-transform: uppercase;
 }
-.navbar .dropdown ul a i {
+.navbar a i, .navbar a:focus i {
   font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
 }
-.navbar .dropdown ul a:hover,
-.navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover > a {
-  color: #2dc997;
-}
-.navbar .dropdown:hover > ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-}
-.navbar .dropdown .dropdown ul {
-  top: 0;
-  left: calc(100% - 30px);
+.navbar > ul > li > a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: #2dc997;
   visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
 }
-.navbar .dropdown .dropdown:hover > ul {
-  opacity: 1;
-  top: 0;
-  left: 100%;
+.navbar a:hover:before, .navbar li:hover > a:before, .navbar .active:before {
   visibility: visible;
+  transform: scaleX(1);
 }
-@media (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
-    left: -90%;
-  }
-  .navbar .dropdown .dropdown:hover > ul {
-    left: -100%;
-  }
+.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+  color: #fff;
 }
 </style>
