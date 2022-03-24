@@ -17,14 +17,16 @@
             <ul>
               <singleLecture :req="req"> </singleLecture>
             </ul>
+			<a  href="http://localhost:8080/build"> Add a new Lecture </a>
           </div>
         </div>
         <h3 v-else>You haven't received any lectures yet!</h3>
       </base-card>
+
     </div>
   </div>
 
-  <a class="aa" href="http://localhost:8080/build"> Add a new Lecture </a>
+
   </div>
 </template>
 
@@ -97,50 +99,7 @@ export default {
   right: 0;
 }
 
-.mainDashboard h1 {
-  margin: 30px 0 10px 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
-  text-transform: uppercase;
-  color: #fff;
-}
-@media (max-width: 768px) {
-  .mainDashboard h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-}
-.mainDashboard h2 {
-  color: #eee;
-  margin-bottom: 50px;
-  font-size: 24px;
-}
-@media (max-width: 768px) {
-  .mainDashboard h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-}
-.mainDashboard .btn-get-started {
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 8px 28px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin: 10px;
-  border: 2px solid #fff;
-  color: #fff;
-}
-.mainDashboard .btn-get-started:hover {
-  background: #2dc997;
-  border: 2px solid #2dc997;
-}
+
 
 
 
