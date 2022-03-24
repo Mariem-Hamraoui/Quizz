@@ -59,7 +59,7 @@
         />
       </div>
 
-      <p style="color: #ff0000" > {{ errorMessage }}</p>
+      <p > {{ errorMessage }}</p>
 
 <br>
 <br>

@@ -6,10 +6,10 @@
 
 <style scoped>
 .card {
-  border-radius: 12px;
-  padding: 1rem;
+  text-align: center;
+ 
   margin: 2rem auto;
-  max-width: 70rem;
+
   background-color: transparent;
 }
 
