@@ -1,56 +1,53 @@
-<template class="outer">
+<template>
+<section class="mainBuild ">
+  <div id="mainBuild">
   <div v-if="!isHidden">
     <div class="legend1">
       <label>
         <strong> Start creating your Lecture </strong>
       </label>
-
-      <label for="name"> Please enter your lecture name </label>
-
+      <br />
+      <label for="name"> Please Enter Your Lecture Name </label>
       <input type="text" name="name" id="name" v-model="name" />
-
-      <label for="description"> Please describe your lecture</label>
-      <div>
-        <br />
-        <textarea
-          type="text"
-          name="description"
-          id="description"
-          v-model="description"
-        />
-        <br />
+<br>
       </div>
-
+      <div class="form-outline w-75 mb-4">
+        <label class="form-label" for="description"> Please Describe Your Lecture </label>
+          <textarea
+          name="description"
+          id="description textAreaExample6"
+          v-model="description"
+          class="form-control"  rows="3"></textarea>
+</div>
       <label for="fileUrl"> Please select your lecture file </label>
-
       <input type="file" name="fileUrl" id="fileUrl" @change="onfileSelected" />
     </div>
-
     <fieldset class="form-horizontal" @submit.prevent="saveDetails" v-if="show">
       <div class="legend1">
         <label>
-          <strong> Start creating your Quiz </strong>
+          <br>
+          <br>
+          <strong> <itaic> Start creating your Quiz : </itaic> </strong>
         </label>
-
+<br>
         <div>
           <label> Question : </label>
-
           <input type=" text" v-model="QuestionDetails.question" />
-
           <label> Correct Answer : </label>
-
           <input type=" text" v-model="QuestionDetails.correctAnswer" />
-
           <label> Wrong Answer(s) : </label>
           <ul>
             <div>
               <input type=" text" v-model="tempWrongAnswer" />
             </div>
           </ul>
-          <button id=" button" @click="addwronganswers">
+          <button  id='buttn'  @click= "addwronganswers">
             Add extra wrong answer
           </button>
+          <br>
         </div>
+        <br>
+        <br>
       </div>
       <div v-if="error">
         <p>
@@ -58,12 +55,13 @@
         </p>
       </div>
       <div>
-        <button id="submit" type="submit" @click="saveDetails">
+        <button   id=" buttn " type="submit" @click="saveDetails">
           Save this question's details
         </button>
       </div>
+      <br>
+      <br>
     </fieldset>
-
     <div v-if="submitted && !show">
       <fieldset>
         <div>
@@ -76,11 +74,9 @@
                   <strong> Question N°{{ index + 1 }} </strong>
                   {{ qt.question }}
                 </p>
-
                 <p>
                   <strong> The correct Answer : </strong> {{ qt.correctAnswer }}
                 </p>
-
                 <div
                   v-for="(WrongAnswer, index) in qt.allwronganswers"
                   :key="WrongAnswer.id"
@@ -92,13 +88,11 @@
                 </div>
                 <p>--------------------------------------------------------</p>
               </li>
-
               <div></div>
             </div>
           </div>
-
           <div>
-            <button type="button" @click="AddQuestion">Next Question</button>
+            <button type="button" @click= "AddQuestion">Next Question</button>
           </div>
         </div>
         <button @click="submitLecture">Save Lecture</button>
@@ -108,30 +102,21 @@
   <div v-if="!fileUrl && isHidden">
     <base-spinner></base-spinner>
   </div>
+  </section>
 </template>
-
 <script>
 import firebase from "firebase";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBi_DKlPK32LxHFHunBlrknvthTiTGyTrw",
-
   authDomain: "syllab-e.firebaseapp.com",
-
   databaseURL:
     "https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app",
-
   projectId: "syllab-e",
-
   storageBucket: "syllab-e.appspot.com",
-
   messagingSenderId: "950311166471",
-
   appId: "1:950311166471:web:baf1cc4221ddc07f4200a2",
 };
-
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 export default {
   data() {
     return {
@@ -143,7 +128,6 @@ export default {
       fileUrl: null,
       file: null,
       uploadValue: null,
-
       QuestionDetails: {
         question: "",
         correctAnswer: "",
@@ -172,21 +156,14 @@ export default {
     saveDetails() {
       if (this.QuestionDetails.allwronganswers !== [] && this.tempWrongAnswer) {
         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
-
         const finalversion = JSON.parse(JSON.stringify(this.QuestionDetails));
-
         this.quiz.push(finalversion);
-
         this.tempWrongAnswer = "";
-
         this.QuestionDetails.allwronganswers = [];
-
         this.submitted = true;
-
         this.show = false;
       } else {
         this.error = true;
-
         this.errorMessage = `Oops .. Please fill the empty fields! `;
       }
     },
@@ -202,7 +179,6 @@ export default {
       this.errorMessage = [];
       this.errorMessage = null;
     },
-
     async submitLecture() {
       this.fileUrl = null;
       const storageRef = firebase.storage().ref(`${this.name}`).put(this.file);
@@ -217,7 +193,6 @@ export default {
         },
         () => {
           this.uploadValue = 100;
-
           storageRef.snapshot.ref.getDownloadURL().then((url) => {
             this.fileUrl = url;
             this.$store
@@ -238,92 +213,73 @@ export default {
   },
 };
 </script>
-
 <style>
-
-fieldset {
-
+.mainBuild {
   width: 100%;
-  max-width: 700px;
-  padding: 10px 20px;
-  margin: 10px auto;
-  padding: 20px;
-  border-radius: 8px;
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-bottom: 50px;
+  height: 50hv;
+  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
+  background-size: cover;
+  position: relative;
+  padding-top: 100px;
+scroll-behavior: smooth;
+}
+@media (min-width: 1024px) {
+  #main {
+    background-attachment: fixed;
+  }
+}
+#mainBuild{
+  width: 100%;
+  height: 30% ;
+  max-width: 650px;
+  margin: 8px auto;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
   padding-left: 80px;
-  font-size: 2em;
+  font-size: 1.2em;
   background-color: white;
   background-attachment: scroll;
   border: 2px solid #796878;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  resize: both;
+  row-gap: 10px;
 }
-
-
 label {
   color: black;
-
   display: inline-block;
-  margin: 25px 0 15px;
+  margin: 7px 0 10px;
   font-size: 0.6em;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
 }
-
 input {
   margin-left: 20px;
   display: block;
   padding: 10px 6px;
-  width: 80%;
+  width: 73%;
   box-sizing: border-box;
   border: none;
-  border-bottom: 1px solid black;
-
-  color: black;
-  background-color: #d1e8d9;
-
+  border-bottom: 2px solid #796878;
+  color: #796878;
+  background-color: #D1E8D9;
+ font-size: 1.2em;
 }
-div {
-  color: black;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.legend1 {
-  margin-bottom: 0px;
-  margin-left: 16px;
-}
-
-#w3-container w3-margin-top {
-  width: 300px;
-  height: 100px;
-  padding: 50px;
-  border: 1px solid;
-  color: black;
-}
-
-button {
-  border-radius: 12px;
-  width: 50%;
-  padding: 14px 40px;
-  position: relative;
-  background-color: white;
-  color: black;
+#buttn {
+  border: 2px solid black;
+  padding: 14px 14px;
+  font-size: 16px;
+  cursor: pointer;
   border: 2px solid #796878;
   transition-duration: 0.4s;
-  align-items: center;
 }
-
-button:hover {
+#buttn:hover {
   background-color: #008080;
   color: white;
 }
-
-#submit {
-  width: 90%;
+#buttn {
+  width: 70%;
+  padding: 12px 6px;
+  align-items: center;
 }
 </style>

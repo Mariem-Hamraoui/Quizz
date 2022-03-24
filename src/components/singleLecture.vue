@@ -9,21 +9,29 @@
         {{ req.description }}
       </div>
       <div>
-        <button @click="deleteLecture(req)">Delete</button>
+        <button @click="deleteLecture(req.name)">Delete</button>
         <button @click="inviteStaff">Invite staff</button>
         <div>List of staff invited already</div>
+		<input type="email" name="staffemail" id="staffemail" v-model="staffemail">
       </div>
     </ul>
   </div>
 </template>
 
 <script>
+
 import firebase from "firebase";
+
+
+
+
+
 export default {
   props: ["req"],
   data() {
     return {
       detailsAreVisible: false,
+	  staffemail:""
     };
   },
 
@@ -31,19 +39,18 @@ export default {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
-    inviteStaff() {},
+   async inviteStaff() {
+		await this.$store.dispatch("signup", {email: this.staffemail, password: "p@ssw0rd"});
+		
+	},
 
-    deleteLecture(item) {
-      db.collection("lectures")
-        .doc(item)
-        .delete()
-        .then(() => {
-          console.log("deleted");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-};
+    deleteLecture(doc) {
+
+
+console.log(firebase)
+
+
+	}
+  }
+}
 </script>
