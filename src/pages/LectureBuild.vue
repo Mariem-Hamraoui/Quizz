@@ -1,7 +1,11 @@
 <template>
-<section class="mainBuild ">
+  <section class="mainBuild ">
+	   <div id="addingFile" v-if="!fileUrl && isHidden">
+		   <h4>Please Hold until we save the lecture</h4>
+    <base-spinner></base-spinner>
+  </div>
   <div id="mainBuild">
-  <div v-if="!isHidden">
+  <div v-if="show">
     <div class="legend1">
       <label>
         <strong> Start creating your Lecture </strong>
@@ -95,13 +99,12 @@
             <button type="button" @click= "AddQuestion">Next Question</button>
           </div>
         </div>
+
         <button @click="submitLecture">Save Lecture</button>
       </fieldset>
     </div>
   </div>
-  <div v-if="!fileUrl && isHidden">
-    <base-spinner></base-spinner>
-  </div>
+
   </section>
 </template>
 <script>
@@ -141,6 +144,10 @@ export default {
     };
   },
   methods: {
+	  myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+},
     addwronganswers() {
       if (this.tempWrongAnswer) {
         this.QuestionDetails.allwronganswers.push(this.tempWrongAnswer);
@@ -216,7 +223,7 @@ export default {
 <style>
 .mainBuild {
   width: 100%;
-  height: 50hv;
+  height: 100%;
   background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
   background-size: cover;
   position: relative;
@@ -229,46 +236,27 @@ scroll-behavior: smooth;
   }
 }
 #mainBuild{
-  width: 100%;
-  height: 30% ;
-  max-width: 650px;
+  width: 80%;
+  height: 100% ;
+
   margin: 8px auto;
   padding-top: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
   padding-left: 80px;
-  font-size: 1.2em;
+  font-size: 15px;
   background-color: white;
-  background-attachment: scroll;
-  border: 2px solid #796878;
-  resize: both;
+
+
+
   row-gap: 10px;
 }
-label {
-  color: black;
-  display: inline-block;
-  margin: 7px 0 10px;
-  font-size: 0.6em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-input {
-  margin-left: 20px;
-  display: block;
-  padding: 10px 6px;
-  width: 73%;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid #796878;
-  color: #796878;
-  background-color: #D1E8D9;
- font-size: 1.2em;
-}
+
+
 #buttn {
   border: 2px solid black;
   padding: 14px 14px;
-  font-size: 16px;
+
   cursor: pointer;
   border: 2px solid #796878;
   transition-duration: 0.4s;
@@ -282,4 +270,6 @@ input {
   padding: 12px 6px;
   align-items: center;
 }
+
+
 </style>

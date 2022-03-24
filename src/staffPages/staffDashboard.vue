@@ -1,4 +1,6 @@
 <template>
+<div class="mainDashboard" >
+<h2>List of lectures</h2>
   <div>
     <base-dialog
       :show="!!error"
@@ -7,33 +9,37 @@
     >
       <p style="color: #ff0000">{{ error }}</p>
     </base-dialog>
-    <section>
+    <div>
       <base-card>
         <base-spinner v-if="isLoading"></base-spinner>
         <div v-else-if="hasLectures && !isLoading">
           <div v-for="req in receivedLectures" :key="req.id">
             <ul>
-              <div>
-                <button @click="displayLecture">{{ req.name }}</button>
-                <div v-if="SingleLecture">
-                </div>
-              </div>
+              <singleLecture :req="req"> </singleLecture>
             </ul>
+
           </div>
         </div>
         <h3 v-else>You haven't received any lectures yet!</h3>
+
       </base-card>
-    </section>
+    </div>
+  </div>
+
+
   </div>
 </template>
 
 <script>
+import singleLecture from "../components/singleLecture.vue";
 export default {
+  components: {
+    singleLecture
+  },
   data() {
     return {
       isLoading: false,
       error: null,
-      SingleLecture: false,
     };
   },
   computed: {
@@ -46,6 +52,7 @@ export default {
   },
   created() {
     this.loadLectures();
+
   },
   methods: {
     async loadLectures() {
@@ -56,15 +63,37 @@ export default {
         this.error = error.message || "Something failed!";
       }
       this.isLoading = false;
+
     },
     handleError() {
       this.error = null;
-    },
-    displayLecture() {
-      this.SingleLecture = !this.SingleLecture;
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+
+.mainDashboard {
+  width: 100%;
+  line-height: 3;
+  height: 150vh;
+
+  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
+
+  position: relative;
+  padding-top: 100px;
+}
+@media (min-width: 1024px) {
+  #main {
+    background-attachment: fixed;
+  }
+}
+
+
+
+
+
+
+
+</style>

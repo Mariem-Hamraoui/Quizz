@@ -17,12 +17,13 @@
             <ul>
               <singleLecture :req="req"> </singleLecture>
             </ul>
-			<a  href="http://localhost:8080/build"> Add a new Lecture </a>
+
           </div>
         </div>
         <h3 v-else>You haven't received any lectures yet!</h3>
-      </base-card>
 
+      </base-card>
+<a  href="http://localhost:8080/build"> Add a new Lecture </a>
     </div>
   </div>
 
@@ -80,7 +81,7 @@ export default {
   height: 150vh;
 
   background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
-  background-size: cover;
+
   position: relative;
   padding-top: 100px;
 }
@@ -89,15 +90,7 @@ export default {
     background-attachment: fixed;
   }
 }
-.mainDashboard:before {
-  content: "";
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-}
+
 
 
 
