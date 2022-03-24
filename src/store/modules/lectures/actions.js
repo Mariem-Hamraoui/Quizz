@@ -6,7 +6,8 @@ export default {
       quiz: payload.quiz,
       name: payload.name,
       fileUrl: payload.fileUrl,
-	  description: payload.description
+	  description: payload.description,
+	  staffUsers: payload.staffUsers
     };
     const response = await fetch(
       `https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures/${dbId}.json`,
@@ -48,7 +49,7 @@ export default {
     }
 
     const lectures = [];
-	
+
 
     for (const key in responseData) {
       const lecture = {

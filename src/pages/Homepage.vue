@@ -3,8 +3,8 @@
 
 <body>
    <!-- ======= main Section ======= -->
-  <section id="main">
-    <div class="main-container" data-aos="zoom-in" data-aos-delay="100">
+  <section id="mainhome">
+    <div class="main-containerhome" data-aos="zoom-in" data-aos-delay="100">
       <h1>Welcome to Syllab-E</h1>
       <h2>There is no better investment than investing in staff</h2>
 
@@ -28,7 +28,7 @@ export default {
 /*--------------------------------------------------------------
 # main Section
 --------------------------------------------------------------*/
-#main {
+#mainhome {
   width: 100%;
   line-height: 3;
   height: 100vh;
@@ -38,11 +38,11 @@ export default {
   padding-top: 15%;
 }
 @media (min-width: 1024px) {
-  #main {
+  #mainhome {
     background-attachment: fixed;
   }
 }
-#main:before {
+#mainhome:before {
   content: "";
   background: rgba(0, 0, 0, 0.6);
   position: absolute;
@@ -51,7 +51,7 @@ export default {
   left: 0;
   right: 0;
 }
-#main .main-container {
+#mainhome .main-containerhome {
   position: absolute;
   bottom: 0;
   top: 0;
@@ -63,7 +63,7 @@ export default {
   flex-direction: column;
   text-align: center;
 }
-#main h1 {
+#mainhome h1 {
   margin: 30px 0 10px 0;
   font-size: 48px;
   font-weight: 700;
@@ -77,19 +77,19 @@ export default {
     line-height: 36px;
   }
 }
-#main h2 {
+#mainhome h2 {
   color: #eee;
   margin-bottom: 50px;
   font-size: 24px;
 }
 @media (max-width: 768px) {
-  #main h2 {
+  #mainhome h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
   }
 }
-#main .btn-get-started {
+#mainhome .btn-get-started {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -103,7 +103,7 @@ export default {
   border: 2px solid #fff;
   color: #fff;
 }
-#main .btn-get-started:hover {
+#mainhome .btn-get-started:hover {
   background: #2dc997;
   border: 2px solid #2dc997;
 }
