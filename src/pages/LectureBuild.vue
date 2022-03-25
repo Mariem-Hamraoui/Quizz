@@ -11,7 +11,7 @@
     <div>
       <label>
         <br />
- 
+
       <h5>  <strong> Start creating your Lecture </strong> </h5>
       </label>
       <br />
@@ -29,7 +29,7 @@
           class="form-control"  rows="3">
           </textarea>
 </div>
-      <label id ='lbl' for="fileUrl"> Please select your lecture file </label> 
+      <label id ='lbl' for="fileUrl"> Please select your lecture file </label>
        <br />
       <input type="file" name="fileUrl" id="fileUrl" @change="onfileSelected" />
     </div>
@@ -37,10 +37,10 @@
       <div>
         <label>
           <br>
-     
- 
+
+
   <br />
-  
+
          <h5> <strong>  Start creating your Quiz :  </strong> </h5>
         </label>
 <br>
@@ -51,7 +51,7 @@
            <br />
           <label id ='lbl'> Correct Answer : </label>
            <br />
-          
+
           <input type=" text" v-model= "QuestionDetails.correctAnswer" />
            <br />
           <label  id ='lbl' > Wrong Answer(s) : </label>
@@ -62,7 +62,7 @@
             <br />
   <br />
   <br />
-  
+
           </ul>
 
           <button  id="login" @click= "addwronganswers">
@@ -84,29 +84,28 @@
       <br />
       <br />
   <br />
-  
-  
+
       <div>
         <button id="submitbtn" type="submit" @click= "saveDetails">
           Save Question
         </button>
         <br>
-           
+
       </div>
-     
+
 
     </fieldset>
     <br />
-  
+
     <div v-if= "submitted && !show">
       <fieldset>
         <br />
 
-  
+
 
         <div>
-         
-  
+
+
   <br />
   <br />
           <legend> <h5> The Summary of The Questions    </h5></legend>
@@ -116,25 +115,25 @@
             <div>
 
               <h6> {{ name }} </h6>
-           <br />   
+           <br />
               <li   v-for= "(qt, index) in quiz" :key="qt"> <span> Here are the details : </span>
-              <br />  
+              <br />
                <br />
 
                 <p id ='lbl' >
                   <strong> Question n°{{ index + 1 }} :  </strong>
                   {{ qt.question }}
                 </p>
-                 
+
                 <p id ='lbl' >
                   <strong> Correct Answer : </strong> {{ qt.correctAnswer }}
                 </p>
-                 
+
                 <div
                   v-for="(WrongAnswer, index) in qt.allwronganswers"
                   :key="WrongAnswer.id"
                 >
-                
+
                   <p id ='lbl' >
                     <strong> Wrong Answer n° {{ index + 1 }} : </strong>
                     {{ WrongAnswer }}
@@ -168,13 +167,13 @@
   <br />
   <br />
        </div>
-        
+
     <br />
   <br />
   <br />
   <br />
   <br />
-    
+
   </div>
 
   </section>
@@ -326,7 +325,7 @@ h5 {
   width: 60%;
   height: 100% ;
   margin: 4px auto;
-  padding-top: 10px; 
+  padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 70px;
   font-size: 10px;
@@ -334,12 +333,11 @@ h5 {
   row-gap: 10px;
   font-size-adjust: 0.58;
   align-items: center;
- border-radius: 25px; 
+ border-radius: 25px;
   box-shadow: 0 4px 8px 0 #f1b24b , 0 6px 20px 0  #f1b24b ;
  border-radius: 12px;
   border-radius: 40px;
 }
-
 button {
  padding: 15px 25px;
  border: unset;
@@ -355,7 +353,6 @@ button {
  transition: all 250ms;
  overflow: hidden;
 }
-
 button::before {
  content: "";
  position: absolute;
@@ -367,51 +364,48 @@ button::before {
  background-color: #008080;
  z-index: -1;
  -webkit-box-shadow: 4px 8px 19px -3px  #008080;
- box-shadow: 4px 8px 19px -3px  #008080; 
+ box-shadow: 4px 8px 19px -3px  #008080;
  transition: all 250ms
 }
-
 button:hover {
  color: white;
 }
-
 button:hover::before {
  width: 100%;
 }
-input{ 
+input{
   width: 70%;
-  height: 40px; 
+  height: 40px;
   padding: 14px 14px;
   cursor: pointer;
   border: 2px thin  #008080;
   transition-duration: 0.4s;
- 
+
 }
 
-#lbl { 
+#lbl {
   font-size: 12px;
   font-family: Times;
    text-transform: capitalize;
 }
-
 #submitbtn{
   width: 78%;
   font-size: 15px;
- align-items: center; 
+ align-items: center;
 }
 #submitbtn:active {
   background-color:  #008080 ;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.error {  
+.error {
    font-family: Times;
    text-transform: uppercase;
-   color : hsl(0, 100%, 50%); 
+   color : hsl(0, 100%, 50%);
    width : 80%;
   text-align : center;
   font-size: 13px;
-  align-items: center; 
+  align-items: center;
 }
 .wrginput{
   padding-left: 0px ;
@@ -423,3 +417,4 @@ input{
   width: 75%;
 }
 </style>
+

@@ -114,11 +114,17 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
+
   height: 250vh;
-  background-image: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg);
+ 
+
+
+  background-image: url("/assets/backg.jpg");
+
   background-attachment: fixed;
   align-items: center;
   text-align: center;
+
 }
 
 #mainDashboard {
