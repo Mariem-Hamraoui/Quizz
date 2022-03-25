@@ -3,7 +3,7 @@
     <img id="logo-crown" src="/assets/crown.svg" alt="headsUP Crown" />
     <h1 id="logo-headline">headsUP</h1>
 	<h2>Your quiz has started</h2>
-    <!-- New Section for User Statistics -->
+
     <div class="correctAnswers">
       You have
       <strong>{{ correctAnswers }} correct {{ pluralizeAnswer }}!</strong>
@@ -49,12 +49,12 @@ export default {
     },
     score() {
       if (this.questions !== []) {
-        // Here, we want to collect data in an object about the users statistics - later be emitted on an event when users finishes quiz
+
         return {
           allQuestions: this.questions.length,
           answeredQuestions: this.questions.reduce((count, currentQuestion) => {
             if (currentQuestion.userAnswer) {
-              // userAnswer is set when user has answered a question, no matter if right or wrong
+
               count++;
             }
             return count;
@@ -94,14 +94,14 @@ export default {
       }
     },
     pluralizeAnswer() {
-      // For grammatical correctness
+
       return this.correctAnswers === 1 ? "Answer" : "Answers";
     },
     quizCompleted() {
       if (this.questions.length === 0) {
         return false;
       }
-      /* Check if all questions have been answered */
+
       let questionsAnswered = 0;
       this.questions.forEach(function(question) {
         question.rightAnswer !== null ? questionsAnswered++ : null;
@@ -111,11 +111,7 @@ export default {
   },
   watch: {
     quizCompleted(completed) {
-      /*
-       * Watcher on quizCompleted fires event "quiz-completed"
-       * up to parent App.vue component when completed parameter
-       * returned by quizCompleted computed property true
-       */
+
       completed &&
         setTimeout(() => {
           this.$emit("quiz-completed", this.score);
@@ -126,7 +122,7 @@ export default {
     async fetchQuestions() {
       this.loading = true;
 console.log
-      let index = 0; // index is used to identify single answer
+      let index = 0;
       let data = this.req.quiz.map((question) => {
 
         // put answers on question into single array
@@ -134,7 +130,7 @@ console.log
           question.correctAnswer,
           ...question.allwronganswers,
         ];
-        /* Shuffle question.answers array */
+        /* Random question.answers array */
         for (let i = question.answers.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [question.answers[i], question.answers[j]] = [
@@ -142,7 +138,7 @@ console.log
             question.answers[i],
           ];
         }
-        // mention in Step 1
+
         question.rightAnswer = null;
         question.key = index;
         index++;
@@ -152,10 +148,10 @@ console.log
       this.loading = false;
     },
     handleButtonClick: function(event) {
-      /* Find index to identiy question object in data */
+
       let index = event.target.getAttribute("index");
-      let pollutedUserAnswer = event.target.innerHTML; // innerHTML is polluted with decoded HTML entities e.g ' from &#039;
-      /* Clear from pollution with ' */
+      let pollutedUserAnswer = event.target.innerHTML;
+
       let userAnswer = pollutedUserAnswer.replace(/'/, "&#039;");
       /* Set userAnswer on question object in data */
       this.questions[index].userAnswer = userAnswer;
@@ -166,7 +162,7 @@ console.log
         if (allButtons[i] === event.target) continue;
         allButtons[i].setAttribute("disabled", "");
       }
-      /* Invoke checkAnswer to check Answer */
+
       this.checkAnswer(event, index);
     },
     checkAnswer: function(event, index) {
@@ -181,9 +177,9 @@ console.log
           );
         }
         if (question.userAnswer === question.correctAnswer) {
-          /* Set class on Button if user answered right, to celebrate right answer with animation joyfulButton */
+
           event.target.classList.add("rightAnswer");
-          /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
+         
           this.questions[index].rightAnswer = true;
         } else {
           /* Mark users answer as wrong answer */

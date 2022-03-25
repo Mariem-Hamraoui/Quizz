@@ -1,6 +1,6 @@
 <template>
   <div class =' singlelecture'>
-    
+
     <h7>   <p> Lecture Name : </p> <strong> {{ req.name }} </strong> </h7>
 
     <br />
@@ -20,7 +20,7 @@
       <br />
       <div>
         <br />
-        <button @click="deleteLecture(req.name)"> Delete </button>
+        <button @click="deleteLecture(req.id)"> Delete </button>
         <br />
         <br />
         <div id ='lbldash'> List of staff already invited </div>
@@ -41,6 +41,7 @@
 
 <script>
 import firebase from "firebase";
+
 
 export default {
   props: ["req"],
@@ -106,8 +107,15 @@ export default {
       }
     },
 
-    deleteLecture(doc) {
-      console.log(firebase);
+    async deleteLecture(item) {
+
+     const ref = firebase.database().ref('lectures');
+const query = ref.orderById().equalTo(this.req.id);
+query.once('value').then((results) => {
+  results.forEach((snapshot) => {
+    snapshot.ref.remove();
+  });
+});
     },
   },
 };
@@ -119,7 +127,7 @@ export default {
 .singlelecture{
   padding-left : 5px ;
    box-sizing: none ;
-   margin : 0 auto ;  
+   margin : 0 auto ;
 }
 
 h7 {
