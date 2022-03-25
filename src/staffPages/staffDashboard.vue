@@ -1,40 +1,40 @@
 <template>
-<div class="mainDashboard" >
-<h2>List of lectures</h2>
-  <div>
-    <base-dialog
-      :show="!!error"
-      title="An error occurred!"
-      @close="handleError"
-    >
-      <p style="color: #ff0000">{{ error }}</p>
-    </base-dialog>
-    <div>
-      <base-card>
-        <base-spinner v-if="isLoading"></base-spinner>
-        <div v-else-if="hasLectures && !isLoading">
-          <div v-for="req in receivedLectures" :key="req.id">
-            <ul>
-              <singleLecture :req="req"> </singleLecture>
-            </ul>
+  <div id="allpagedash">
+    <div class="staffmainDashboard">
+      <h2>List of lectures</h2>
+      <div>
+        <base-dialog
+          :show="!!error"
+          title="An error occurred!"
+          @close="handleError"
+        >
+          <p style="color: #ff0000">{{ error }}</p>
+        </base-dialog>
+        <div>
+          <base-card>
+		  
+            <base-spinner v-if="isLoading"></base-spinner>
 
-          </div>
+            <div v-else-if="hasLectures && !isLoading">
+              <div v-for="req in receivedLectures" :key="req.id">
+                <ul>
+                  <staffsingleLecture :req="req"> </staffsingleLecture>
+                </ul>
+              </div>
+            </div>
+            <h3 v-else>You haven't received any lectures yet!</h3>
+          </base-card>
         </div>
-        <h3 v-else>You haven't received any lectures yet!</h3>
-
-      </base-card>
+      </div>
     </div>
-  </div>
-
-
   </div>
 </template>
 
 <script>
-import singleLecture from "../components/singleLecture.vue";
+import staffsingleLecture from "./staffsingleLecture.vue";
 export default {
   components: {
-    singleLecture
+    staffsingleLecture,
   },
   data() {
     return {
@@ -52,7 +52,6 @@ export default {
   },
   created() {
     this.loadLectures();
-
   },
   methods: {
     async loadLectures() {
@@ -63,7 +62,6 @@ export default {
         this.error = error.message || "Something failed!";
       }
       this.isLoading = false;
-
     },
     handleError() {
       this.error = null;
@@ -73,27 +71,35 @@ export default {
 </script>
 
 <style>
-
-.mainDashboard {
-  width: 100%;
-  line-height: 3;
-  height: 150vh;
-
-  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
-
+#allpagedash {
+  padding-top: 200px;
+  background-size: cover;
   position: relative;
-  padding-top: 100px;
+  font-family: "Lato", sans-serif;
+  background-color: grey;
+  height: 100vh;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8);
+
+  padding: 20px;
+  border-radius: 8px;
+  padding-top: 50px;
+  padding-right: 80px;
+  padding-bottom: 50px;
+  padding-left: 80px;
 }
-@media (min-width: 1024px) {
-  #main {
-    background-attachment: fixed;
-  }
+.staffmainDashboard {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 10px auto;
+
+  border-radius: 8px;
+
+  background-color: white;
+  background-attachment: scroll;
+  border: 2px solid #796878;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
-
-
-
-
-
-
-
 </style>

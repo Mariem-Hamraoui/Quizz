@@ -73,6 +73,7 @@ export default {
         name: this.req.name,
         fileUrl: this.req.fileUrl,
         description: this.req.description,
+		userRole:"staff"
       };
       const staffresponse = await fetch(
         `https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures/${userId}.json`,

@@ -1,5 +1,7 @@
 <template>
 <div class="mainDashboard" >
+
+	<section id="mainDashboard">
 <h2>List of lectures</h2>
   <div>
     <base-dialog
@@ -20,13 +22,14 @@
 
           </div>
         </div>
-        <h3 v-else>You haven't received any lectures yet!</h3>
+        <h3 v-else>You haven't created any lectures yet!</h3>
 
       </base-card>
 <a  href="http://localhost:8080/build"> Add a new Lecture </a>
     </div>
-  </div>
 
+  </div>
+</section>
 
   </div>
 </template>
@@ -76,20 +79,35 @@ export default {
 <style>
 
 .mainDashboard {
-  width: 100%;
-  line-height: 3;
-  height: 150vh;
-
-  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
-
+ padding-top: 200px;
+  background-size: cover;
   position: relative;
-  padding-top: 100px;
+  font-family: "Lato", sans-serif;
+  background-color: grey;
+  height: 100vh;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8);
+   background-attachment: fixed;
 }
-@media (min-width: 1024px) {
-  #main {
-    background-attachment: fixed;
-  }
+
+#mainDashboard {
+	 	padding: 10px 20px;
+		 width: 70%;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  padding-top: 50px;
+  padding-right: 80px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+
+  background-color: white;
+  background-attachment: scroll;
+  border: 2px solid #796878;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
+
 
 
 

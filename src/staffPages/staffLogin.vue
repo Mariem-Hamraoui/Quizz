@@ -116,32 +116,17 @@ export default {
 
 
 .staffloginMain {
-
-	width: 100%;
-  line-height: 3;
-  height: 100vh;
-
-  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
-
+padding-top: 350px;
+  background-size: cover;
   position: relative;
-  padding-top: 300px;
-}
-@media (min-width: 1024px) {
-  #main {
-    background-attachment: fixed;
-  }
+  font-family: "Lato", sans-serif;
+  background-color: grey;
+  height: 100vh;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8);
+   background-attachment: fixed;
 
 }
-.staffloginMain:before {
 
-  content: "";
-  background: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-}
 
 .staffauth{
 
@@ -150,10 +135,10 @@ export default {
   padding: 20px;
   border-radius: 8px;
   padding-top: 50px;
-  padding-right: 30px;
+  padding-right: 80px;
   padding-bottom: 50px;
   padding-left: 80px;
- 
+
   background-color: white;
   background-attachment: scroll;
   border: 2px solid #796878;
