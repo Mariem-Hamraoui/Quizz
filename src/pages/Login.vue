@@ -79,12 +79,12 @@
 <br />
 <br />
           <button
-         
-           
+
+
             type="button"
             mode="flat"
             @click="switchSignUp">
-      
+
             {{ switchModeButtonCaption }}
           </button>
         </form>
@@ -175,13 +175,13 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
-  background-image: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg);
+  background-image: url("/assets/backg.jpg");
   height: 100vh;
 
 }
 .auth {
   height: 30%;
-  width: 100%;
+  width: 600px;
   position: relative;
   margin: 0 auto;
   padding: 45px;
@@ -191,6 +191,7 @@ export default {
   background-color: #faf8f2;
   display: center;
    box-shadow: 15px 15px 30px #bebebe,  -15px -15px 30px #ffffff;
+   border-radius: 25px;
 }
 label {
   color: black;

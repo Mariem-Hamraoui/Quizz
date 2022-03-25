@@ -10,7 +10,7 @@
 
   margin: 2rem auto;
 
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 </style>

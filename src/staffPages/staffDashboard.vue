@@ -12,7 +12,7 @@
         </base-dialog>
         <div>
           <base-card>
-		  
+
             <base-spinner v-if="isLoading"></base-spinner>
 
             <div v-else-if="hasLectures && !isLoading">
@@ -78,7 +78,7 @@ export default {
   font-family: "Lato", sans-serif;
   background-color: grey;
   height: 100vh;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8);
+  background-image: url("/assets/backg.jpg");
 
   padding: 20px;
   border-radius: 8px;
