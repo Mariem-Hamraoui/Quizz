@@ -32,7 +32,9 @@ export default {
   width: 100%;
   line-height: 3;
   height: 100vh;
-  background: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg) top center;
+
+  background: url("/assets/backg.jpg") top center;
+
   background-size: cover;
   position: relative;
   padding-top: 15%;
@@ -70,7 +72,7 @@ export default {
   line-height: 56px;
   text-transform: uppercase;
   color: #fff;
-  
+
 }
 @media (max-width: 768px) {
   #main h1 {
