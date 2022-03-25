@@ -2,6 +2,7 @@
   <div id="quiz-container">
     <img id="logo-crown" src="/assets/crown.svg" alt="headsUP Crown" />
     <h1 id="logo-headline">headsUP</h1>
+	<h2>Your quiz has started</h2>
     <!-- New Section for User Statistics -->
     <div class="correctAnswers">
       You have
@@ -31,6 +32,7 @@
 <script>
 export default {
   name: "Quiz",
+  props: ["req"],
   data() {
     return {
       questions: [],
@@ -123,16 +125,14 @@ export default {
   methods: {
     async fetchQuestions() {
       this.loading = true;
-      let response = await fetch(
-        "https://opentdb.com/api.php?amount=5&category=9"
-      );
-      let jsonResponse = await response.json();
+console.log
       let index = 0; // index is used to identify single answer
-      let data = jsonResponse.results.map((question) => {
+      let data = this.req.quiz.map((question) => {
+
         // put answers on question into single array
         question.answers = [
-          question.correct_answer,
-          ...question.incorrect_answers,
+          question.correctAnswer,
+          ...question.allwronganswers,
         ];
         /* Shuffle question.answers array */
         for (let i = question.answers.length - 1; i > 0; i--) {
@@ -180,7 +180,7 @@ export default {
             3000
           );
         }
-        if (question.userAnswer === question.correct_answer) {
+        if (question.userAnswer === question.correctAnswer) {
           /* Set class on Button if user answered right, to celebrate right answer with animation joyfulButton */
           event.target.classList.add("rightAnswer");
           /* Set rightAnswer on question to true, computed property can track a streak out of 10 questions */
@@ -190,7 +190,7 @@ export default {
           event.target.classList.add("wrongAnswer");
           this.questions[index].rightAnswer = false;
           /* Show right Answer */
-          let correctAnswer = this.questions[index].correct_answer;
+          let correctAnswer = this.questions[index].correctAnswer;
           let allButtons = document.querySelectorAll(`[index="${index}"]`);
           allButtons.forEach(function(button) {
             if (button.innerHTML === correctAnswer) {

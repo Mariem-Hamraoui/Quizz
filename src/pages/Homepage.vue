@@ -32,7 +32,9 @@ export default {
   width: 100%;
   line-height: 3;
   height: 100vh;
+
   background: url("/assets/backg.jpg") top center;
+
   background-size: cover;
   position: relative;
   padding-top: 15%;
@@ -70,6 +72,7 @@ export default {
   line-height: 56px;
   text-transform: uppercase;
   color: #fff;
+
 }
 @media (max-width: 768px) {
   #main h1 {
@@ -106,6 +109,7 @@ export default {
 #mainhome .btn-get-started:hover {
   background: #2dc997;
   border: 2px solid #2dc997;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
 }
 
 

@@ -9,11 +9,11 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li >
-            <a href="/">Home</a>
+            <a href="/"> Home </a>
           </li>
 
           <li >
-            <a class="nav-link scrollto" href="/dashboard">Dashboard</a>
+            <a class="nav-link scrollto" href="/dashboard"> Dashboard </a>
           </li>
 
           <li >
@@ -22,16 +22,16 @@
               v-if="isLoggedIn"
               href="/auth"
               @click="logout"
-              >Logout</a
+              > Logout </a
             >
           </li>
           <li >
             <a class="nav-link scrollto " v-if="!isLoggedIn" href="/auth"
-              >Login/Subscribe</a
+              > Login / Subscribe </a
             >
           </li>
           <li >
-            <a class="nav-link scrollto" href="#about">Get Support</a>
+            <a class="nav-link scrollto" href="#about"> Support </a>
           </li>
         </ul>
       </nav>
@@ -76,8 +76,6 @@ selected : Number
   background-color: transparent;
 }
 
-
-
 .navbar ul {
   margin: 0;
   padding: 0;
@@ -114,10 +112,11 @@ selected : Number
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: #2dc997;
+  background-color:  #f1b24b;
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
 }
 .navbar a:hover:before,
 .navbar li:hover > a:before {
