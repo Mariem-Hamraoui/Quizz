@@ -31,7 +31,7 @@
             >
           </li>
           <li >
-            <a class="nav-link scrollto" href="#about"> Support </a>
+            <a class="nav-link scrollto" href="/Support"> Support </a>
           </li>
         </ul>
       </nav>

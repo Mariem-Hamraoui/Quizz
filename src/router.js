@@ -38,4 +38,4 @@ router.beforeEach(function (to, _, next) {
   }
 });
 
-export default router;
+export default router; 

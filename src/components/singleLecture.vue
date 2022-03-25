@@ -1,24 +1,39 @@
 <template>
-  <div>
-    <h2>Lecture Name: {{ req.name }}</h2>
+  <div class =' singlelecture'>
+    
+    <h7>   <p> Lecture Name : </p> <strong> {{ req.name }} </strong> </h7>
 
-    <button @click="toggleDetails">Show Details</button>
+    <br />
+    <br />
+     <br />
+    <button id="submitbtn"  @click="toggleDetails">Show Details</button>
+     <br />
+      <br />
     <ul v-if="detailsAreVisible">
       <div>
-        <strong>Description:</strong>
+        <br />
+
+        <strong id ='lbldash' > Description: </strong>
+        <br />
         {{ req.description }}
       </div>
+      <br />
       <div>
-        <button @click="deleteLecture(req.name)">Delete</button>
-        <button @click="inviteStaff">Invite staff</button>
-        <div>List of staff invited already</div>
+        <br />
+        <button @click="deleteLecture(req.name)"> Delete </button>
+        <br />
+        <br />
+        <div id ='lbldash'> List of staff already invited </div>
+        <br />
         <input
           type="email"
           name="staffemail"
           id="staffemail"
-          v-model="staffemail"
+          v-model= "staffemail"
         />
-        <button type="submit" @click="inviteStaff">add staff</button>
+        <br />
+        <button type="submit" @click= "inviteStaff"> Add staff </button>
+        <br />
       </div>
     </ul>
   </div>
@@ -41,8 +56,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     async inviteStaff() {
-
-///create the staff user if it doesn't existe else location the userID
+      ///create the staff user if it doesn't existe else location the userID
 
       const url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBi_DKlPK32LxHFHunBlrknvthTiTGyTrw";
@@ -66,14 +80,13 @@ export default {
         throw error;
       }
 
-
-///add the lecture the new staff user account
+      ///add the lecture the new staff user account
       const newLecture = {
         quiz: this.req.quiz,
         name: this.req.name,
         fileUrl: this.req.fileUrl,
         description: this.req.description,
-		userRole:"staff"
+        userRole: "staff",
       };
       const staffresponse = await fetch(
         `https://syllab-e-default-rtdb.europe-west1.firebasedatabase.app/lectures/${userId}.json`,
@@ -91,8 +104,6 @@ export default {
         );
         throw error;
       }
-
-
     },
 
     deleteLecture(doc) {
@@ -101,3 +112,17 @@ export default {
   },
 };
 </script>
+<style>
+.lbldash{
+  font-size: 14px;
+}
+.singlelecture{
+  padding-left : 5px ;
+   box-sizing: none ;
+   margin : 0 auto ;  
+}
+
+h7 {
+font-size: 20px ;
+}
+</style>

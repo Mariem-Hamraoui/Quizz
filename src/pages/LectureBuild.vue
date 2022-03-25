@@ -17,7 +17,7 @@
       <br />
       <label id ='lbl' for="name"> Please Enter Your Lecture Name </label>
        <br />
-      <input type="text" name="name" id="name" v-model="name" />
+      <input type="text" name="name" id="name" v-model= "name" />
 <br>
       </div>
       <div class="form-outline w-75 mb-4">
@@ -79,15 +79,10 @@
           <strong> {{ errorMessage }} </strong>
         </p>
         <br />
-  <br />
-  <br />
-  <br />
-  <br />
+  
       </div>
       <br />
       <br />
-  <br />
-  <br />
   <br />
 
       <div>
@@ -182,6 +177,7 @@
   </div>
 
   </section>
+  
 </template>
 <script>
 import firebase from "firebase";
@@ -319,6 +315,7 @@ export default {
   }
 }
 h5 {
+  padding-left: 55px ; 
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px  #f1b24b, 0 0 5px darkblue;
 }
@@ -381,6 +378,7 @@ input{
   transition-duration: 0.4s;
 
 }
+
 #lbl {
   font-size: 12px;
   font-family: Times;
@@ -405,4 +403,6 @@ input{
   font-size: 13px;
   align-items: center;
 }
+
 </style>
+
