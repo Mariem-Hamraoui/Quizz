@@ -151,7 +151,7 @@ export default {
         this.error = err.message || "Failed to authenticate, try later.";
       }
       this.isLoading = false;
-     
+
     },
     switchSignUp() {
       if (this.mode === "login") {
@@ -173,7 +173,6 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
-
 }
 .auth {
   height: 30%;

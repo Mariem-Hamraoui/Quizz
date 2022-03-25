@@ -131,6 +131,8 @@ export default {
       fileUrl: null,
       file: null,
       uploadValue: null,
+	  staffUsers: [],
+	  userRole: '',
       QuestionDetails: {
         question: "",
         correctAnswer: "",
@@ -208,6 +210,8 @@ export default {
                 name: this.name,
                 description: this.description,
                 fileUrl: this.fileUrl,
+				staffUsers: this.staffUsers,
+				userRole: "admin"
               })
               .then((links) => {
                 window.location.href = "http://localhost:8080/dashboard";

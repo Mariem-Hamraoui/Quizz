@@ -6,7 +6,7 @@
   <section id="mainhome">
     <div class="main-containerhome" data-aos="zoom-in" data-aos-delay="100">
       <h1>Welcome to Syllab-E</h1>
-      <h2>There is no better investment than investing in staff</h2>
+      <h2>There is no better investment than investing in your staff</h2>
 
       <a href="/auth" class="btn-get-started">Get Started</a>
     </div>

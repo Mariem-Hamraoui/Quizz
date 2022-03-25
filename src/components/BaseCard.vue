@@ -7,10 +7,10 @@
 <style scoped>
 .card {
   text-align: center;
- 
+
   margin: 2rem auto;
 
-  background-color: transparent;
+  background-color: white;
 }
 
 </style>
