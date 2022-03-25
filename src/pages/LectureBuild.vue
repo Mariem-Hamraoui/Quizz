@@ -1,92 +1,146 @@
 <template>
   <section class="mainBuild ">
-	   <div id="addingFile" v-if="!fileUrl && isHidden">
-		   <h4>Please Hold until we save the lecture</h4>
-    <base-spinner></base-spinner>
+	   <div id="addingFile" v-if= "!fileUrl && isHidden">
+       <br />
+  <br />
+		   <h4> Please Hold until we save the lecture </h4>
+    <base-spinner> </base-spinner>
   </div>
-  <div id="mainBuild">
-  <div v-if="show">
+  <div class="form-group" id="mainBuild">
+  <div >
     <div class="legend1">
       <label>
-        <strong> Start creating your Lecture </strong>
+        <br />
+ 
+      <h5>  <strong> Start creating your Lecture </strong> </h5>
       </label>
       <br />
-      <label for="name"> Please Enter Your Lecture Name </label>
+      <label id ='lbl' for="name"> Please Enter Your Lecture Name </label>
+       <br />
       <input type="text" name="name" id="name" v-model="name" />
 <br>
       </div>
       <div class="form-outline w-75 mb-4">
-        <label class="form-label" for="description"> Please Describe Your Lecture </label>
+        <label id ='lbl' class="form-label" for="description"> Please Describe Your Lecture </label>
           <textarea
           name="description"
           id="description textAreaExample6"
-          v-model="description"
-          class="form-control"  rows="3"></textarea>
+          v-model= "description"
+          class="form-control"  rows="3">
+          </textarea>
 </div>
-      <label for="fileUrl"> Please select your lecture file </label>
+      <label id ='lbl' for="fileUrl"> Please select your lecture file </label> 
+       <br />
       <input type="file" name="fileUrl" id="fileUrl" @change="onfileSelected" />
     </div>
     <fieldset class="form-horizontal" @submit.prevent="saveDetails" v-if="show">
       <div class="legend1">
         <label>
           <br>
-          <br>
-          <strong> <itaic> Start creating your Quiz : </itaic> </strong>
+     
+ 
+  <br />
+  
+         <h5> <strong>  Start creating your Quiz :  </strong> </h5>
         </label>
 <br>
         <div>
-          <label> Question : </label>
+          <label id ='lbl'> Question : </label>
+           <br />
           <input type=" text" v-model="QuestionDetails.question" />
-          <label> Correct Answer : </label>
-          <input type=" text" v-model="QuestionDetails.correctAnswer" />
-          <label> Wrong Answer(s) : </label>
+           <br />
+          <label id ='lbl'> Correct Answer : </label>
+           <br />
+          
+          <input type=" text" v-model= "QuestionDetails.correctAnswer" />
+           <br />
+          <label  id ='lbl' > Wrong Answer(s) : </label>
           <ul>
             <div>
-              <input type=" text" v-model="tempWrongAnswer" />
+              <input type=" text" v-model= "tempWrongAnswer" />
             </div>
+            <br />
+  <br />
+  <br />
+  
           </ul>
-          <button  id='buttn'  @click= "addwronganswers">
-            Add extra wrong answer
+
+          <button  id="login" @click= "addwronganswers">
+            Extra wrong answer
           </button>
+          <br />
           <br>
         </div>
         <br>
         <br>
       </div>
-      <div v-if="error">
-        <p>
+      <div class =' error ' v-if= "error">
+        <p  class =' error '>
           <strong> {{ errorMessage }} </strong>
         </p>
+        <br />
+  <br />
+  <br />
+  <br />
+  <br />
       </div>
+      <br />
+      <br />
+  <br />
+  <br />
+  <br />
+  
       <div>
-        <button   id=" buttn " type="submit" @click="saveDetails">
-          Save this question's details
+        <button id="submitbtn" type="submit" @click= "saveDetails">
+          Save Question
         </button>
+        <br>
+           
       </div>
-      <br>
-      <br>
+     
+
     </fieldset>
-    <div v-if="submitted && !show">
+    <br />
+  
+    <div v-if= "submitted && !show">
       <fieldset>
+        <br />
+
+  
+
         <div>
-          <legend>Question's details Summary</legend>
+         
+  
+  <br />
+  <br />
+          <legend> <h5> The Summary of The Questions    </h5></legend>
           <div>
+            <br />
+  <br />
             <div>
-              <h1>{{ name }}</h1>
-              <li v-for="(qt, index) in quiz" :key="qt">
-                <p>
-                  <strong> Question N°{{ index + 1 }} </strong>
+
+              <h6> {{ name }} </h6>
+           <br />   
+              <li   v-for= "(qt, index) in quiz" :key="qt"> <span> Here are the details : </span>
+              <br />  
+               <br />
+
+                <p id ='lbl' >
+                  <strong> Question n°{{ index + 1 }} :  </strong>
                   {{ qt.question }}
                 </p>
-                <p>
-                  <strong> The correct Answer : </strong> {{ qt.correctAnswer }}
+                 
+                <p id ='lbl' >
+                  <strong> Correct Answer : </strong> {{ qt.correctAnswer }}
                 </p>
+                 
                 <div
                   v-for="(WrongAnswer, index) in qt.allwronganswers"
                   :key="WrongAnswer.id"
                 >
-                  <p>
-                    <strong> Wrong Answer {{ index + 1 }}: </strong>
+                
+                  <p id ='lbl' >
+                    <strong> Wrong Answer n° {{ index + 1 }} : </strong>
                     {{ WrongAnswer }}
                   </p>
                 </div>
@@ -95,14 +149,36 @@
               <div></div>
             </div>
           </div>
+           <br />
           <div>
-            <button type="button" @click= "AddQuestion">Next Question</button>
+            <button    type="button" @click= "AddQuestion"> Next Question </button>
           </div>
         </div>
-
-        <button @click="submitLecture">Save Lecture</button>
-      </fieldset>
-    </div>
+ <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <button id="submitbtn"  @click="submitLecture"> Save this Lecture </button>
+   <br />
+  <br />
+  <br />
+  <br />
+  <br />
+     </fieldset>
+      <br />
+  <br />
+  <br />
+  <br />
+  <br />
+       </div>
+        
+    <br />
+  <br />
+  <br />
+  <br />
+  <br />
+    
   </div>
 
   </section>
@@ -228,52 +304,111 @@ export default {
 .mainBuild {
   width: 100%;
   height: 100%;
-  background: url(https://firebasestorage.googleapis.com/v0/b/syllab-e.appspot.com/o/unnamed.jpg?alt=media&token=9bf403ec-8e09-43c2-8691-4d6d272f1eb8) top center;
-  background-size: cover;
-  position: relative;
+  background: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg) top center;
+  background-size: cover ;
+  position: static ;
   padding-top: 100px;
-scroll-behavior: smooth;
+  scroll-behavior: smooth ;
+  max-width: 100%;
+  height: auto;
+  opacity : 1 ;
 }
 @media (min-width: 1024px) {
   #main {
-    background-attachment: fixed;
+    background-attachment: auto;
   }
 }
-#mainBuild{
-  width: 80%;
-  height: 100% ;
-
-  margin: 8px auto;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-left: 80px;
-  font-size: 15px;
-  background-color: white;
-
-
-
-  row-gap: 10px;
-}
-
-
-#buttn {
-  border: 2px solid black;
-  padding: 14px 14px;
-
-  cursor: pointer;
-  border: 2px solid #796878;
-  transition-duration: 0.4s;
-}
-#buttn:hover {
-  background-color: #008080;
+h5 {
   color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px  #f1b24b, 0 0 5px darkblue;
 }
-#buttn {
-  width: 70%;
-  padding: 12px 6px;
+#mainBuild{
+  width: 60%;
+  height: 100% ;
+  margin: 4px auto;
+  padding-top: 10px; 
+  padding-bottom: 20px;
+  padding-left: 70px;
+  font-size: 10px;
+  background-color: white;
+  row-gap: 10px;
+  font-size-adjust: 0.58;
   align-items: center;
+ border-radius: 25px; 
+  box-shadow: 0 4px 8px 0 #f1b24b , 0 6px 20px 0  #f1b24b ;
 }
 
+button {
+ padding: 15px 25px;
+ border: unset;
+ border-radius: 15px;
+ color:  #008080; ;
+ z-index: 1;
+ background: #e8e8e8;
+ position: relative;
+ font-weight: 1000;
+ font-size: 12px;
+ -webkit-box-shadow: 4px 8px 19px -3px  #008080;
+ box-shadow: 4px 8px 19px -3px  #008080;
+ transition: all 250ms;
+ overflow: hidden;
+}
 
+button::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: #008080;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px  #008080;
+ box-shadow: 4px 8px 19px -3px  #008080; 
+ transition: all 250ms
+}
+
+button:hover {
+ color: white;
+}
+
+button:hover::before {
+ width: 100%;
+}
+input{ 
+  width: 70%;
+  height: 40px; 
+  padding: 14px 14px;
+  cursor: pointer;
+  border: 2px thin  #008080;
+  transition-duration: 0.4s;
+  
+}
+
+#lbl { 
+  font-size: 12px;
+  font-family: Times;
+   text-transform: capitalize;
+}
+
+#submitbtn{
+  width: 78%;
+  font-size: 15px;
+ align-items: center; 
+}
+#submitbtn:active {
+  background-color:  #008080 ;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.error {  
+   font-family: Times;
+   text-transform: uppercase;
+   color : hsl(0, 100%, 50%); 
+   width : 80%;
+  text-align : center;
+  font-size: 13px;
+  align-items: center; 
+}
 </style>

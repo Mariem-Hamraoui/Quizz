@@ -5,7 +5,7 @@
     class="error"
     :show="!!error"
     title=" An error occurred!!"
-    @close="handleError"
+    @close= "handleError"
   >
     <p>{{ error }}</p>
   </base-dialog>
@@ -20,9 +20,9 @@
           <div v-if="mode === 'login'">
             <h3><i class="fa fa-user w3-margin-right"></i> Login</h3>
             <br />
-            <p>Please enter your credentials to login</p>
+            <p id ='lbl' >Please enter your credentials to login</p>
 
-
+<br />
             <input
               type="email"
               placeholder="username .. "
@@ -31,7 +31,8 @@
             />
 
 
-
+<br />
+<br />
 
             <input
               type="password"
@@ -46,7 +47,7 @@
 
             <p>Please enter your credentials to create your account</p>
 
-
+<br />
 
             <input
               type="email"
@@ -54,7 +55,7 @@
               id="email"
               v-model.trim="email"
             />
-
+<br />
 
             <input
               name="password"
@@ -68,21 +69,22 @@
 
           <p class="error">{{ errorMessage }}</p>
 
-
-          <button class="btn" id="login" @click="submitForm">
+<br />
+          <button   id="login" @click= "submitForm">
             {{ submittedButtonCaption }}
           </button>
 
 
           <br />
-
+<br />
+<br />
           <button
-            class="btn"
-            id="Sign"
+         
+           
             type="button"
             mode="flat"
-            @click="switchSignUp"
-          >
+            @click="switchSignUp">
+      
             {{ switchModeButtonCaption }}
           </button>
         </form>
@@ -111,14 +113,14 @@ export default {
       if (this.mode === "login") {
         return "Login";
       } else {
-        return "Signup";
+        return " Signup";
       }
     },
     switchModeButtonCaption() {
       if (this.mode === "login") {
-        return "Signup instead";
+        return " Signup instead ";
       } else {
-        return "Login instead";
+        return " Login instead ";
       }
     },
   },
@@ -173,10 +175,13 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
+  background-image: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg);
+  height: 100vh;
+
 }
 .auth {
   height: 30%;
-  width: 40%;
+  width: 100%;
   position: relative;
   margin: 0 auto;
   padding: 45px;
@@ -185,6 +190,7 @@ export default {
     0 5px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: #faf8f2;
   display: center;
+   box-shadow: 15px 15px 30px #bebebe,  -15px -15px 30px #ffffff;
 }
 label {
   color: black;
