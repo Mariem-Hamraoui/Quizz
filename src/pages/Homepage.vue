@@ -2,21 +2,17 @@
 <template>
 
 <body>
-  <header class="header">	
-	<div class="text-box">
-		<h1 class="heading-primary">
-			<span class="heading-primary-main"> Syllab-E  </span>
-			<span class="heading-primary-sub"> We Are The Best  </span>
-		</h1>
-    <div class="d-grid gap-2">
-  <a class="btn btn-lg btn-secondary" href="/auth"  role="button" type="button"> <strong> Get started </strong> </a>
-  
-</div>
+   <!-- ======= main Section ======= -->
+  <section id="mainhome">
+    <div class="main-containerhome" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Welcome to Syllab-E</h1>
+      <h2>There is no better investment than investing in your staff</h2>
 
-	
-	</div>
-</header>
- 
+      <a href="/auth" class="btn-get-started">Get Started</a>
+    </div>
+  </section><!-- End main Section -->
+
+
 </body>
 
 </template>
@@ -29,81 +25,89 @@ export default {
 };
 </script>
 <style>
-body {
-  	font-family: 'Lato', sans-serif;
-  	font-weight: 400;
-  	font-size: 16px;
-  	line-height: 1.7;
-  	color: #eee;
+/*--------------------------------------------------------------
+# main Section
+--------------------------------------------------------------*/
+#mainhome {
+  width: 100%;
+  line-height: 3;
+  height: 100vh;
+  background: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg) top center;
+  background-size: cover;
+  position: relative;
+  padding-top: 15%;
 }
-h1 {
-  font-family: 'Dancing Script', cursive;
+@media (min-width: 1024px) {
+  #mainhome {
+    background-attachment: fixed;
+  }
 }
-.header {
-  	height: 100vh;
-  	background-image: url('https://lh6.googleusercontent.com/proxy/qqFjqZlPk8IFDq3iB4Q23yfL3BZGhrQL1paqjdxLYjfFei1BzfLHR_Jjk1j7h_paXBiJRNo97mjmQiyLyQRJlgA6efvGH8lR_Cl2jRpT7ePF_tsskJ02Ed2PQD9gOKYe=w1200-h630-p-k-no-nu'); 	
-	  background-size: cover;
-  	background-position: top;
-  	position: relative;
-  	 /* clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
+#mainhome:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-
-.text-box {
-  	position: absolute;
-  	top: 40%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-  	text-align: center;
-    
+#mainhome .main-containerhome {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
-
-.heading-primary {
-  	color: #fff;
-  	text-transform: uppercase;
-  	backface-visibility: hidden;
-  	margin-bottom: 100px;
+#mainhome h1 {
+  margin: 30px 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #fff;
+  
 }
-
-.heading-primary-main {
-  	display: block;
-  	font-size: 50px;
-  	font-weight: 400;
-  	letter-spacing: 5px;
+@media (max-width: 768px) {
+  #main h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
 }
-
-.heading-primary-sub {
-  	display: block;
-  	font-size: 30px;
-  	font-weight: 300;
-  	letter-spacing: 7.4px;
+#mainhome h2 {
+  color: #eee;
+  margin-bottom: 50px;
+  font-size: 24px;
 }
-
-.btn:link,
-.btn:visited {
-  color: #008080 ;
-  	text-transform: uppercase;
-  	text-decoration: none;
-  	padding: 16px 40px;
-  	display: inline-block;
-  	border-radius: 100px;
-  	transition: all .2s;
-  	position: relative;
+@media (max-width: 768px) {
+  #mainhome h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
 }
-
-.btn:hover {
-  	transform: translateY(-3px);
-  	box-shadow: 0 10px 20px #008080;
+#mainhome .btn-get-started {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #fff;
+  color: #fff;
 }
-
-.btn:active {
-  	transform: translateY(-1px);
-  	box-shadow: 0 5px 10px #008080;
-}
-
-.btn-white {
-  	
-  	color: #008080 ;
-	font-size: 14px;
+#mainhome .btn-get-started:hover {
+  background: #2dc997;
+  border: 2px solid #2dc997;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
 }
 
 

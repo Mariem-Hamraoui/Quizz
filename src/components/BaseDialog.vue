@@ -60,11 +60,11 @@ export default {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 10;
+  
 }
 
 dialog {
   position: fixed;
-  top: 20vh;
   left: 10%;
   width: 80%;
   z-index: 100;
@@ -72,14 +72,13 @@ dialog {
   border: none;
 
   padding: 0;
-  margin: 0;
+
   overflow: hidden;
-  background-color: white ;
+ background: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg) top center;
 }
 
 header {
-  background-color: white ;
-  color: black;
+  color: white ;
   width: 100%;
   padding: 1rem;
 }
