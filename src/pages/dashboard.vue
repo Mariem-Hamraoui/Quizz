@@ -114,7 +114,7 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
-  height: 150vh;
+  height: 250vh;
   background-image: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg);
   background-attachment: fixed;
   align-items: center;
@@ -132,7 +132,7 @@ export default {
   padding-right: 80px;
   padding-bottom: 50px;
   padding-left: 80px;
-  background-color: white;
+  background-color: #fafafa ;
   background-attachment: scroll;
   border: 2px solid #796878;
   -moz-border-radius: 8px;
@@ -141,6 +141,7 @@ export default {
   box-shadow: 0 4px 8px 0 #f1b24b, 0 6px 20px 0 #f1b24b;
   align-items: center;
   font-size: 15px;
+   border-radius: 40px;
 }
 
 .newlecture:link {

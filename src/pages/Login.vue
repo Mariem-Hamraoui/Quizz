@@ -56,7 +56,7 @@
               v-model.trim="email"
             />
 <br />
-
+<br />
             <input
               name="password"
               placeholder="Password"
@@ -191,6 +191,7 @@ export default {
   background-color: #faf8f2;
   display: center;
    box-shadow: 15px 15px 30px #bebebe,  -15px -15px 30px #ffffff;
+   border-radius: 8px;
 }
 label {
   color: black;

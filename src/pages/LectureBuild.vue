@@ -6,9 +6,9 @@
 		   <h4> Please Hold until we save the lecture </h4>
     <base-spinner> </base-spinner>
   </div>
-  <div class="form-group" id="mainBuild">
+  <div  id="mainBuild">
   <div >
-    <div class="legend1">
+    <div>
       <label>
         <br />
  
@@ -17,7 +17,7 @@
       <br />
       <label id ='lbl' for="name"> Please Enter Your Lecture Name </label>
        <br />
-      <input type="text" name="name" id="name" v-model= "name" />
+      <input type="text" class='nameinput' name="name" id="name" v-model= "name" />
 <br>
       </div>
       <div class="form-outline w-75 mb-4">
@@ -34,7 +34,7 @@
       <input type="file" name="fileUrl" id="fileUrl" @change="onfileSelected" />
     </div>
     <fieldset class="form-horizontal" @submit.prevent="saveDetails" v-if="show">
-      <div class="legend1">
+      <div>
         <label>
           <br>
      
@@ -57,7 +57,7 @@
           <label  id ='lbl' > Wrong Answer(s) : </label>
           <ul>
             <div>
-              <input type=" text" v-model= "tempWrongAnswer" />
+              <input class="wrginput" type=" text" v-model= "tempWrongAnswer" />
             </div>
             <br />
   <br />
@@ -309,6 +309,7 @@ export default {
   max-width: 100%;
   height: auto;
   opacity : 1 ;
+  
 }
 @media (min-width: 1024px) {
   #main {
@@ -319,6 +320,7 @@ h5 {
   padding-left: 55px ; 
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px  #f1b24b, 0 0 5px darkblue;
+  font-size: 30px ;
 }
 #mainBuild{
   width: 60%;
@@ -334,6 +336,8 @@ h5 {
   align-items: center;
  border-radius: 25px; 
   box-shadow: 0 4px 8px 0 #f1b24b , 0 6px 20px 0  #f1b24b ;
+ border-radius: 12px;
+  border-radius: 40px;
 }
 
 button {
@@ -409,5 +413,13 @@ input{
   font-size: 13px;
   align-items: center; 
 }
-
+.wrginput{
+  padding-left: 0px ;
+  margin-left: -43px ;
+  width: 74%;
+  
+}
+.nameinput{
+  width: 75%;
+}
 </style>
