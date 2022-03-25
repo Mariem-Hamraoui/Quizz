@@ -6,10 +6,10 @@
     <br />
     <br />
      <br />
-    <button id="submitbtn"  @click="toggleDetails">Show Details</button>
+    <button id="ShowDt"  @click= "toggleDetails"> Show Details </button>
      <br />
       <br />
-    <ul v-if="detailsAreVisible">
+    <ul v-if= "detailsAreVisible">
       <div>
         <br />
 
@@ -20,7 +20,7 @@
       <br />
       <div>
         <br />
-        <button @click="deleteLecture(req.name)"> Delete </button>
+        <button id="ShowDt"   @click="deleteLecture(req.name)"> Delete </button>
         <br />
         <br />
         <div id ='lbldash'> List of staff already invited </div>
@@ -30,12 +30,16 @@
           name="staffemail"
           id="staffemail"
           v-model= "staffemail"
+          placeholder="  Enter your Staff email .. "
         />
         <br />
-        <button type="submit" @click= "inviteStaff"> Add staff </button>
+         <br />
+        <button  id="ShowDt"   type="submit" @click= "inviteStaff"> Add Staff </button>
         <br />
       </div>
     </ul>
+    <br />
+    <br />
   </div>
 </template>
 
@@ -124,5 +128,10 @@ export default {
 
 h7 {
 font-size: 20px ;
+} 
+
+#ShowDt {
+  width: 40%;
 }
+
 </style>

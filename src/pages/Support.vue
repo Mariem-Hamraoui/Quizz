@@ -1,6 +1,6 @@
 <template>
   <div class="mainSupport ">
-    <div class="card">
+    <div class="cardSupport">
       <div>
             <br />
         <h5> Support  request </h5>
@@ -29,8 +29,13 @@
         </div>
       </div>
     </div>
+     <br />
+  <br />
+   <br />
+  <br />
   </div>
-  <footer class="text-center text-white " style="background-color:  #003f5c;">
+  
+  <footer class= "text-center text-white " style= "background-color: #003f5c;">
  
   <div class="container p-2">
       <div>
@@ -62,14 +67,14 @@
 </template>
 
 <style>
-.card {
+.cardSupport {
   padding-top: 20px;
   margin-left: 30%;
   margin-top : 10%;
   width: 40%;
   align-items: center;
   width: middle;
-  border-radius: 70px;
+  border-radius: 30px;
   background: white;
   box-shadow: 10px 10px 15px #bebebe, -10px -10px 15px #ffffff;
 }
@@ -78,7 +83,7 @@
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
-  height: 118vh;
+  height: 150vh;
   background-image: url(https://superhqwallpapers.com/wp-content/uploads/2021/08/3d-Abstract-Lacza-X8-Wallpaper.jpg);
   background-attachment: fixed;
   align-items: center;
