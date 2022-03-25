@@ -2,12 +2,13 @@
   <div>
     <h2>Lecture Name: {{ req.name }}</h2>
 
-    <button @click="toggleDetails">Start Lecture</button>
-    <ul v-if="detailsAreVisible">
+    <button @click="toggleDetails" v-if="!detailsAreVisible">Start Lecture</button>
+    <ul >
       <div>
         <strong>Description:</strong>
         {{ req.description }}
       </div>
+
 
     </ul>
   </div>

@@ -173,10 +173,13 @@ export default {
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
+  background-image: url("/assets/backg.jpg");
+  height: 100vh;
+
 }
 .auth {
   height: 30%;
-  width: 40%;
+  width: 100%;
   position: relative;
   margin: 0 auto;
   padding: 45px;

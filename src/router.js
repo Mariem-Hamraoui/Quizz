@@ -8,6 +8,7 @@ import LectureBuild from "./pages/LectureBuild.vue";
 import NotFound from "./pages/NotFound.vue";
 import staffLogin from "./staffPages/staffLogin.vue";
 import staffDashboard from "./staffPages/staffDashboard.vue"
+import quizz from './staffPages/quizz.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: "/", redirect: "/homepage" },
     { path: "/homepage", component: Homepage },
     { path: "/build", component: LectureBuild },
+	{ path: "/quizz", component: quizz },
 	{ path: "/staffLogin", component: staffLogin },
 	{ path: "/staffDashboard", component: staffDashboard},
     { path: "/dashboard", component: Dashboard, meta: { requiresAuth: true } },
