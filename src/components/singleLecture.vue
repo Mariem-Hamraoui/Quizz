@@ -6,10 +6,10 @@
     <br />
     <br />
      <br />
-    <button id="submitbtn"  @click="toggleDetails">Show Details</button>
+    <button id="ShowDt"  @click= "toggleDetails"> Show Details </button>
      <br />
       <br />
-    <ul v-if="detailsAreVisible">
+    <ul v-if= "detailsAreVisible">
       <div>
         <br />
 
@@ -20,27 +20,32 @@
       <br />
       <div>
         <br />
-        <button @click="deleteLecture(req.id)"> Delete </button>
+        <button id="ShowDt"   @click="deleteLecture(req)"> Delete </button>
         <br />
         <br />
-        <div id ='lbldash'> List of staff already invited </div>
+        
         <br />
         <input
           type="email"
           name="staffemail"
           id="staffemail"
           v-model= "staffemail"
+          placeholder="  Enter your Staff email .. "
         />
         <br />
-        <button type="submit" @click= "inviteStaff"> Add staff </button>
+         <br />
+        <button  id="ShowDt"   type="submit" @click= "inviteStaff"> Invite Staff </button>
         <br />
       </div>
     </ul>
+    <br />
+    <br />
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase/app'
+import { firebaseApp,firebaseDB } from 'firebase/firebase'
 
 
 export default {
@@ -49,9 +54,16 @@ export default {
     return {
       detailsAreVisible: false,
       staffemail: "",
+	  db : firebase.firestore()
     };
   },
+ created() {
 
+  if(this.req.userRole ==="staff"){
+	 return window.location.href = "http://localhost:8080/staffDashboard"
+  }
+
+  },
   methods: {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
@@ -109,13 +121,11 @@ export default {
 
     async deleteLecture(item) {
 
-     const ref = firebase.database().ref('lectures');
-const query = ref.orderById().equalTo(this.req.id);
-query.once('value').then((results) => {
-  results.forEach((snapshot) => {
-    snapshot.ref.remove();
-  });
-});
+		const firebaseDB = firebase.database()
+const messagesRef = firebaseDB.ref(`lectures/${item.userId}/`)
+await messagesRef.child(item.id).remove()
+
+      window.location.reload()
     },
   },
 };
@@ -133,4 +143,9 @@ query.once('value').then((results) => {
 h7 {
 font-size: 20px ;
 }
+
+#ShowDt {
+  width: 40%;
+}
+
 </style>

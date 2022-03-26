@@ -16,11 +16,11 @@ const router = createRouter({
   routes: [
     { path: "/", redirect: "/homepage" },
     { path: "/homepage", component: Homepage },
-    { path: "/build", component: LectureBuild },
+    { path: "/build", component: LectureBuild, meta: { requiresAuth: true } },
 	{ path: "/quizz", component: quizz },
-	{ path: "/staffLogin", component: staffLogin },
+
 	{ path: "/support", component: Support },
-	{ path: "/staffDashboard", component: staffDashboard},
+	{ path: "/staffDashboard", component: staffDashboard, meta: { requiresAuth: true }},
     { path: "/dashboard", component: Dashboard, meta: { requiresAuth: true } },
 
     { path: "/auth", component: Login, meta: { requiresUnauth: true } },
@@ -38,4 +38,4 @@ router.beforeEach(function (to, _, next) {
   }
 });
 
-export default router; 
+export default router;

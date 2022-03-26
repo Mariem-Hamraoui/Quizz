@@ -1,6 +1,8 @@
 <template>
   <div id="quiz-container">
-    <img id="logo-crown" src="/assets/crown.svg" alt="headsUP Crown" />
+	  <section>
+  
+</section>
     <h1 id="logo-headline">headsUP</h1>
 	<h2>Your quiz has started</h2>
 
@@ -179,7 +181,7 @@ console.log
         if (question.userAnswer === question.correctAnswer) {
 
           event.target.classList.add("rightAnswer");
-         
+
           this.questions[index].rightAnswer = true;
         } else {
           /* Mark users answer as wrong answer */
