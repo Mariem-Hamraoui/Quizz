@@ -72,34 +72,39 @@ export default {
 
 <style>
 #allpagedash {
-  padding-top: 200px;
+   padding-top: 200px;
   background-size: cover;
   position: relative;
   font-family: "Lato", sans-serif;
-  background-color: grey;
-  height: 100vh;
+
+  height: 150vh;
+
   background-image: url("/assets/backg.jpg");
 
+  background-attachment: fixed;
+  align-items: center;
+  text-align: center;
+}
+.staffmainDashboard {
+ font-family: Times;
+  padding: 10px 20px;
+  width: 60%;
+  margin: 10px auto;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   padding-top: 50px;
   padding-right: 80px;
   padding-bottom: 50px;
   padding-left: 80px;
-}
-.staffmainDashboard {
-  width: 100%;
-  max-width: 700px;
-
-  margin: 10px auto;
-
-  border-radius: 8px;
-
-  background-color: white;
+  background-color: #fafafa;
   background-attachment: scroll;
   border: 2px solid #796878;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 #f1b24b, 0 6px 20px 0 #f1b24b;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 40px;
 }
 </style>

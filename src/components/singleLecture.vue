@@ -1,6 +1,6 @@
 <template>
   <div class =' singlelecture'>
-    
+
     <h7>   <p> Lecture Name : </p> <strong> {{ req.name }} </strong> </h7>
 
     <br />
@@ -20,10 +20,10 @@
       <br />
       <div>
         <br />
-        <button id="ShowDt"   @click="deleteLecture(req.name)"> Delete </button>
+        <button id="ShowDt"   @click="deleteLecture(req)"> Delete </button>
         <br />
         <br />
-        <div id ='lbldash'> List of staff already invited </div>
+        
         <br />
         <input
           type="email"
@@ -34,7 +34,7 @@
         />
         <br />
          <br />
-        <button  id="ShowDt"   type="submit" @click= "inviteStaff"> Add Staff </button>
+        <button  id="ShowDt"   type="submit" @click= "inviteStaff"> Invite Staff </button>
         <br />
       </div>
     </ul>
@@ -44,7 +44,9 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase/app'
+import { firebaseApp,firebaseDB } from 'firebase/firebase'
+
 
 export default {
   props: ["req"],
@@ -52,9 +54,16 @@ export default {
     return {
       detailsAreVisible: false,
       staffemail: "",
+	  db : firebase.firestore()
     };
   },
+ created() {
 
+  if(this.req.userRole ==="staff"){
+	 return window.location.href = "http://localhost:8080/staffDashboard"
+  }
+
+  },
   methods: {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
@@ -110,8 +119,13 @@ export default {
       }
     },
 
-    deleteLecture(doc) {
-      console.log(firebase);
+    async deleteLecture(item) {
+
+		const firebaseDB = firebase.database()
+const messagesRef = firebaseDB.ref(`lectures/${item.userId}/`)
+await messagesRef.child(item.id).remove()
+
+      window.location.reload()
     },
   },
 };
@@ -123,12 +137,12 @@ export default {
 .singlelecture{
   padding-left : 5px ;
    box-sizing: none ;
-   margin : 0 auto ;  
+   margin : 0 auto ;
 }
 
 h7 {
 font-size: 20px ;
-} 
+}
 
 #ShowDt {
   width: 40%;
